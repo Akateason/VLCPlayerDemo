@@ -8,24 +8,109 @@
 
 /* Begin PBXBuildFile section */
 		8F7F00C92043FD73008D4399 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F00C82043FD73008D4399 /* AppDelegate.m */; };
-		8F7F00CC2043FD73008D4399 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F00CB2043FD73008D4399 /* ViewController.m */; };
 		8F7F00CF2043FD73008D4399 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00CD2043FD73008D4399 /* Main.storyboard */; };
 		8F7F00D12043FD73008D4399 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00D02043FD73008D4399 /* Assets.xcassets */; };
 		8F7F00D42043FD73008D4399 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00D22043FD73008D4399 /* LaunchScreen.storyboard */; };
 		8F7F00D72043FD73008D4399 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F00D62043FD73008D4399 /* main.m */; };
+		8F7F00F52043FDF6008D4399 /* Full Screen Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00DE2043FDF6008D4399 /* Full Screen Icon.png */; };
+		8F7F00F62043FDF6008D4399 /* Full Screen Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00DF2043FDF6008D4399 /* Full Screen Icon@2x.png */; };
+		8F7F00F72043FDF6008D4399 /* Full Screen Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00E02043FDF6008D4399 /* Full Screen Icon@3x.png */; };
+		8F7F00F82043FDF6008D4399 /* Min. Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00E12043FDF6008D4399 /* Min. Icon.png */; };
+		8F7F00F92043FDF6008D4399 /* Min. Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00E22043FDF6008D4399 /* Min. Icon@2x.png */; };
+		8F7F00FA2043FDF6008D4399 /* Min. Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00E32043FDF6008D4399 /* Min. Icon@3x.png */; };
+		8F7F00FB2043FDF6008D4399 /* Pause Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00E42043FDF6008D4399 /* Pause Icon.png */; };
+		8F7F00FC2043FDF6008D4399 /* Pause Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00E52043FDF6008D4399 /* Pause Icon@2x.png */; };
+		8F7F00FD2043FDF6008D4399 /* Pause Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00E62043FDF6008D4399 /* Pause Icon@3x.png */; };
+		8F7F00FE2043FDF6008D4399 /* Play Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00E72043FDF6008D4399 /* Play Icon.png */; };
+		8F7F00FF2043FDF6008D4399 /* Play Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00E82043FDF6008D4399 /* Play Icon@2x.png */; };
+		8F7F01002043FDF6008D4399 /* Play Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00E92043FDF6008D4399 /* Play Icon@3x.png */; };
+		8F7F01012043FDF6008D4399 /* Player close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00EA2043FDF6008D4399 /* Player close@2x.png */; };
+		8F7F01022043FDF6008D4399 /* Player close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00EB2043FDF6008D4399 /* Player close@3x.png */; };
+		8F7F01032043FDF6008D4399 /* Player Control Nob.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00EC2043FDF6008D4399 /* Player Control Nob.png */; };
+		8F7F01042043FDF6008D4399 /* Player Control Nob@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00ED2043FDF6008D4399 /* Player Control Nob@2x.png */; };
+		8F7F01052043FDF6008D4399 /* Player Control Nob@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00EE2043FDF6008D4399 /* Player Control Nob@3x.png */; };
+		8F7F01062043FDF6008D4399 /* Sound Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00EF2043FDF6008D4399 /* Sound Icon.png */; };
+		8F7F01072043FDF6008D4399 /* Sound Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00F02043FDF6008D4399 /* Sound Icon@2x.png */; };
+		8F7F01082043FDF6008D4399 /* Sound Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00F12043FDF6008D4399 /* Sound Icon@3x.png */; };
+		8F7F01092043FDF6008D4399 /* Video Bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00F22043FDF6008D4399 /* Video Bg.png */; };
+		8F7F010A2043FDF6008D4399 /* Video Bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00F32043FDF6008D4399 /* Video Bg@2x.png */; };
+		8F7F010B2043FDF6008D4399 /* Video Bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00F42043FDF6008D4399 /* Video Bg@3x.png */; };
+		8F7F01212043FDFD008D4399 /* BaseCtrller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F01142043FDFD008D4399 /* BaseCtrller.m */; };
+		8F7F01222043FDFD008D4399 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F01162043FDFD008D4399 /* FilesViewController.m */; };
+		8F7F01232043FDFD008D4399 /* LocalViewConrtoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F01182043FDFD008D4399 /* LocalViewConrtoller.m */; };
+		8F7F01242043FDFD008D4399 /* PlayingCtrller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F011A2043FDFD008D4399 /* PlayingCtrller.m */; };
+		8F7F01252043FDFD008D4399 /* RemoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F011C2043FDFD008D4399 /* RemoteViewController.m */; };
+		8F7F01262043FDFD008D4399 /* UIViewController+FileUrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F011E2043FDFD008D4399 /* UIViewController+FileUrl.m */; };
+		8F7F012A2043FE06008D4399 /* FileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F01292043FE05008D4399 /* FileModel.m */; };
+		8F7F01322043FE0B008D4399 /* FilesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F012D2043FE0B008D4399 /* FilesCell.m */; };
+		8F7F01332043FE0B008D4399 /* FilesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F012E2043FE0B008D4399 /* FilesCell.xib */; };
+		8F7F01342043FE0B008D4399 /* FolderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F01302043FE0B008D4399 /* FolderCell.m */; };
+		8F7F01352043FE0B008D4399 /* FolderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F01312043FE0B008D4399 /* FolderCell.xib */; };
+		8F7F013C2043FE24008D4399 /* MRVideoControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F01392043FE24008D4399 /* MRVideoControlView.m */; };
+		8F7F013D2043FE24008D4399 /* MRVLCPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F013B2043FE24008D4399 /* MRVLCPlayer.mm */; };
+		FDE47CE917F906AB88D0FCA4 /* libPods-VLCDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12764453FD3B14AE6FD77891 /* libPods-VLCDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		12764453FD3B14AE6FD77891 /* libPods-VLCDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VLCDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F7F00C42043FD73008D4399 /* VLCDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VLCDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F7F00C72043FD73008D4399 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8F7F00C82043FD73008D4399 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8F7F00CA2043FD73008D4399 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8F7F00CB2043FD73008D4399 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		8F7F00CE2043FD73008D4399 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8F7F00D02043FD73008D4399 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8F7F00D32043FD73008D4399 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8F7F00D52043FD73008D4399 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F7F00D62043FD73008D4399 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8F7F00DE2043FDF6008D4399 /* Full Screen Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Full Screen Icon.png"; sourceTree = "<group>"; };
+		8F7F00DF2043FDF6008D4399 /* Full Screen Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Full Screen Icon@2x.png"; sourceTree = "<group>"; };
+		8F7F00E02043FDF6008D4399 /* Full Screen Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Full Screen Icon@3x.png"; sourceTree = "<group>"; };
+		8F7F00E12043FDF6008D4399 /* Min. Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Min. Icon.png"; sourceTree = "<group>"; };
+		8F7F00E22043FDF6008D4399 /* Min. Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Min. Icon@2x.png"; sourceTree = "<group>"; };
+		8F7F00E32043FDF6008D4399 /* Min. Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Min. Icon@3x.png"; sourceTree = "<group>"; };
+		8F7F00E42043FDF6008D4399 /* Pause Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pause Icon.png"; sourceTree = "<group>"; };
+		8F7F00E52043FDF6008D4399 /* Pause Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pause Icon@2x.png"; sourceTree = "<group>"; };
+		8F7F00E62043FDF6008D4399 /* Pause Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pause Icon@3x.png"; sourceTree = "<group>"; };
+		8F7F00E72043FDF6008D4399 /* Play Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Play Icon.png"; sourceTree = "<group>"; };
+		8F7F00E82043FDF6008D4399 /* Play Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Play Icon@2x.png"; sourceTree = "<group>"; };
+		8F7F00E92043FDF6008D4399 /* Play Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Play Icon@3x.png"; sourceTree = "<group>"; };
+		8F7F00EA2043FDF6008D4399 /* Player close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Player close@2x.png"; sourceTree = "<group>"; };
+		8F7F00EB2043FDF6008D4399 /* Player close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Player close@3x.png"; sourceTree = "<group>"; };
+		8F7F00EC2043FDF6008D4399 /* Player Control Nob.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Player Control Nob.png"; sourceTree = "<group>"; };
+		8F7F00ED2043FDF6008D4399 /* Player Control Nob@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Player Control Nob@2x.png"; sourceTree = "<group>"; };
+		8F7F00EE2043FDF6008D4399 /* Player Control Nob@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Player Control Nob@3x.png"; sourceTree = "<group>"; };
+		8F7F00EF2043FDF6008D4399 /* Sound Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sound Icon.png"; sourceTree = "<group>"; };
+		8F7F00F02043FDF6008D4399 /* Sound Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sound Icon@2x.png"; sourceTree = "<group>"; };
+		8F7F00F12043FDF6008D4399 /* Sound Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sound Icon@3x.png"; sourceTree = "<group>"; };
+		8F7F00F22043FDF6008D4399 /* Video Bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Video Bg.png"; sourceTree = "<group>"; };
+		8F7F00F32043FDF6008D4399 /* Video Bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Video Bg@2x.png"; sourceTree = "<group>"; };
+		8F7F00F42043FDF6008D4399 /* Video Bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Video Bg@3x.png"; sourceTree = "<group>"; };
+		8F7F01132043FDFD008D4399 /* BaseCtrller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCtrller.h; sourceTree = "<group>"; };
+		8F7F01142043FDFD008D4399 /* BaseCtrller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCtrller.m; sourceTree = "<group>"; };
+		8F7F01152043FDFD008D4399 /* FilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesViewController.h; sourceTree = "<group>"; };
+		8F7F01162043FDFD008D4399 /* FilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesViewController.m; sourceTree = "<group>"; };
+		8F7F01172043FDFD008D4399 /* LocalViewConrtoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalViewConrtoller.h; sourceTree = "<group>"; };
+		8F7F01182043FDFD008D4399 /* LocalViewConrtoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalViewConrtoller.m; sourceTree = "<group>"; };
+		8F7F01192043FDFD008D4399 /* PlayingCtrller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCtrller.h; sourceTree = "<group>"; };
+		8F7F011A2043FDFD008D4399 /* PlayingCtrller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCtrller.m; sourceTree = "<group>"; };
+		8F7F011B2043FDFD008D4399 /* RemoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteViewController.h; sourceTree = "<group>"; };
+		8F7F011C2043FDFD008D4399 /* RemoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteViewController.m; sourceTree = "<group>"; };
+		8F7F011D2043FDFD008D4399 /* UIViewController+FileUrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+FileUrl.h"; sourceTree = "<group>"; };
+		8F7F011E2043FDFD008D4399 /* UIViewController+FileUrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+FileUrl.m"; sourceTree = "<group>"; };
+		8F7F01282043FE05008D4399 /* FileModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileModel.h; sourceTree = "<group>"; };
+		8F7F01292043FE05008D4399 /* FileModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileModel.m; sourceTree = "<group>"; };
+		8F7F012C2043FE0B008D4399 /* FilesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesCell.h; sourceTree = "<group>"; };
+		8F7F012D2043FE0B008D4399 /* FilesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesCell.m; sourceTree = "<group>"; };
+		8F7F012E2043FE0B008D4399 /* FilesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilesCell.xib; sourceTree = "<group>"; };
+		8F7F012F2043FE0B008D4399 /* FolderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderCell.h; sourceTree = "<group>"; };
+		8F7F01302043FE0B008D4399 /* FolderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderCell.m; sourceTree = "<group>"; };
+		8F7F01312043FE0B008D4399 /* FolderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FolderCell.xib; sourceTree = "<group>"; };
+		8F7F01372043FE24008D4399 /* MRVideoConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRVideoConst.h; sourceTree = "<group>"; };
+		8F7F01382043FE24008D4399 /* MRVideoControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRVideoControlView.h; sourceTree = "<group>"; };
+		8F7F01392043FE24008D4399 /* MRVideoControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRVideoControlView.m; sourceTree = "<group>"; };
+		8F7F013A2043FE24008D4399 /* MRVLCPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRVLCPlayer.h; sourceTree = "<group>"; };
+		8F7F013B2043FE24008D4399 /* MRVLCPlayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MRVLCPlayer.mm; sourceTree = "<group>"; };
+		AF4842025CCE7816DE5D83B0 /* Pods-VLCDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VLCDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VLCDemo/Pods-VLCDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		B319E5041C5BF71C5FCF3844 /* Pods-VLCDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VLCDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-VLCDemo/Pods-VLCDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +118,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDE47CE917F906AB88D0FCA4 /* libPods-VLCDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		531A4F2D84C22F594D1D2C34 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AF4842025CCE7816DE5D83B0 /* Pods-VLCDemo.debug.xcconfig */,
+				B319E5041C5BF71C5FCF3844 /* Pods-VLCDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		8B520E404525C13E4B7C413D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				12764453FD3B14AE6FD77891 /* libPods-VLCDemo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8F7F00BB2043FD73008D4399 = {
 			isa = PBXGroup;
 			children = (
 				8F7F00C62043FD73008D4399 /* VLCDemo */,
 				8F7F00C52043FD73008D4399 /* Products */,
+				531A4F2D84C22F594D1D2C34 /* Pods */,
+				8B520E404525C13E4B7C413D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,17 +163,103 @@
 		8F7F00C62043FD73008D4399 /* VLCDemo */ = {
 			isa = PBXGroup;
 			children = (
+				8F7F00CD2043FD73008D4399 /* Main.storyboard */,
+				8F7F01362043FE24008D4399 /* Player */,
+				8F7F01272043FE05008D4399 /* Model */,
+				8F7F012B2043FE0B008D4399 /* Views */,
+				8F7F01122043FDFD008D4399 /* Controllers */,
 				8F7F00C72043FD73008D4399 /* AppDelegate.h */,
 				8F7F00C82043FD73008D4399 /* AppDelegate.m */,
-				8F7F00CA2043FD73008D4399 /* ViewController.h */,
-				8F7F00CB2043FD73008D4399 /* ViewController.m */,
-				8F7F00CD2043FD73008D4399 /* Main.storyboard */,
+				8F7F00DD2043FDF6008D4399 /* Asset */,
 				8F7F00D02043FD73008D4399 /* Assets.xcassets */,
 				8F7F00D22043FD73008D4399 /* LaunchScreen.storyboard */,
 				8F7F00D52043FD73008D4399 /* Info.plist */,
 				8F7F00D62043FD73008D4399 /* main.m */,
 			);
 			path = VLCDemo;
+			sourceTree = "<group>";
+		};
+		8F7F00DD2043FDF6008D4399 /* Asset */ = {
+			isa = PBXGroup;
+			children = (
+				8F7F00DE2043FDF6008D4399 /* Full Screen Icon.png */,
+				8F7F00DF2043FDF6008D4399 /* Full Screen Icon@2x.png */,
+				8F7F00E02043FDF6008D4399 /* Full Screen Icon@3x.png */,
+				8F7F00E12043FDF6008D4399 /* Min. Icon.png */,
+				8F7F00E22043FDF6008D4399 /* Min. Icon@2x.png */,
+				8F7F00E32043FDF6008D4399 /* Min. Icon@3x.png */,
+				8F7F00E42043FDF6008D4399 /* Pause Icon.png */,
+				8F7F00E52043FDF6008D4399 /* Pause Icon@2x.png */,
+				8F7F00E62043FDF6008D4399 /* Pause Icon@3x.png */,
+				8F7F00E72043FDF6008D4399 /* Play Icon.png */,
+				8F7F00E82043FDF6008D4399 /* Play Icon@2x.png */,
+				8F7F00E92043FDF6008D4399 /* Play Icon@3x.png */,
+				8F7F00EA2043FDF6008D4399 /* Player close@2x.png */,
+				8F7F00EB2043FDF6008D4399 /* Player close@3x.png */,
+				8F7F00EC2043FDF6008D4399 /* Player Control Nob.png */,
+				8F7F00ED2043FDF6008D4399 /* Player Control Nob@2x.png */,
+				8F7F00EE2043FDF6008D4399 /* Player Control Nob@3x.png */,
+				8F7F00EF2043FDF6008D4399 /* Sound Icon.png */,
+				8F7F00F02043FDF6008D4399 /* Sound Icon@2x.png */,
+				8F7F00F12043FDF6008D4399 /* Sound Icon@3x.png */,
+				8F7F00F22043FDF6008D4399 /* Video Bg.png */,
+				8F7F00F32043FDF6008D4399 /* Video Bg@2x.png */,
+				8F7F00F42043FDF6008D4399 /* Video Bg@3x.png */,
+			);
+			path = Asset;
+			sourceTree = "<group>";
+		};
+		8F7F01122043FDFD008D4399 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8F7F01172043FDFD008D4399 /* LocalViewConrtoller.h */,
+				8F7F01182043FDFD008D4399 /* LocalViewConrtoller.m */,
+				8F7F01132043FDFD008D4399 /* BaseCtrller.h */,
+				8F7F01142043FDFD008D4399 /* BaseCtrller.m */,
+				8F7F01152043FDFD008D4399 /* FilesViewController.h */,
+				8F7F01162043FDFD008D4399 /* FilesViewController.m */,
+				8F7F01192043FDFD008D4399 /* PlayingCtrller.h */,
+				8F7F011A2043FDFD008D4399 /* PlayingCtrller.m */,
+				8F7F011B2043FDFD008D4399 /* RemoteViewController.h */,
+				8F7F011C2043FDFD008D4399 /* RemoteViewController.m */,
+				8F7F011D2043FDFD008D4399 /* UIViewController+FileUrl.h */,
+				8F7F011E2043FDFD008D4399 /* UIViewController+FileUrl.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8F7F01272043FE05008D4399 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8F7F01282043FE05008D4399 /* FileModel.h */,
+				8F7F01292043FE05008D4399 /* FileModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8F7F012B2043FE0B008D4399 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8F7F012C2043FE0B008D4399 /* FilesCell.h */,
+				8F7F012D2043FE0B008D4399 /* FilesCell.m */,
+				8F7F012E2043FE0B008D4399 /* FilesCell.xib */,
+				8F7F012F2043FE0B008D4399 /* FolderCell.h */,
+				8F7F01302043FE0B008D4399 /* FolderCell.m */,
+				8F7F01312043FE0B008D4399 /* FolderCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8F7F01362043FE24008D4399 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				8F7F01372043FE24008D4399 /* MRVideoConst.h */,
+				8F7F01382043FE24008D4399 /* MRVideoControlView.h */,
+				8F7F01392043FE24008D4399 /* MRVideoControlView.m */,
+				8F7F013A2043FE24008D4399 /* MRVLCPlayer.h */,
+				8F7F013B2043FE24008D4399 /* MRVLCPlayer.mm */,
+			);
+			path = Player;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -78,9 +269,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8F7F00DA2043FD73008D4399 /* Build configuration list for PBXNativeTarget "VLCDemo" */;
 			buildPhases = (
+				C57038D85BF37B0A12D67A63 /* [CP] Check Pods Manifest.lock */,
 				8F7F00C02043FD73008D4399 /* Sources */,
 				8F7F00C12043FD73008D4399 /* Frameworks */,
 				8F7F00C22043FD73008D4399 /* Resources */,
+				E0F09D1230EFF03B4706D9AE /* [CP] Embed Pods Frameworks */,
+				8A1CD9E4AEF747B4AC451FE2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -129,22 +323,115 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F7F01052043FDF6008D4399 /* Player Control Nob@3x.png in Resources */,
+				8F7F00FF2043FDF6008D4399 /* Play Icon@2x.png in Resources */,
+				8F7F00F92043FDF6008D4399 /* Min. Icon@2x.png in Resources */,
+				8F7F00FE2043FDF6008D4399 /* Play Icon.png in Resources */,
+				8F7F01012043FDF6008D4399 /* Player close@2x.png in Resources */,
+				8F7F01062043FDF6008D4399 /* Sound Icon.png in Resources */,
+				8F7F01032043FDF6008D4399 /* Player Control Nob.png in Resources */,
+				8F7F01092043FDF6008D4399 /* Video Bg.png in Resources */,
+				8F7F00F82043FDF6008D4399 /* Min. Icon.png in Resources */,
+				8F7F010B2043FDF6008D4399 /* Video Bg@3x.png in Resources */,
 				8F7F00D42043FD73008D4399 /* LaunchScreen.storyboard in Resources */,
+				8F7F01352043FE0B008D4399 /* FolderCell.xib in Resources */,
+				8F7F01042043FDF6008D4399 /* Player Control Nob@2x.png in Resources */,
+				8F7F01072043FDF6008D4399 /* Sound Icon@2x.png in Resources */,
+				8F7F00FC2043FDF6008D4399 /* Pause Icon@2x.png in Resources */,
+				8F7F00F72043FDF6008D4399 /* Full Screen Icon@3x.png in Resources */,
+				8F7F01332043FE0B008D4399 /* FilesCell.xib in Resources */,
+				8F7F01082043FDF6008D4399 /* Sound Icon@3x.png in Resources */,
+				8F7F01022043FDF6008D4399 /* Player close@3x.png in Resources */,
+				8F7F00FB2043FDF6008D4399 /* Pause Icon.png in Resources */,
+				8F7F01002043FDF6008D4399 /* Play Icon@3x.png in Resources */,
 				8F7F00D12043FD73008D4399 /* Assets.xcassets in Resources */,
+				8F7F010A2043FDF6008D4399 /* Video Bg@2x.png in Resources */,
 				8F7F00CF2043FD73008D4399 /* Main.storyboard in Resources */,
+				8F7F00F62043FDF6008D4399 /* Full Screen Icon@2x.png in Resources */,
+				8F7F00FA2043FDF6008D4399 /* Min. Icon@3x.png in Resources */,
+				8F7F00FD2043FDF6008D4399 /* Pause Icon@3x.png in Resources */,
+				8F7F00F52043FDF6008D4399 /* Full Screen Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8A1CD9E4AEF747B4AC451FE2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-VLCDemo/Pods-VLCDemo-resources.sh",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
+				"${PODS_ROOT}/XTColor/XTColor/color/XTColors.plist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/XTColors.plist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VLCDemo/Pods-VLCDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C57038D85BF37B0A12D67A63 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VLCDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E0F09D1230EFF03B4706D9AE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VLCDemo/Pods-VLCDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8F7F00C02043FD73008D4399 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F7F00CC2043FD73008D4399 /* ViewController.m in Sources */,
+				8F7F01242043FDFD008D4399 /* PlayingCtrller.m in Sources */,
+				8F7F01322043FE0B008D4399 /* FilesCell.m in Sources */,
+				8F7F01342043FE0B008D4399 /* FolderCell.m in Sources */,
+				8F7F013D2043FE24008D4399 /* MRVLCPlayer.mm in Sources */,
+				8F7F01262043FDFD008D4399 /* UIViewController+FileUrl.m in Sources */,
+				8F7F012A2043FE06008D4399 /* FileModel.m in Sources */,
+				8F7F01252043FDFD008D4399 /* RemoteViewController.m in Sources */,
+				8F7F01232043FDFD008D4399 /* LocalViewConrtoller.m in Sources */,
+				8F7F01222043FDFD008D4399 /* FilesViewController.m in Sources */,
 				8F7F00D72043FD73008D4399 /* main.m in Sources */,
+				8F7F013C2043FE24008D4399 /* MRVideoControlView.m in Sources */,
 				8F7F00C92043FD73008D4399 /* AppDelegate.m in Sources */,
+				8F7F01212043FDFD008D4399 /* BaseCtrller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,29 +563,35 @@
 		};
 		8F7F00DB2043FD73008D4399 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF4842025CCE7816DE5D83B0 /* Pods-VLCDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5D74XHX7AD;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = VLCDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.teason.VLCDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		8F7F00DC2043FD73008D4399 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B319E5041C5BF71C5FCF3844 /* Pods-VLCDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5D74XHX7AD;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = VLCDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.teason.VLCDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

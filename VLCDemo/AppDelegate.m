@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import <XTlib.h>
+#import "FileModel.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +19,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [[XTFMDBBase sharedInstance] configureDB:@"xtcPlayer"] ;
+    
+    // create tb
+    [XTFileManager createFileBoxesWithPath:@"cover"] ;
+    [FileModel createTable] ;
+
+    
     return YES;
 }
 
