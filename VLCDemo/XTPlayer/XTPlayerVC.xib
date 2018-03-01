@@ -12,6 +12,17 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="XTPlayerVC">
             <connections>
+                <outlet property="bottomBack" destination="bgR-t2-eJz" id="eyV-3v-MMK"/>
+                <outlet property="btDismiss" destination="71s-SJ-rdS" id="Ryd-Wx-pBo"/>
+                <outlet property="btPlay" destination="tSn-8d-07C" id="7bl-Dx-R6J"/>
+                <outlet property="btProgress" destination="feM-iJ-kNF" id="mx4-fF-ClD"/>
+                <outlet property="btZoom" destination="qIY-Kt-fvn" id="JZt-wR-Nja"/>
+                <outlet property="lbAllTime" destination="OjH-tR-lla" id="ekt-th-SUa"/>
+                <outlet property="lbThisTime" destination="RHc-Fa-GIa" id="3MF-nY-Z67"/>
+                <outlet property="progressArea" destination="9Ak-sR-yLM" id="zo2-u8-rYf"/>
+                <outlet property="progressBar" destination="sMi-h0-5O8" id="SdM-cB-cTw"/>
+                <outlet property="topBack" destination="XQa-eo-Pou" id="czj-cI-0QG"/>
+                <outlet property="topBar" destination="1O5-Yr-Uzq" id="Hjg-a4-epM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -36,6 +47,9 @@
                                                 <constraint firstAttribute="width" constant="35" id="b5I-og-1CN"/>
                                                 <constraint firstAttribute="height" constant="35" id="nhr-Rt-if6"/>
                                             </constraints>
+                                            <connections>
+                                                <action selector="btBackOnClick:" destination="-1" eventType="touchUpInside" id="JD0-eA-EJO"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.67555254823826538" green="0.97052341169225564" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -98,6 +112,9 @@
                                         <constraint firstAttribute="height" constant="40" id="9SE-FA-uSP"/>
                                         <constraint firstAttribute="width" constant="40" id="pnK-J6-zub"/>
                                     </constraints>
+                                    <connections>
+                                        <action selector="btZoomOnCllick:" destination="-1" eventType="touchUpInside" id="1V4-a0-IkT"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tSn-8d-07C">
                                     <rect key="frame" x="59" y="0.0" width="40" height="40"/>
@@ -107,6 +124,9 @@
                                         <constraint firstAttribute="width" constant="40" id="tS6-eq-7CM"/>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="xsw-OM-2Xo"/>
                                     </constraints>
+                                    <connections>
+                                        <action selector="btPlayOnClick:" destination="-1" eventType="touchUpInside" id="rqJ-ub-lpw"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="feM-iJ-kNF">
                                     <rect key="frame" x="106" y="3" width="35" height="35"/>

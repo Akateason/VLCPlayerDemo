@@ -7,12 +7,39 @@
 //
 
 #import "XTPlayerVC.h"
+#import <MobileVLCKit/MobileVLCKit.h>
 
-@interface XTPlayerVC ()
+@interface XTPlayerVC () <VLCMediaPlayerDelegate>
+@property (weak, nonatomic) IBOutlet UIView *topBack;
+@property (weak, nonatomic) IBOutlet UIView *topBar;
+@property (weak, nonatomic) IBOutlet UIButton *btDismiss;
+
+@property (weak, nonatomic) IBOutlet UIView *bottomBack;
+@property (weak, nonatomic) IBOutlet UIView *progressArea;//进度区.手可点击
+@property (weak, nonatomic) IBOutlet UIView *progressBar;//进度条
+@property (weak, nonatomic) IBOutlet UILabel *lbAllTime;//总时间
+@property (weak, nonatomic) IBOutlet UILabel *lbThisTime;//当前播放到时间
+@property (weak, nonatomic) IBOutlet UIButton *btZoom;
+@property (weak, nonatomic) IBOutlet UIButton *btPlay;//play or pause
+@property (weak, nonatomic) IBOutlet UIButton *btProgress;//进度条上的.要拖拽的点.
 
 @end
 
 @implementation XTPlayerVC
+
+#pragma mark - action
+
+- (IBAction)btBackOnClick:(id)sender {
+}
+
+- (IBAction)btZoomOnCllick:(UIButton *)sender {
+}
+
+- (IBAction)btPlayOnClick:(UIButton *)sender {
+    
+}
+
+#pragma mark - life
 
 - (void)viewDidLoad {
     [super viewDidLoad];
