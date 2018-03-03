@@ -10,4 +10,6 @@
 
 @interface XTPlayerVC : RootCtrl
 
++ (void)addPlayerInCtrller:(UIViewController *)fromCtrller ;
+    
 @end
