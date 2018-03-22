@@ -8,8 +8,6 @@
 
 #import "XTPlayerVC.h"
 #import <MobileVLCKit/MobileVLCKit.h>
-#import <MediaPlayer/MediaPlayer.h>
-#import <AVFoundation/AVFoundation.h>
 #import <ReactiveObjC.h>
 
 @interface XTPlayerVC () <VLCMediaPlayerDelegate>
