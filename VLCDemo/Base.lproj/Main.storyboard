@@ -18,16 +18,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qrd-ak-rXi">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qrd-ak-rXi">
                                 <rect key="frame" x="68" y="139" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="926-Hf-TO4"/>
+                                    <constraint firstAttribute="height" constant="30" id="ygK-mT-VTL"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="localPlay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e1m-Eu-ei6"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjx-Qu-0gB">
+                                <rect key="frame" x="55" y="258" width="73" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Spx-sh-NAu"/>
+                                    <constraint firstAttribute="width" constant="73" id="bOd-HL-GdS"/>
+                                </constraints>
+                                <state key="normal" title="cus"/>
+                                <connections>
+                                    <action selector="cusPlayer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6tY-pK-HRH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wjx-Qu-0gB" firstAttribute="top" secondItem="qrd-ak-rXi" secondAttribute="bottom" constant="89" id="22f-08-jzx"/>
+                            <constraint firstItem="qrd-ak-rXi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="68" id="6Xx-no-d4f"/>
+                            <constraint firstItem="wjx-Qu-0gB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="55" id="9rO-p8-Kpi"/>
+                            <constraint firstItem="qrd-ak-rXi" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="75" id="iWu-NO-Cvs"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="FVc-LG-NP9"/>

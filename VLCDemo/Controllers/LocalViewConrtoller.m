@@ -8,6 +8,7 @@
 
 #import "LocalViewConrtoller.h"
 #import "MRVLCPlayer.h"
+#import "XTPlayerVC.h"
 
 @implementation LocalViewConrtoller
 
@@ -16,13 +17,15 @@
     [super viewDidAppear:animated];
     
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        
         [self prefersStatusBarHidden];
-        
         [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
-        
     }
     
+}
+
+
+- (IBAction)cusPlayer:(id)sender {
+    [XTPlayerVC addPlayerInCtrller:self] ;
 }
 
 - (IBAction)localPlay:(id)sender {
