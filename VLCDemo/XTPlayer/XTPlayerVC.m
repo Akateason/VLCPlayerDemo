@@ -57,7 +57,9 @@
 
 #pragma mark - life
 
-- (void)dragMoving:(UIControl *)c withEvent:event {
+- (void)dragMoving:(UIControl *)c
+         withEvent:event
+{
     CGPoint center = [[[event allTouches] anyObject] locationInView:self.view];
     c.center = center;
 //    //不能超出范围
@@ -68,13 +70,16 @@
     self.isDrag = YES;
  }
 
-- (void)dragEnded:(UIControl *)c withEvent:event {
-    c.center = [[[event allTouches] anyObject] locationInView:self.view];
+- (void)dragEnded:(UIControl *)c
+        withEvent:event
+{
+    c.center = [[[event allTouches] anyObject] locationInView:self.view] ;
     self.btProgress.center = c.center; //在这里我用了一个变量存放最后的位置，当viewDidLayoutSubviews方法里使按钮保持在用户最后选定的位置
     self.isDrag = NO;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     // 1.drag the progressBt
