@@ -51,7 +51,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 #pragma mark - Public Method
 - (void)showInView:(UIView *)view
 {
-    NSAssert(_mediaURL != nil, @"MRVLCPlayer Exception: mediaURL could not be nil!");
+//    NSAssert(_mediaURL != nil, @"MRVLCPlayer Exception: mediaURL could not be nil!");
     [view addSubview:self];
     
     self.alpha = 0.0;
@@ -90,8 +90,8 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 }
 
 - (void)setupPlayer {
-    [self.player setDrawable:self];
-    self.player.media = [[VLCMedia alloc] initWithURL:self.mediaURL];
+    [self.player setDrawable:self] ;
+    self.player.media = [[VLCMedia alloc] initWithURL:self.mediaURL] ;
 }
 
 - (void)setupControlView {
@@ -107,7 +107,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
     [self.controlView.closeButton addTarget:self action:@selector(closeButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.controlView.fullScreenButton addTarget:self action:@selector(fullScreenButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.controlView.shrinkScreenButton addTarget:self action:@selector(shrinkScreenButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.controlView.progressSlider addTarget:self action:@selector(progressValueChanged) forControlEvents:UIControlEventValueChanged] ;
+    [self.controlView.progressSlider addTarget:self action:@selector(progressValueChanged) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)setupNotification
@@ -263,6 +263,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 
 #pragma mark - Delegate
 #pragma mark VLC
+
 - (void)mediaPlayerStateChanged:(NSNotification *)aNotification
 {
     // Every Time change the state,The VLC will draw video layer on this layer.
@@ -270,12 +271,15 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
     if (self.player.media.state == VLCMediaStateBuffering) {
 //        self.controlView.indicatorView.hidden = NO;
         self.controlView.bgLayer.hidden = NO;
-    }else if (self.player.media.state == VLCMediaStatePlaying) {
+    }
+    else if (self.player.media.state == VLCMediaStatePlaying) {
 //        self.controlView.indicatorView.hidden = YES;
         self.controlView.bgLayer.hidden = YES;
-    }else if (self.player.state == VLCMediaPlayerStateStopped) {
+    }
+    else if (self.player.state == VLCMediaPlayerStateStopped) {
         [self stop];
-    }else {
+    }
+    else {
 //        self.controlView.indicatorView.hidden = NO;
         self.controlView.bgLayer.hidden = NO;
     }

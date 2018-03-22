@@ -8,6 +8,8 @@
 
 #import "XTPlayerVC.h"
 #import <MobileVLCKit/MobileVLCKit.h>
+#import <MediaPlayer/MediaPlayer.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface XTPlayerVC () <VLCMediaPlayerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *topBack;
@@ -23,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btPlay;//play or pause
 @property (weak, nonatomic) IBOutlet UIButton *btProgress;//进度条上的.要拖拽的点.
 
+
+@property (nonatomic,strong,readwrite) VLCMediaPlayer *player ;
 @end
 
 @implementation XTPlayerVC
@@ -30,9 +34,11 @@
 #pragma mark - action
 
 - (IBAction)btBackOnClick:(id)sender {
+    
 }
 
 - (IBAction)btZoomOnCllick:(UIButton *)sender {
+    
 }
 
 - (IBAction)btPlayOnClick:(UIButton *)sender {
@@ -42,8 +48,9 @@
 #pragma mark - life
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [super viewDidLoad] ;
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
