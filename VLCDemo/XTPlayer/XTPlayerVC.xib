@@ -156,6 +156,14 @@
                                 <constraint firstItem="qIY-Kt-fvn" firstAttribute="leading" secondItem="OjH-tR-lla" secondAttribute="trailing" constant="9" id="vEP-wb-LFk"/>
                             </constraints>
                         </view>
+                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="tK8-vZ-yEI">
+                            <rect key="frame" x="227" y="214.5" width="150" height="1.5"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.1019446626" green="0.10197005419999999" blue="0.1019430831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" red="1" green="0.79719883199999997" blue="0.175532937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="progressTintColor" red="0.99945873019999998" green="0.099104024469999996" blue="0.0027565683699999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="trackTintColor" red="0.59993284940000002" green="0.60003870729999997" blue="0.59992617370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </progressView>
                     </subviews>
                     <color key="backgroundColor" red="0.86240806079999999" green="1" blue="0.82183673099999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>

@@ -35,10 +35,7 @@
 
 + (void)addPlayerInCtrller:(UIViewController *)fromCtrller {
     XTPlayerVC *playerVC = [[XTPlayerVC alloc] initWithNibName:@"XTPlayerVC" bundle:nil] ;
-    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:playerVC] ;
-    [fromCtrller presentViewController:navVC
-                              animated:YES
-                            completion:nil] ;
+    [fromCtrller presentViewController:playerVC animated:YES completion:nil] ;
 }
 
 #pragma mark - action
@@ -53,6 +50,43 @@
 
 - (IBAction)btPlayOnClick:(UIButton *)sender {
     
+}
+
+#pragma mark - util
+#pragma mark Player Logic
+- (void)play
+{
+    [self.player play];
+    self.controlView.playButton.hidden = YES;
+    self.controlView.pauseButton.hidden = NO;
+    [self.controlView autoFadeOutControlBar];
+}
+
+- (void)pause
+{
+    [self.player pause];
+    self.controlView.playButton.hidden = NO;
+    self.controlView.pauseButton.hidden = YES;
+    [self.controlView autoFadeOutControlBar];
+}
+
+- (void)stop
+{
+    [self.player stop];
+    self.controlView.progressSlider.value = 1;
+    self.controlView.playButton.hidden = NO;
+    self.controlView.pauseButton.hidden = YES;
+}
+
+
+#pragma mark - prop
+
+- (VLCMediaPlayer *)player {
+    if (!_player) {
+        _player = [[VLCMediaPlayer alloc] init] ;
+        _player.delegate = self;
+    }
+    return _player;
 }
 
 #pragma mark - life
@@ -81,6 +115,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     
     // 1.drag the progressBt
     [self.btProgress addTarget:self
