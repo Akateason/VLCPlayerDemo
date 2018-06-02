@@ -11,6 +11,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "MRVideoConst.h"
 #import "Masonry.h"
+#import <XTlib.h>
 
 static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 
@@ -24,22 +25,18 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 @implementation MRVLCPlayer
 
 #pragma mark - Life Cycle
-- (instancetype)init
-{
-    if (self = [super init])
-    {
+- (instancetype)init {
+    if (self = [super init]) {
         [self setupNotification] ;
     }
     return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
     
 }
 
-- (void)drawRect:(CGRect)rect
-{
+- (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     
     [self setupPlayer] ;
@@ -49,9 +46,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 
 
 #pragma mark - Public Method
-- (void)showInView:(UIView *)view
-{
-//    NSAssert(_mediaURL != nil, @"MRVLCPlayer Exception: mediaURL could not be nil!");
+- (void)showInView:(UIView *)view {
     [view addSubview:self];
     
     self.alpha = 0.0;
@@ -74,12 +69,10 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
     [[NSNotificationCenter defaultCenter] removeObserver:self] ;
     //
     if ([self superview]) [self removeFromSuperview] ;
-    if (_player)
-    {
+    if (_player) {
         [_player stop] ;
         _player.delegate = nil ;
         _player.drawable = nil ;
-        //
         _player = nil ;
     }
 }
@@ -95,7 +88,6 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 }
 
 - (void)setupControlView {
-
     [self addSubview:self.controlView];
     [self.controlView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self) ;
@@ -106,12 +98,10 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
     [self.controlView.pauseButton addTarget:self action:@selector(pauseButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.controlView.closeButton addTarget:self action:@selector(closeButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.controlView.fullScreenButton addTarget:self action:@selector(fullScreenButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.controlView.shrinkScreenButton addTarget:self action:@selector(shrinkScreenButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.controlView.progressSlider addTarget:self action:@selector(progressValueChanged) forControlEvents:UIControlEventValueChanged];
 }
 
-- (void)setupNotification
-{
+- (void)setupNotification {
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -132,8 +122,6 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 
 /**
  *    强制横屏
- *
- *    @param orientation 横屏方向
  */
 - (void)forceChangeOrientation:(UIInterfaceOrientation)orientation
 {
@@ -155,12 +143,10 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
  */
 - (void)orientationHandler
 {
-    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation))
-    {
+    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
         self.isFullscreenModel = YES ;
     }
-    else
-    {
+    else {
         if ([UIDevice currentDevice].orientation == UIDeviceOrientationPortrait) {
             self.isFullscreenModel = NO ;
         }
@@ -183,7 +169,8 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 }
 
 
-#pragma mark Button Event
+#pragma mark - Button Event
+
 - (void)playButtonClick
 {
     [self play];
@@ -199,18 +186,18 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
     [self dismiss];
 }
 
-- (void)fullScreenButtonClick
-{
-    [self forceChangeOrientation:UIInterfaceOrientationLandscapeRight];
+- (void)fullScreenButtonClick {
+    UIInterfaceOrientation orientation;
+    if (self.controlView.fullScreenButton.selected) {
+        orientation = UIInterfaceOrientationPortrait;
+    }
+    else {
+        orientation = UIInterfaceOrientationLandscapeRight;
+    }
+    [self forceChangeOrientation:orientation] ;
 }
 
-- (void)shrinkScreenButtonClick
-{
-    [self forceChangeOrientation:UIInterfaceOrientationPortrait];;
-}
-
-- (void)progressValueChanged
-{
+- (void)progressValueChanged {
     self.controlView.isHorizonPan = FALSE ;
     self.controlView.isVericalPan = FALSE ;
     
@@ -236,51 +223,45 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 
 
 
-#pragma mark Player Logic
-- (void)play
-{
+#pragma mark - Player Logic
+
+- (void)play {
     [self.player play];
     self.controlView.playButton.hidden = YES;
     self.controlView.pauseButton.hidden = NO;
     [self.controlView autoFadeOutControlBar];
 }
 
-- (void)pause
-{
+- (void)pause {
     [self.player pause];
     self.controlView.playButton.hidden = NO;
     self.controlView.pauseButton.hidden = YES;
     [self.controlView autoFadeOutControlBar];
 }
 
-- (void)stop
-{
+- (void)stop {
     [self.player stop];
     self.controlView.progressSlider.value = 1;
     self.controlView.playButton.hidden = NO;
     self.controlView.pauseButton.hidden = YES;
 }
 
-#pragma mark - Delegate
-#pragma mark VLC
+#pragma mark - VLC Delegate
 
 - (void)mediaPlayerStateChanged:(NSNotification *)aNotification
 {
     // Every Time change the state,The VLC will draw video layer on this layer.
     [self bringSubviewToFront:self.controlView];
     if (self.player.media.state == VLCMediaStateBuffering) {
-//        self.controlView.indicatorView.hidden = NO;
         self.controlView.bgLayer.hidden = NO;
     }
     else if (self.player.media.state == VLCMediaStatePlaying) {
-//        self.controlView.indicatorView.hidden = YES;
         self.controlView.bgLayer.hidden = YES;
     }
     else if (self.player.state == VLCMediaPlayerStateStopped) {
         [self stop];
     }
     else {
-//        self.controlView.indicatorView.hidden = NO;
         self.controlView.bgLayer.hidden = NO;
     }
 }
@@ -288,36 +269,30 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 - (void)mediaPlayerTimeChanged:(NSNotification *)aNotification
 {
     [self bringSubviewToFront:self.controlView];
-    
     if (self.controlView.progressSlider.state != UIControlStateNormal) return ;
     
-    float precentValue = ([self.player.time.numberValue floatValue]) / ([kMediaLength.numberValue floatValue]) ;
+    float precentValue = ([self.player.time.value floatValue]) / ([kMediaLength.value floatValue]) ;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.controlView.progressSlider setValue:precentValue animated:YES];
         [self.controlView.timeLabel setText:[NSString stringWithFormat:@"%@/%@",_player.time.stringValue,kMediaLength.stringValue]] ;
     }) ;
-    
 }
 
 #pragma mark ControlView
-- (BOOL)controlViewFingerMoveLeft
-{
+- (BOOL)controlViewFingerMoveLeft {
     [self.player extraShortJumpBackward] ;
     
-    if (![self.player isPlaying])
-    {
+    if (![self.player isPlaying]) {
         return false ;
     }
     return true ;
 }
 
-- (BOOL)controlViewFingerMoveRight
-{
+- (BOOL)controlViewFingerMoveRight {
     [self.player extraShortJumpForward] ;
     
-    if (![self.player isPlaying])
-    {
+    if (![self.player isPlaying]) {
         return false ;
     }
     return true ;
@@ -350,33 +325,31 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
     return _controlView;
 }
 
-
 - (void)setIsFullscreenModel:(BOOL)isFullscreenModel
 {
     if (_isFullscreenModel == isFullscreenModel) return ;
+    
     _isFullscreenModel = isFullscreenModel ;
     float widScreen = [UIScreen mainScreen].bounds.size.width ;
     float heiScreen = [UIScreen mainScreen].bounds.size.height ;
-//    
-    if (isFullscreenModel) {
+    
+    if (isFullscreenModel) { // 全屏
         [self mas_updateConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(widScreen) ;
             make.height.mas_equalTo(heiScreen) ;
         }] ;
-        self.controlView.fullScreenButton.hidden = YES ;
-        self.controlView.shrinkScreenButton.hidden = NO ;
+        
+        self.controlView.fullScreenButton.selected = YES ;
     }
-    else {
+    else { // 原本竖屏
         [self mas_updateConstraints:^(MASConstraintMaker *make) {
             make.width.equalTo(@(widScreen)) ;
             make.height.mas_equalTo(widScreen / 16 * 9) ;
         }] ;
-        self.controlView.fullScreenButton.hidden = NO ;
-        self.controlView.shrinkScreenButton.hidden = YES;
+        self.controlView.fullScreenButton.selected = NO ;
     }
-//    
+    
     [self layoutIfNeeded] ;
 }
-
 
 @end

@@ -8,7 +8,8 @@
 
 #import "LocalViewConrtoller.h"
 #import "MRVLCPlayer.h"
-#import "XTPlayerVC.h"
+#import <Masonry.h>
+#import <XTlib.h>
 
 @implementation LocalViewConrtoller
 
@@ -23,22 +24,21 @@
     
 }
 
-
-- (IBAction)cusPlayer:(id)sender {
-    [XTPlayerVC addPlayerInCtrller:self] ;
-}
-
 - (IBAction)localPlay:(id)sender {
-    
-    MRVLCPlayer *player = [[MRVLCPlayer alloc] init];
-    player.bounds = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.width / 16 * 9);
-    player.center = self.view.center;
     NSArray *filePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) ;
     NSString *documentPath = [filePath firstObject] ;
     NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/test.mp4",documentPath]] ;
-    player.mediaURL = url ;     //  [NSURL fileURLWithPath:@"/Users/Maru/Documents/Media/Movie/1.mkv"];
+    //  [NSURL fileURLWithPath:@"/Users/Maru/Documents/Media/Movie/1.mkv"];
     
+    
+    MRVLCPlayer *player = [[MRVLCPlayer alloc] init];
+    player.mediaURL = url ;
     [player showInView:self.view.window];
+    [player mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(APP_WIDTH) ;
+        make.height.mas_equalTo(APP_WIDTH / 16 * 9) ;
+        make.top.equalTo(self.view) ;
+    }] ;
 }
 
 - (BOOL)prefersStatusBarHidden {

@@ -48,8 +48,6 @@
 		8F7F01352043FE0B008D4399 /* FolderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F01312043FE0B008D4399 /* FolderCell.xib */; };
 		8F7F013C2043FE24008D4399 /* MRVideoControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F01392043FE24008D4399 /* MRVideoControlView.m */; };
 		8F7F013D2043FE24008D4399 /* MRVLCPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F013B2043FE24008D4399 /* MRVLCPlayer.mm */; };
-		8F92D9142044320C003D7C7F /* XTPlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F92D9122044320C003D7C7F /* XTPlayerVC.m */; };
-		8F92D9152044320C003D7C7F /* XTPlayerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F92D9132044320C003D7C7F /* XTPlayerVC.xib */; };
 		FDE47CE917F906AB88D0FCA4 /* libPods-VLCDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12764453FD3B14AE6FD77891 /* libPods-VLCDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -111,9 +109,6 @@
 		8F7F01392043FE24008D4399 /* MRVideoControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRVideoControlView.m; sourceTree = "<group>"; };
 		8F7F013A2043FE24008D4399 /* MRVLCPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRVLCPlayer.h; sourceTree = "<group>"; };
 		8F7F013B2043FE24008D4399 /* MRVLCPlayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MRVLCPlayer.mm; sourceTree = "<group>"; };
-		8F92D9112044320C003D7C7F /* XTPlayerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XTPlayerVC.h; sourceTree = "<group>"; };
-		8F92D9122044320C003D7C7F /* XTPlayerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XTPlayerVC.m; sourceTree = "<group>"; };
-		8F92D9132044320C003D7C7F /* XTPlayerVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XTPlayerVC.xib; sourceTree = "<group>"; };
 		AF4842025CCE7816DE5D83B0 /* Pods-VLCDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VLCDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VLCDemo/Pods-VLCDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		B319E5041C5BF71C5FCF3844 /* Pods-VLCDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VLCDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-VLCDemo/Pods-VLCDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -169,7 +164,6 @@
 			isa = PBXGroup;
 			children = (
 				8F7F00CD2043FD73008D4399 /* Main.storyboard */,
-				8F92D90D204431C1003D7C7F /* XTPlayer */,
 				8F7F01362043FE24008D4399 /* Player */,
 				8F7F01272043FE05008D4399 /* Model */,
 				8F7F012B2043FE0B008D4399 /* Views */,
@@ -268,16 +262,6 @@
 			path = Player;
 			sourceTree = "<group>";
 		};
-		8F92D90D204431C1003D7C7F /* XTPlayer */ = {
-			isa = PBXGroup;
-			children = (
-				8F92D9112044320C003D7C7F /* XTPlayerVC.h */,
-				8F92D9122044320C003D7C7F /* XTPlayerVC.m */,
-				8F92D9132044320C003D7C7F /* XTPlayerVC.xib */,
-			);
-			path = XTPlayer;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -343,7 +327,6 @@
 				8F7F00FF2043FDF6008D4399 /* Play Icon@2x.png in Resources */,
 				8F7F00F92043FDF6008D4399 /* Min. Icon@2x.png in Resources */,
 				8F7F00FE2043FDF6008D4399 /* Play Icon.png in Resources */,
-				8F92D9152044320C003D7C7F /* XTPlayerVC.xib in Resources */,
 				8F7F01012043FDF6008D4399 /* Player close@2x.png in Resources */,
 				8F7F01062043FDF6008D4399 /* Sound Icon.png in Resources */,
 				8F7F01032043FDF6008D4399 /* Player Control Nob.png in Resources */,
@@ -440,7 +423,6 @@
 				8F7F01322043FE0B008D4399 /* FilesCell.m in Sources */,
 				8F7F01342043FE0B008D4399 /* FolderCell.m in Sources */,
 				8F7F013D2043FE24008D4399 /* MRVLCPlayer.mm in Sources */,
-				8F92D9142044320C003D7C7F /* XTPlayerVC.m in Sources */,
 				8F7F01262043FDFD008D4399 /* UIViewController+FileUrl.m in Sources */,
 				8F7F012A2043FE06008D4399 /* FileModel.m in Sources */,
 				8F7F01252043FDFD008D4399 /* RemoteViewController.m in Sources */,

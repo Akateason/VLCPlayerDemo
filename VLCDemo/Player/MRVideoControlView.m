@@ -83,12 +83,6 @@
         make.height.mas_equalTo(MRVideoControlBarHeight) ;
     }] ;
     
-//    [self addSubview:self.indicatorView];
-//    [self.indicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.size.mas_equalTo(CGSizeMake(100, 100)) ;
-//        make.center.mas_equalTo(self) ;
-//    }] ;
-    
     [self.topBar addSubview:self.closeButton];
     [self.closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.top.equalTo(self.topBar) ;
@@ -119,13 +113,6 @@
         make.size.mas_equalTo(CGSizeMake(MRVideoButtonHeight, MRVideoButtonHeight)) ;
     }] ;
     
-    [self.bottomBar addSubview:self.shrinkScreenButton];
-    [self.shrinkScreenButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.bottomBar.mas_bottom) ;
-        make.right.equalTo(self.bottomBar.mas_right).mas_equalTo(-5) ;
-        make.size.mas_equalTo(CGSizeMake(MRVideoButtonHeight, MRVideoButtonHeight)) ;
-    }] ;
-    
     [self.bottomBar addSubview:self.progressSlider];
     [self.progressSlider mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.bottomBar) ;
@@ -139,7 +126,6 @@
     }] ;
     
     self.pauseButton.hidden = YES;
-    self.shrinkScreenButton.hidden = YES;
     
     
     [self addGestureRecognizer:self.pan] ;
@@ -326,18 +312,11 @@
     if (!_fullScreenButton) {
         _fullScreenButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_fullScreenButton setImage:[UIImage imageNamed:@"Full Screen Icon"] forState:UIControlStateNormal];
+        [_fullScreenButton setImage:[UIImage imageNamed:@"Min. Icon"] forState:UIControlStateSelected];
     }
     return _fullScreenButton;
 }
 
-- (UIButton *)shrinkScreenButton
-{
-    if (!_shrinkScreenButton) {
-        _shrinkScreenButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_shrinkScreenButton setImage:[UIImage imageNamed:@"Min. Icon"] forState:UIControlStateNormal];
-    }
-    return _shrinkScreenButton;
-}
 
 - (MRProgressSlider *)progressSlider
 {
@@ -458,3 +437,5 @@
 }
 
 @end
+
+

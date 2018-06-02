@@ -21,6 +21,11 @@ typedef void(^DismissCompleteBlock)(VLCMediaPlayer * _Nonnull player) ;
 - (void)showInView:(UIView * _Nonnull)view;
 - (void)play ;
 - (void)dismiss ;
+
+
+
+
+
 @end
 
 

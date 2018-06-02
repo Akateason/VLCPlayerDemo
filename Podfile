@@ -7,6 +7,7 @@ target 'VLCDemo' do
 
   # Pods for VLCDemo
 
+pod 'Valet','2.4.2'
 pod 'XTlib'
 
 pod 'UITableView+FDTemplateLayoutCell'
@@ -15,6 +16,6 @@ pod 'FDFullscreenPopGesture', '1.1'
 pod 'CHTCollectionViewWaterfallLayout'
 pod 'JKCategories'
 #pod 'MobileVLCKit','2.2.2'
-pod 'MobileVLCKit'
+pod 'MobileVLCKit','3.0.1'
 
 end

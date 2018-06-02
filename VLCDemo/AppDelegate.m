@@ -21,8 +21,8 @@
     // Override point for customization after application launch.
     [[XTFMDBBase sharedInstance] configureDB:@"xtcPlayer"] ;
     
-    // create tb
-    [XTFileManager createFileBoxesWithPath:@"cover"] ;
+    // create tb    
+    [XTFileManager createFolder:XT_DOCUMENTS_PATH_TRAIL_(@"cover")] ;
     [FileModel createTable] ;
 
     
