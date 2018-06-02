@@ -14,17 +14,21 @@ typedef void(^DismissCompleteBlock)(VLCMediaPlayer * _Nonnull player) ;
 
 @interface MRVLCPlayer : UIView <VLCMediaPlayerDelegate,MRVideoControlViewDelegate>
 
-@property (nonatomic,strong,nonnull) NSURL *mediaURL;
-@property (nonatomic,assign) BOOL isFullscreenModel;
+@property (nonatomic,strong,nonnull) NSURL  *mediaURL ;
+@property (nonatomic,assign)         BOOL    isFullscreenModel ;
 @property (nonatomic,copy) DismissCompleteBlock _Nullable dismissComplete ;
 
-- (void)showInView:(UIView * _Nonnull)view;
+
+- (void)showMeInView:(UIView * _Nonnull)view
+                 url:(NSURL * _Nonnull)url ;
+
+- (void)showMeInView:(UIView * _Nonnull)view
+                 url:(NSURL * _Nonnull)url
+      hasCloseButton:(BOOL)hasCloseButton ;
+
+
 - (void)play ;
 - (void)dismiss ;
-
-
-
-
 
 @end
 

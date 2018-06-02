@@ -16,7 +16,9 @@
 static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 
 @interface MRVLCPlayer ()
-
+{
+    BOOL hasCloseButton ;
+}
 @property (nonatomic,strong,readwrite) VLCMediaPlayer *player;
 @property (nonatomic, nonnull,strong) MRVideoControlView *controlView;
 
@@ -46,40 +48,55 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 
 
 #pragma mark - Public Method
+
+- (void)showMeInView:(UIView * _Nonnull)view
+                 url:(NSURL * _Nonnull)url
+{
+    [self showMeInView:view url:url hasCloseButton:YES] ;
+}
+
+- (void)showMeInView:(UIView * _Nonnull)view
+                 url:(NSURL * _Nonnull)url
+      hasCloseButton:(BOOL)hasCloseButton
+{
+    self.mediaURL = url ;
+    [self showInView:view] ;
+}
+
+- (void)dismiss {
+    if (self.dismissComplete) self.dismissComplete(self.player) ;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (_player) {
+            if ([_player isPlaying]) [_player stop] ;
+            _player.delegate = nil ;
+            _player.drawable = nil ;
+            _player = nil ;
+        }
+        if ([self superview]) [self removeFromSuperview] ;
+        // 注销通知
+        [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications] ;
+        [[NSNotificationCenter defaultCenter] removeObserver:self] ;
+    }) ;
+    
+
+}
+
+#pragma mark - Private Method
 - (void)showInView:(UIView *)view {
     [view addSubview:self];
     
     self.alpha = 0.0;
     [UIView animateWithDuration:kVideoPlayerAnimationTimeinterval
                      animations:^{
-        self.alpha = 1.0;
-    } completion:^(BOOL finished) {
-        [self play];
-    }];
+                         self.alpha = 1.0;
+                     } completion:^(BOOL finished) {
+                         [self play] ;
+                     }];
 }
 
-- (void)dismiss
-{
-    if (self.dismissComplete) {
-        self.dismissComplete(self.player) ;
-    }
-    
-    // 注销通知
-    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications] ;
-    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
-    //
-    if ([self superview]) [self removeFromSuperview] ;
-    if (_player) {
-        [_player stop] ;
-        _player.delegate = nil ;
-        _player.drawable = nil ;
-        _player = nil ;
-    }
-}
-
-#pragma mark - Private Method
 - (void)setupView {
-    [self setBackgroundColor:[UIColor blackColor]];
+    [self setBackgroundColor:[UIColor blackColor]] ;
 }
 
 - (void)setupPlayer {
@@ -92,6 +109,8 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
     [self.controlView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self) ;
     }] ;
+    
+    self.controlView.closeButton.hidden = !hasCloseButton ;
     
     //添加控制界面的监听方法
     [self.controlView.playButton addTarget:self action:@selector(playButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -252,18 +271,50 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 {
     // Every Time change the state,The VLC will draw video layer on this layer.
     [self bringSubviewToFront:self.controlView];
-    if (self.player.media.state == VLCMediaStateBuffering) {
-        self.controlView.bgLayer.hidden = NO;
+    
+    // player state
+    switch (self.player.state) {
+        case VLCMediaPlayerStateStopped: {
+            NSLog(@"stop") ;
+            [self stop];
+        }
+            break;
+        case VLCMediaPlayerStateOpening: {
+            NSLog(@"open") ;
+        }
+            break;
+        case VLCMediaPlayerStateBuffering: {
+            NSLog(@"buffer") ;
+        }
+            break;
+        case VLCMediaPlayerStateEnded: {
+            NSLog(@"end") ;
+            [self dismiss] ;
+        }
+            break;
+        case VLCMediaPlayerStateError: {
+            NSLog(@"error") ;
+        }
+            break;
+        case VLCMediaPlayerStatePlaying: {
+            NSLog(@"playint") ;
+        }
+            break;
+        case VLCMediaPlayerStatePaused: {
+            NSLog(@"pause") ;
+        }
+            break;
+        case VLCMediaPlayerStateESAdded: {
+            NSLog(@"es add") ;
+        }
+            break;
+        default:
+            break;
     }
-    else if (self.player.media.state == VLCMediaStatePlaying) {
-        self.controlView.bgLayer.hidden = YES;
-    }
-    else if (self.player.state == VLCMediaPlayerStateStopped) {
-        [self stop];
-    }
-    else {
-        self.controlView.bgLayer.hidden = NO;
-    }
+    
+    
+    // media state
+    self.controlView.bgLayer.hidden = self.player.media.state == VLCMediaStatePlaying;
 }
 
 - (void)mediaPlayerTimeChanged:(NSNotification *)aNotification
@@ -279,7 +330,8 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
     }) ;
 }
 
-#pragma mark ControlView
+#pragma mark - ControlView
+
 - (BOOL)controlViewFingerMoveLeft {
     [self.player extraShortJumpBackward] ;
     

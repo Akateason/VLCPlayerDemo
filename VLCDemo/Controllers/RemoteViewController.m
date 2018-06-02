@@ -27,12 +27,10 @@
 - (IBAction)remotePlay:(id)sender {
 
     MRVLCPlayer *player = [[MRVLCPlayer alloc] init];
-    
     player.bounds = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.width / 16 * 9);
     player.center = self.view.center;
-    player.mediaURL = [NSURL URLWithString:@"http://202.198.176.113/video002/2015/mlrs.rmvb"];
     
-    [player showInView:self.view.window];
+    [player showMeInView:self.view.window url:[NSURL URLWithString:@"http://202.198.176.113/video002/2015/mlrs.rmvb"] hasCloseButton:YES] ;
 }
 
 - (BOOL)prefersStatusBarHidden {

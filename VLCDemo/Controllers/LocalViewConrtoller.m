@@ -32,8 +32,8 @@
     
     
     MRVLCPlayer *player = [[MRVLCPlayer alloc] init];
-    player.mediaURL = url ;
-    [player showInView:self.view.window];
+    [player showMeInView:self.view.window url:url hasCloseButton:NO] ;
+    
     [player mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(APP_WIDTH) ;
         make.height.mas_equalTo(APP_WIDTH / 16 * 9) ;
