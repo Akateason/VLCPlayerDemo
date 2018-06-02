@@ -8,25 +8,26 @@
 
 #import "MRVLCPlayer.h"
 #import <MediaPlayer/MediaPlayer.h>
-#import <AVFoundation/AVFoundation.h>
+//#import <AVFoundation/AVFoundation.h>
 #import "MRVideoConst.h"
 #import "Masonry.h"
 #import <XTlib.h>
 
 static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 
-@interface MRVLCPlayer ()
+@interface MRVLCPlayer () <VLCMediaThumbnailerDelegate>
 {
     BOOL hasCloseButton ;
 }
-@property (nonatomic,strong,readwrite) VLCMediaPlayer *player;
-@property (nonatomic, nonnull,strong) MRVideoControlView *controlView;
-
+@property (nonatomic,strong,readwrite) VLCMediaPlayer *player ;
+@property (nonatomic, nonnull,strong) MRVideoControlView *controlView ;
+@property (strong, nonatomic) VLCMediaThumbnailer *thumbnailer ;
 @end
 
 @implementation MRVLCPlayer
 
-#pragma mark - Life Cycle
+#pragma mark - Life
+
 - (instancetype)init {
     if (self = [super init]) {
         [self setupNotification] ;
@@ -35,7 +36,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 }
 
 - (void)dealloc {
-    
+    NSLog(@"xtplayer dealloc") ;
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -47,7 +48,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 }
 
 
-#pragma mark - Public Method
+#pragma mark - Public
 
 - (void)showMeInView:(UIView * _Nonnull)view
                  url:(NSURL * _Nonnull)url
@@ -57,32 +58,50 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 
 - (void)showMeInView:(UIView * _Nonnull)view
                  url:(NSURL * _Nonnull)url
-      hasCloseButton:(BOOL)hasCloseButton
+      hasCloseButton:(BOOL)hasCloseBt
+{
+    [self showMeInView:view url:url hasCloseButton:hasCloseBt forceHorizon:NO] ;
+}
+
+- (void)showMeInView:(UIView * _Nonnull)view
+                 url:(NSURL * _Nonnull)url
+      hasCloseButton:(BOOL)hasCloseBt
+        forceHorizon:(BOOL)forceHorizon
 {
     self.mediaURL = url ;
-    [self showInView:view] ;
+    hasCloseButton = hasCloseBt ;
+    [self showInView:view forceHorizon:forceHorizon] ;
 }
 
 - (void)dismiss {
+    if (![self superview]) return ;
+    
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.dismissComplete) self.dismissComplete(self.player) ;
+        if (self.willDismiss) self.willDismiss(_player) ;
         
         if (_player) {
-            if ([_player isPlaying]) [_player stop] ;
+            [_player stop] ;
             _player.delegate = nil ;
-            _player.drawable = nil ;
             _player = nil ;
         }
-        if ([self superview]) [self removeFromSuperview] ;
         // 注销通知
         [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications] ;
         [[NSNotificationCenter defaultCenter] removeObserver:self] ;
+        
+        [self removeFromSuperview] ;
     }) ;
 }
 
-#pragma mark - Private Method
-- (void)showInView:(UIView *)view {
-    [view addSubview:self];
+- (void)catchThumbnail:(ThumbnailGotBlock)block {
+    [self.thumbnailer fetchThumbnail] ; // get thumbnail when stop or dismiss
+    self.thumbnailGot = block ;
+}
+
+#pragma mark - Private
+
+- (void)showInView:(UIView *)view forceHorizon:(BOOL)forceHorizon {
+    [view addSubview:self] ;
+    if (forceHorizon) [self forceChangeOrientation:UIInterfaceOrientationLandscapeRight] ;
     
     self.alpha = 0.0;
     [UIView animateWithDuration:kVideoPlayerAnimationTimeinterval
@@ -326,6 +345,18 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
     }) ;
 }
 
+#pragma mark - vlc thumbnail delegate
+
+- (void)mediaThumbnailerDidTimeOut:(VLCMediaThumbnailer *)mediaThumbnailer{
+    NSLog(@"getThumbnailer time out.");
+    if (self.thumbnailGot) self.thumbnailGot(self.player, nil) ;
+}
+
+- (void)mediaThumbnailer:(VLCMediaThumbnailer *)mediaThumbnailer didFinishThumbnail:(CGImageRef)thumbnail{
+    UIImage *image = [UIImage imageWithCGImage:thumbnail] ;
+    if (self.thumbnailGot) self.thumbnailGot(self.player, image) ;
+}
+
 #pragma mark - ControlView
 
 - (BOOL)controlViewFingerMoveLeft {
@@ -347,16 +378,15 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 }
 
 - (void)controlViewFingerMoveUp {
-    
     self.controlView.volumeSlider.value += 0.05;
 }
 
 - (void)controlViewFingerMoveDown {
-    
     self.controlView.volumeSlider.value -= 0.05;
 }
 
-#pragma mark - Property
+#pragma mark - Props
+
 - (VLCMediaPlayer *)player {
     if (!_player) {
         _player = [[VLCMediaPlayer alloc] init] ;
@@ -378,8 +408,8 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
     if (_isFullscreenModel == isFullscreenModel) return ;
     
     _isFullscreenModel = isFullscreenModel ;
-    float widScreen = [UIScreen mainScreen].bounds.size.width ;
-    float heiScreen = [UIScreen mainScreen].bounds.size.height ;
+    float widScreen = APP_WIDTH ;
+    float heiScreen = APP_HEIGHT ;
     
     if (isFullscreenModel) { // 全屏
         [self mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -398,6 +428,13 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
     }
     
     [self layoutIfNeeded] ;
+}
+
+- (VLCMediaThumbnailer *)thumbnailer {
+    if (!_thumbnailer) {
+        _thumbnailer = [VLCMediaThumbnailer thumbnailerWithMedia:self.player.media andDelegate:self] ;
+    }
+    return _thumbnailer ;
 }
 
 @end

@@ -26,8 +26,7 @@
 @implementation BaseCtrller
 
 //@protocol PlayingCtrllerDelegate <NSObject>
-- (void)refreshModel:(id)model
-{
+- (void)refreshModel:(id)model {
     FileModel *fModel = model ;
     [self.list replaceObjectAtIndex:indexPlay
                          withObject:fModel] ;
@@ -61,8 +60,7 @@
     [self prepare] ;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated] ;
 }
 

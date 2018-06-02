@@ -145,10 +145,10 @@
 		8F15120020C278E800FF125C /* demos */ = {
 			isa = PBXGroup;
 			children = (
-				8F7F011B2043FDFD008D4399 /* RemoteViewController.h */,
-				8F7F011C2043FDFD008D4399 /* RemoteViewController.m */,
 				8F7F01172043FDFD008D4399 /* LocalViewConrtoller.h */,
 				8F7F01182043FDFD008D4399 /* LocalViewConrtoller.m */,
+				8F7F011B2043FDFD008D4399 /* RemoteViewController.h */,
+				8F7F011C2043FDFD008D4399 /* RemoteViewController.m */,
 			);
 			path = demos;
 			sourceTree = "<group>";
