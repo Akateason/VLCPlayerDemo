@@ -142,6 +142,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8F15120020C278E800FF125C /* demos */ = {
+			isa = PBXGroup;
+			children = (
+				8F7F011B2043FDFD008D4399 /* RemoteViewController.h */,
+				8F7F011C2043FDFD008D4399 /* RemoteViewController.m */,
+				8F7F01172043FDFD008D4399 /* LocalViewConrtoller.h */,
+				8F7F01182043FDFD008D4399 /* LocalViewConrtoller.m */,
+			);
+			path = demos;
+			sourceTree = "<group>";
+		};
 		8F7F00BB2043FD73008D4399 = {
 			isa = PBXGroup;
 			children = (
@@ -212,16 +223,13 @@
 		8F7F01122043FDFD008D4399 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8F7F01172043FDFD008D4399 /* LocalViewConrtoller.h */,
-				8F7F01182043FDFD008D4399 /* LocalViewConrtoller.m */,
+				8F15120020C278E800FF125C /* demos */,
 				8F7F01132043FDFD008D4399 /* BaseCtrller.h */,
 				8F7F01142043FDFD008D4399 /* BaseCtrller.m */,
 				8F7F01152043FDFD008D4399 /* FilesViewController.h */,
 				8F7F01162043FDFD008D4399 /* FilesViewController.m */,
 				8F7F01192043FDFD008D4399 /* PlayingCtrller.h */,
 				8F7F011A2043FDFD008D4399 /* PlayingCtrller.m */,
-				8F7F011B2043FDFD008D4399 /* RemoteViewController.h */,
-				8F7F011C2043FDFD008D4399 /* RemoteViewController.m */,
 				8F7F011D2043FDFD008D4399 /* UIViewController+FileUrl.h */,
 				8F7F011E2043FDFD008D4399 /* UIViewController+FileUrl.m */,
 			);
