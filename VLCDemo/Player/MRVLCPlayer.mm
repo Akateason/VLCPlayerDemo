@@ -18,6 +18,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 @interface MRVLCPlayer () <VLCMediaThumbnailerDelegate>
 {
     BOOL hasCloseButton ;
+    BOOL m_forceHorizon ;
 }
 @property (nonatomic,strong,readwrite) VLCMediaPlayer *player ;
 @property (nonatomic, nonnull,strong) MRVideoControlView *controlView ;
@@ -70,6 +71,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 {
     self.mediaURL = url ;
     hasCloseButton = hasCloseBt ;
+    m_forceHorizon = forceHorizon ;
     [self showInView:view forceHorizon:forceHorizon] ;
 }
 
@@ -101,7 +103,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 
 - (void)showInView:(UIView *)view forceHorizon:(BOOL)forceHorizon {
     [view addSubview:self] ;
-    if (forceHorizon) [self forceChangeOrientation:UIInterfaceOrientationLandscapeRight] ;
+    if (m_forceHorizon) [self forceChangeOrientation:UIInterfaceOrientationLandscapeRight] ;
     
     self.alpha = 0.0;
     [UIView animateWithDuration:kVideoPlayerAnimationTimeinterval
@@ -420,6 +422,8 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
         self.controlView.fullScreenButton.selected = YES ;
     }
     else { // 原本竖屏
+        if (m_forceHorizon) return ; // 强行只支持横屏
+        
         [self mas_updateConstraints:^(MASConstraintMaker *make) {
             make.width.equalTo(@(widScreen)) ;
             make.height.mas_equalTo(widScreen / 16 * 9) ;

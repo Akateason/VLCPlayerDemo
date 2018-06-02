@@ -14,6 +14,8 @@
 #import "UIViewController+FileUrl.h"
 #import <XTlib.h>
 #import <ReactiveObjC.h>
+#import "UINavigationController+RotateUtil.h"
+#import "AppDelegate.h"
 
 @interface PlayingCtrller ()
 @property (strong, nonatomic) MRVLCPlayer *playerView ;
@@ -41,6 +43,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.edgesForExtendedLayout = UIRectEdgeNone ;
+    AppDelegate *appdelegate=(AppDelegate *)[UIApplication sharedApplication].delegate;
+    appdelegate.orientationsOnlyLandScape = YES ;
+    appdelegate.orientationsOnlyRotate = NO ;
     
     [self setupPlayer] ;
 }
@@ -57,11 +62,6 @@
         make.top.equalTo(self.view) ;
     }] ;
     
-    
-    // online
-//  player.mediaURL = [NSURL URLWithString:@"http://lilanisoft.com/live/images/Ziyarat_Aashura_by_Samavati_Arabic_sub_English.mp4"] ;
-    
-
     @weakify(self)
     
 //    self.playerView.thumbnailGot = ^(VLCMediaPlayer * _Nonnull player, UIImage * _Nullable thumbnail) {
@@ -114,7 +114,7 @@
     [super viewWillDisappear:animated] ;
     [self.navigationController setNavigationBarHidden:NO
                                              animated:NO] ;
-    
+    [self.playerView forceChangeOrientation:UIInterfaceOrientationPortrait] ;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -126,6 +126,9 @@
 {
     return YES ;
 }
+
+
+
 
 /*
 #pragma mark - Navigation

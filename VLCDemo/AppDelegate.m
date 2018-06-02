@@ -16,12 +16,22 @@
 
 @implementation AppDelegate
 
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
+    if (self.orientationsOnlyRotate) {
+        return UIInterfaceOrientationMaskPortrait ;
+    }
+    else if (self.orientationsOnlyLandScape) {
+        return UIInterfaceOrientationMaskLandscape ;
+    }
+    
+    return UIInterfaceOrientationMaskAllButUpsideDown ;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [[XTFMDBBase sharedInstance] configureDB:@"xtcPlayer"] ;
     
-    // create tb    
+    // create tb
     [XTFileManager createFolder:XT_DOCUMENTS_PATH_TRAIL_(@"cover")] ;
     [FileModel createTable] ;
 

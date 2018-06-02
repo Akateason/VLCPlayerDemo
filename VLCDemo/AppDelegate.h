@@ -12,6 +12,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property(nonatomic,assign) BOOL orientationsOnlyRotate ;
+@property(nonatomic,assign) BOOL orientationsOnlyLandScape ;
 
 @end
 

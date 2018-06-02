@@ -4,7 +4,7 @@
 //
 //  Created by teason23 on 2017/6/21.
 //  Copyright © 2017年 Alloc. All rights reserved.
-//
+// FORCE LAND SCAPE !!!!!
 
 #import <UIKit/UIKit.h>
 @class FileModel ;
