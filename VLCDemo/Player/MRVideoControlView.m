@@ -146,20 +146,16 @@
     CGPoint localPoint  = [pan locationInView:self] ;
     CGPoint speedDir    = [pan velocityInView:self] ;
     
-    switch (pan.state)
-    {
-        case UIGestureRecognizerStateBegan:
-        {
+    switch (pan.state) {
+        case UIGestureRecognizerStateBegan: {
             self.alertlable.alpha = MRVideoControlAlertAlpha;
             
             // 判断方向
-            if (ABS(speedDir.x) > ABS(speedDir.y))
-            {
+            if (ABS(speedDir.x) > ABS(speedDir.y)) {
                 _isVericalPan = false ;
                 _isHorizonPan = true ;
             }
-            else
-            {
+            else {
                 _isVericalPan = true ;
                 _isHorizonPan = false ;
             }
@@ -169,16 +165,13 @@
         case UIGestureRecognizerStateChanged:
         {
             // 判断方向
-            if (_isHorizonPan)
-            {
-                
-                if ([pan translationInView:self].x > 0)
-                {
+            if (_isHorizonPan) {
+                if ([pan translationInView:self].x > 0) {
                     if ([_delegate respondsToSelector:@selector(controlViewFingerMoveRight)])
                     {
                         BOOL bResult = [self.delegate controlViewFingerMoveRight] ;
                         if (!bResult) return ;
-                        [self.alertlable configureWithTime:self.timeLabel.text                  //[self.timeLabel.text substringToIndex:5]
+                        [self.alertlable configureWithTime:self.timeLabel.text
                                                     isLeft:NO] ;
                     }
                 }
@@ -188,37 +181,29 @@
                     {
                         BOOL bResult = [self.delegate controlViewFingerMoveLeft] ;
                         if (!bResult) return ;
-                        [self.alertlable configureWithTime:self.timeLabel.text                  //[self.timeLabel.text substringToIndex:5]
+                        [self.alertlable configureWithTime:self.timeLabel.text
                                                     isLeft:YES] ;
                     }
                 }
                 
             }
-            else if (_isVericalPan)
-            {
-                
-                if (localPoint.x > self.bounds.size.width / 2)
-                {
+            else if (_isVericalPan) {
+                if (localPoint.x > self.bounds.size.width / 2) {
                     // 改变音量
-                    if ([pan translationInView:self].y > 0)
-                    {
+                    if ([pan translationInView:self].y > 0) {
                         self.volumeSlider.value -= 0.03;
                     }
-                    else
-                    {
+                    else {
                         self.volumeSlider.value += 0.03;
                     }
                     [self.alertlable configureWithVolume:self.volumeSlider.value] ;
                 }
-                else
-                {
+                else {
                     // 改变显示亮度
-                    if ([pan translationInView:self].y > 0)
-                    {
+                    if ([pan translationInView:self].y > 0) {
                         [UIScreen mainScreen].brightness -= 0.01;
                     }
-                    else
-                    {
+                    else {
                         [UIScreen mainScreen].brightness += 0.01;
                     }
                     [self.alertlable configureWithLight];
@@ -264,12 +249,6 @@
 }
 
 #pragma mark - Property
-//- (MRVideoHUDView *)indicatorView {
-//    if (!_indicatorView) {
-//        _indicatorView = [[MRVideoHUDView alloc] init];
-//    }
-//    return _indicatorView;
-//}
 
 - (UIView *)topBar
 {
@@ -317,7 +296,6 @@
     return _fullScreenButton;
 }
 
-
 - (MRProgressSlider *)progressSlider
 {
     if (!_progressSlider) {
@@ -358,7 +336,6 @@
         _bgLayer = [CALayer layer];
         _bgLayer.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Video Bg"]].CGColor;
         _bgLayer.bounds = self.frame;
-//        _bgLayer.position = CGPointMake(CGRectGetWidth(self.bounds) / 2, CGRectGetHeight(self.bounds) / 2);
         _bgLayer.position = self.center ;
     }
     return _bgLayer;
@@ -425,8 +402,9 @@
 
 - (void)configureWithTime:(NSString *)time isLeft:(BOOL)left
 {
-    [self setText:time] ;
-//    left ? [self setText:[NSString stringWithFormat:@"<<%@",time]] : [self setText:[NSString stringWithFormat:@">>%@",time]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self setText:time] ;
+    }) ;
 }
 - (void)configureWithLight {
     self.text = [NSString stringWithFormat:@"亮度:%d%%",(int)([UIScreen mainScreen].brightness * 100)];

@@ -34,7 +34,6 @@
 @property (nonatomic, strong) MRProgressSlider *progressSlider;
 @property (nonatomic, strong) UIButton *closeButton;
 @property (nonatomic, strong) UILabel *timeLabel;
-//@property (nonatomic, strong) MRVideoHUDView *indicatorView;
 @property (nonatomic, strong) CALayer *bgLayer;
 @property (nonatomic, strong) UISlider *volumeSlider;
 @property (nonatomic, strong) MPVolumeView *volumeView;

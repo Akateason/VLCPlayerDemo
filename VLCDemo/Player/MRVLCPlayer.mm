@@ -64,9 +64,9 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 }
 
 - (void)dismiss {
-    if (self.dismissComplete) self.dismissComplete(self.player) ;
-    
     dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.dismissComplete) self.dismissComplete(self.player) ;
+        
         if (_player) {
             if ([_player isPlaying]) [_player stop] ;
             _player.delegate = nil ;
@@ -78,8 +78,6 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
         [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications] ;
         [[NSNotificationCenter defaultCenter] removeObserver:self] ;
     }) ;
-    
-
 }
 
 #pragma mark - Private Method
@@ -221,15 +219,11 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
     self.controlView.isVericalPan = FALSE ;
     
     float rate = self.controlView.progressSlider.value ;
-    int targetIntvalue = (int)(rate * kMediaLength.intValue);
-    //    NSLog(@"rate : %f",rate) ;
-    //    NSLog(@"%d",targetIntvalue) ;
-    VLCTime *targetTime = [[VLCTime alloc] initWithInt:targetIntvalue];
     if (![self.player isPlaying]) {
         [self.player play] ;
     }
-    [self.player setTime:targetTime];
-    [self.controlView autoFadeOutControlBar];
+    [self.player setPosition:rate] ;
+    [self.controlView autoFadeOutControlBar] ;
     
     self.controlView.isHorizonPan = TRUE ;
     self.controlView.isVericalPan = TRUE ;
@@ -289,7 +283,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
             break;
         case VLCMediaPlayerStateEnded: {
             NSLog(@"end") ;
-            [self dismiss] ;
+            if (!hasCloseButton) [self dismiss] ;
         }
             break;
         case VLCMediaPlayerStateError: {
@@ -312,9 +306,11 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
             break;
     }
     
+    if ([self superview]) {
+        // media state
+        self.controlView.bgLayer.hidden = self.player.media.state == VLCMediaStatePlaying;
+    }
     
-    // media state
-    self.controlView.bgLayer.hidden = self.player.media.state == VLCMediaStatePlaying;
 }
 
 - (void)mediaPlayerTimeChanged:(NSNotification *)aNotification
