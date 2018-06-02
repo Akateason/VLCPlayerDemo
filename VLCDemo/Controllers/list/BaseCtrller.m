@@ -14,6 +14,7 @@
 #import "MRVLCPlayer.h"
 #import "PlayingCtrller.h"
 #import "Masonry.h"
+#import "AppDelegate.h"
 
 @interface BaseCtrller () <UITableViewDelegate,UITableViewDataSource,PlayingCtrllerDelegate>
 {
@@ -37,6 +38,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    
+    
     // Do any additional setup after loading the view.
     NSLog(@"path : %@ \n",self.baseRelativePath) ;
     
@@ -56,12 +60,31 @@
     [self.table registerNib:[UINib nibWithNibName:@"FolderCell" bundle:nil]
      forCellReuseIdentifier:@"FolderCell"] ;
     
-
     [self prepare] ;
 }
 
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated] ;
+    
+    
+    AppDelegate *appdelegate=(AppDelegate *)[UIApplication sharedApplication].delegate;
+    appdelegate.orientationsOnlyLandScape = NO ;
+    appdelegate.orientationsOnlyRotate = YES ;
+
+    [self forceChangeOrientation:UIInterfaceOrientationPortrait] ;
+}
+
+- (void)forceChangeOrientation:(UIInterfaceOrientation)orientation {
+    int val = orientation;
+    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
+        SEL selector = NSSelectorFromString(@"setOrientation:");
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]] ;
+        [invocation setSelector:selector] ;
+        [invocation setTarget:[UIDevice currentDevice]] ;
+        [invocation setArgument:&val atIndex:2] ;
+        [invocation invoke] ;
+    }
 }
 
 - (void)prepare
@@ -183,8 +206,6 @@
     }
 }
 
-
-
 - (BOOL)isPhotoType:(NSString *)displayPath
 {
     return (
@@ -196,7 +217,6 @@
             [displayPath containsString:@".PNG"]
     ) ;
 }
-
 
 
 - (void)didReceiveMemoryWarning {

@@ -14,7 +14,6 @@
 #import "UIViewController+FileUrl.h"
 #import <XTlib.h>
 #import <ReactiveObjC.h>
-#import "UINavigationController+RotateUtil.h"
 #import "AppDelegate.h"
 
 @interface PlayingCtrller ()

@@ -7,8 +7,6 @@
 //
 
 #import "FilesViewController.h"
-#import "UINavigationController+RotateUtil.h"
-#import "AppDelegate.h"
 
 @interface FilesViewController ()
 @end
@@ -16,29 +14,17 @@
 @implementation FilesViewController
 
 - (void)viewDidLoad
-{
-    AppDelegate *appdelegate=(AppDelegate *)[UIApplication sharedApplication].delegate;
-    appdelegate.orientationsOnlyLandScape = NO ;
-    appdelegate.orientationsOnlyRotate = YES ;
-    
+{    
     self.bPrepare = YES ;
     [super viewDidLoad] ;    
     self.title = @"xtcPlayer" ;
 }
-
-
-
-
-
-
-
-
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 /*
 #pragma mark - Navigation
