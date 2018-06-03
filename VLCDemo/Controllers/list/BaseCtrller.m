@@ -15,12 +15,14 @@
 #import "PlayingCtrller.h"
 #import "Masonry.h"
 #import "AppDelegate.h"
+#import <XTlib.h>
+
 
 @interface BaseCtrller () <UITableViewDelegate,UITableViewDataSource,PlayingCtrllerDelegate>
 {
     int indexPlay ;
 }
-@property (nonatomic,strong) UITableView *table ;
+@property (nonatomic,strong) RootTableView *table ;
 @property (nonatomic,strong) NSMutableArray *list ;
 @end
 
@@ -45,13 +47,14 @@
     NSLog(@"path : %@ \n",self.baseRelativePath) ;
     
     self.table = ({
-        UITableView *table = [[UITableView alloc] init] ;
+        RootTableView *table = [[RootTableView alloc] init] ;
         [self.view addSubview:table] ;
         [table mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.view) ;
         }] ;
         table.delegate = self ;
         table.dataSource = self ;
+        [table hideAllRefreshers] ;
         table ;
     }) ;
     
