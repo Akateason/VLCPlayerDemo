@@ -62,43 +62,26 @@
     }] ;
     
     @weakify(self)
-    
-//    self.playerView.thumbnailGot = ^(VLCMediaPlayer * _Nonnull player, UIImage * _Nullable thumbnail) {
-//        @strongify(self)
-//        self.model.allTime = player.media.length.stringValue ;
-//        self.model.lastTime = player.time.stringValue ;
-//        NSString *suffix = [[self.model.displayPath componentsSeparatedByString:@"."] firstObject] ;
-//        suffix = [[suffix componentsSeparatedByString:@"/"] lastObject] ;
-//        NSString *coverPath = [NSString stringWithFormat:@"/cover/cover_%@.png",suffix] ;
-//        NSString *path = [self.directPrefixPath stringByAppendingString:coverPath] ;
-//        [player saveVideoSnapshotAt:path withWidth:120 andHeight:120/16*9] ;
-//        self.model.coverPath = coverPath ;
-//        [self.model update] ;
-//
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.delegate refreshModel:self.model] ;
-//        }) ;
-//
-//    } ;
-    
-
-    self.playerView.willDismiss = ^(VLCMediaPlayer * _Nonnull vlcPlayer) {
+    self.playerView.willDismissAndCatchThumbnail = ^(VLCMediaPlayer * _Nonnull player, UIImage * _Nullable thumbnail) {
         @strongify(self)
-
-        self.model.allTime = vlcPlayer.media.length.stringValue ;
-        self.model.lastTime = vlcPlayer.time.stringValue ;
+        self.model.allTime = player.media.length.stringValue ;
+        self.model.lastTime = player.time.stringValue ;
         NSString *suffix = [[self.model.displayPath componentsSeparatedByString:@"."] firstObject] ;
         suffix = [[suffix componentsSeparatedByString:@"/"] lastObject] ;
         NSString *coverPath = [NSString stringWithFormat:@"/cover/cover_%@.png",suffix] ;
         NSString *path = [self.directPrefixPath stringByAppendingString:coverPath] ;
-        [vlcPlayer saveVideoSnapshotAt:path withWidth:120 andHeight:120/16*9] ;
+        NSData *data = UIImagePNGRepresentation(thumbnail) ;
+        [data writeToFile:path atomically:NO] ;
+        
         self.model.coverPath = coverPath ;
         [self.model update] ;
-        
-        [self.delegate refreshModel:self.model] ;
-        
-        [self.navigationController popViewControllerAnimated:YES] ;
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES] ;
+            [self.delegate refreshModel:self.model] ;
+        }) ;
     } ;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated

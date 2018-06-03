@@ -8,7 +8,6 @@
 
 #import "MRVLCPlayer.h"
 #import <MediaPlayer/MediaPlayer.h>
-//#import <AVFoundation/AVFoundation.h>
 #import "MRVideoConst.h"
 #import "Masonry.h"
 #import <XTlib.h>
@@ -79,13 +78,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
     if (![self superview]) return ;
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.willDismiss) self.willDismiss(_player) ;
-        
-        if (_player) {
-            [_player stop] ;
-            _player.delegate = nil ;
-            _player = nil ;
-        }
+        [self.thumbnailer fetchThumbnail] ; // get thumbnail when stop or dismiss
         // 注销通知
         [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications] ;
         [[NSNotificationCenter defaultCenter] removeObserver:self] ;
@@ -94,9 +87,32 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
     }) ;
 }
 
-- (void)catchThumbnail:(ThumbnailGotBlock)block {
-    [self.thumbnailer fetchThumbnail] ; // get thumbnail when stop or dismiss
-    self.thumbnailGot = block ;
+- (void)catchThumbnail {
+    [self.thumbnailer fetchThumbnail] ; // get thumbnail when stop or dismiss . go to delegate .
+}
+
+#pragma mark - vlc thumbnail delegate
+
+- (void)mediaThumbnailerDidTimeOut:(VLCMediaThumbnailer *)mediaThumbnailer{
+    NSLog(@"getThumbnailer time out.");
+    if (self.willDismissAndCatchThumbnail) self.willDismissAndCatchThumbnail(self.player,nil) ;
+    
+    if (_player) {
+        [_player stop] ;
+        _player.delegate = nil ;
+        _player = nil ;
+    }
+}
+
+- (void)mediaThumbnailer:(VLCMediaThumbnailer *)mediaThumbnailer didFinishThumbnail:(CGImageRef)thumbnail{
+    UIImage *image = [UIImage imageWithCGImage:thumbnail] ;
+    if (self.willDismissAndCatchThumbnail) self.willDismissAndCatchThumbnail(self.player,image) ;
+    
+    if (_player) {
+        [_player stop] ;
+        _player.delegate = nil ;
+        _player = nil ;
+    }
 }
 
 #pragma mark - Private
@@ -206,21 +222,17 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
     [self pause];
 }
 
-
 #pragma mark - Button Event
 
-- (void)playButtonClick
-{
+- (void)playButtonClick {
     [self play];
 }
 
-- (void)pauseButtonClick
-{
+- (void)pauseButtonClick {
     [self pause];
 }
 
-- (void)closeButtonClick
-{
+- (void)closeButtonClick {
     [self dismiss];
 }
 
@@ -253,9 +265,6 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
                                              selector:@selector(progressValueChanged)
                                                object:nil] ;
 }
-
-
-
 
 #pragma mark - Player Logic
 
@@ -304,7 +313,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
             break;
         case VLCMediaPlayerStateEnded: {
             NSLog(@"end") ;
-            if (!hasCloseButton) [self dismiss] ;
+            [self dismiss] ;
         }
             break;
         case VLCMediaPlayerStateError: {
@@ -331,7 +340,6 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
         // media state
         self.controlView.bgLayer.hidden = self.player.media.state == VLCMediaStatePlaying;
     }
-    
 }
 
 - (void)mediaPlayerTimeChanged:(NSNotification *)aNotification
@@ -345,18 +353,6 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
         [self.controlView.progressSlider setValue:precentValue animated:YES];
         [self.controlView.timeLabel setText:[NSString stringWithFormat:@"%@/%@",_player.time.stringValue,kMediaLength.stringValue]] ;
     }) ;
-}
-
-#pragma mark - vlc thumbnail delegate
-
-- (void)mediaThumbnailerDidTimeOut:(VLCMediaThumbnailer *)mediaThumbnailer{
-    NSLog(@"getThumbnailer time out.");
-    if (self.thumbnailGot) self.thumbnailGot(self.player, nil) ;
-}
-
-- (void)mediaThumbnailer:(VLCMediaThumbnailer *)mediaThumbnailer didFinishThumbnail:(CGImageRef)thumbnail{
-    UIImage *image = [UIImage imageWithCGImage:thumbnail] ;
-    if (self.thumbnailGot) self.thumbnailGot(self.player, image) ;
 }
 
 #pragma mark - ControlView

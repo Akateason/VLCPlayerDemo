@@ -14,7 +14,7 @@
 @implementation FilesViewController
 
 - (void)viewDidLoad
-{    
+{
     self.bPrepare = YES ;
     [super viewDidLoad] ;    
     self.title = @"xtcPlayer" ;

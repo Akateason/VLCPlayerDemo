@@ -67,7 +67,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated] ;
     
-    
     AppDelegate *appdelegate=(AppDelegate *)[UIApplication sharedApplication].delegate;
     appdelegate.orientationsOnlyLandScape = NO ;
     appdelegate.orientationsOnlyRotate = YES ;
@@ -105,11 +104,11 @@
         else if ([self isPhotoType:pathTmp]) continue ;
         
         FileModel *model = [[FileModel alloc] initWithDisplayPath:pathTmp] ;
+        NSString *sql = [NSString stringWithFormat:@"displayPath like '%%%@%%'",model.displayPath] ;
         
         if (self.bPrepare) {
-            NSString *sql = [NSString stringWithFormat:@"displayPath == '%@'",model.displayPath] ;
-            if (![FileModel hasModelWhere:sql])
-            {// not exist
+            if (![FileModel hasModelWhere:sql]) {
+                // not exist
                 NSURL *url = [NSURL fileURLWithPath:[model fullPathWithBasePath:[self baseFullPath]]] ;
                 VLCMedia *media = [VLCMedia mediaWithURL:url] ;
                 model.allTime = media.length.stringValue ;
@@ -117,10 +116,13 @@
                 model.coverPath = nil ;
                 [model insert] ;
             }
-            else
-            {// has . so fetch newest .
+            else {
+                // has . so fetch newest .
                 model = [FileModel findFirstWhere:sql] ;
             }
+        }
+        else {
+            model = [FileModel findFirstWhere:sql] ;
         }
         
         if ([pathTmp containsString:@"/"]) continue ; // folder not display . but insert

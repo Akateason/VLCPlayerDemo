@@ -43,12 +43,6 @@
     self.lastTime.text = (!model.lastTime || !model.lastTime.length) ? @"" : [@"上次播放到" stringByAppendingString:model.lastTime] ;
 }
 
-
-
-
-
-
-
 - (void)awakeFromNib
 {
     [super awakeFromNib];

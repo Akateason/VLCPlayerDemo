@@ -10,16 +10,13 @@
 #import <MobileVLCKit/MobileVLCKit.h>
 #import "MRVideoControlView.h"
 
-typedef void(^PlayerWillDismissBlock)(VLCMediaPlayer * _Nonnull player) ;
-typedef void(^ThumbnailGotBlock)(VLCMediaPlayer * _Nonnull player, UIImage * _Nullable thumbnail) ;
+typedef void(^PlayerWillDismissBlock)(VLCMediaPlayer * _Nonnull player, UIImage * _Nullable thumbnail) ;
 
 @interface MRVLCPlayer : UIView <VLCMediaPlayerDelegate,MRVideoControlViewDelegate>
 
 @property (nonatomic,strong,nonnull) NSURL  *mediaURL ;
 @property (nonatomic,assign)         BOOL    isFullscreenModel ;
-@property (nonatomic,copy) PlayerWillDismissBlock _Nullable willDismiss ;
-@property (nonatomic,copy) ThumbnailGotBlock    _Nullable thumbnailGot ;
-
+@property (nonatomic,copy) PlayerWillDismissBlock _Nullable willDismissAndCatchThumbnail ;
 
 - (void)showMeInView:(UIView * _Nonnull)view
                  url:(NSURL * _Nonnull)url ;
@@ -34,8 +31,6 @@ typedef void(^ThumbnailGotBlock)(VLCMediaPlayer * _Nonnull player, UIImage * _Nu
         forceHorizon:(BOOL)forceHorizon ;
 
 - (void)play ;
-
-- (void)catchThumbnail:(ThumbnailGotBlock _Nullable )block ;
 
 - (void)dismiss ;
 

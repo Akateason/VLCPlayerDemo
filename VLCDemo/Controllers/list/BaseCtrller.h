@@ -10,5 +10,5 @@
 #import "UIViewController+FileUrl.h"
 
 @interface BaseCtrller : UIViewController
-@property (nonatomic) BOOL bPrepare ;
+@property (nonatomic) BOOL  bPrepare ;
 @end
