@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F15120D20C46BB000FF125C /* XTVLCView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F15120C20C46BB000FF125C /* XTVLCView.m */; };
+		8F15121020C46BC300FF125C /* XTVLC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F15120F20C46BC300FF125C /* XTVLC.m */; };
 		8F7F00C92043FD73008D4399 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F00C82043FD73008D4399 /* AppDelegate.m */; };
 		8F7F00CF2043FD73008D4399 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00CD2043FD73008D4399 /* Main.storyboard */; };
 		8F7F00D12043FD73008D4399 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00D02043FD73008D4399 /* Assets.xcassets */; };
@@ -53,6 +55,11 @@
 
 /* Begin PBXFileReference section */
 		12764453FD3B14AE6FD77891 /* libPods-VLCDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VLCDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F15120A20C46B1800FF125C /* XTVLCConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XTVLCConst.h; sourceTree = "<group>"; };
+		8F15120B20C46BB000FF125C /* XTVLCView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XTVLCView.h; sourceTree = "<group>"; };
+		8F15120C20C46BB000FF125C /* XTVLCView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XTVLCView.m; sourceTree = "<group>"; };
+		8F15120E20C46BC300FF125C /* XTVLC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XTVLC.h; sourceTree = "<group>"; };
+		8F15120F20C46BC300FF125C /* XTVLC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XTVLC.m; sourceTree = "<group>"; };
 		8F7F00C42043FD73008D4399 /* VLCDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VLCDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F7F00C72043FD73008D4399 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8F7F00C82043FD73008D4399 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -282,6 +289,11 @@
 				8F7F01392043FE24008D4399 /* MRVideoControlView.m */,
 				8F7F013A2043FE24008D4399 /* MRVLCPlayer.h */,
 				8F7F013B2043FE24008D4399 /* MRVLCPlayer.mm */,
+				8F15120A20C46B1800FF125C /* XTVLCConst.h */,
+				8F15120B20C46BB000FF125C /* XTVLCView.h */,
+				8F15120C20C46BB000FF125C /* XTVLCView.m */,
+				8F15120E20C46BC300FF125C /* XTVLC.h */,
+				8F15120F20C46BC300FF125C /* XTVLC.m */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -447,6 +459,7 @@
 				8F7F01322043FE0B008D4399 /* FilesCell.m in Sources */,
 				8F7F01342043FE0B008D4399 /* FolderCell.m in Sources */,
 				8F7F013D2043FE24008D4399 /* MRVLCPlayer.mm in Sources */,
+				8F15120D20C46BB000FF125C /* XTVLCView.m in Sources */,
 				8F7F01262043FDFD008D4399 /* UIViewController+FileUrl.m in Sources */,
 				8F7F012A2043FE06008D4399 /* FileModel.m in Sources */,
 				8F7F01252043FDFD008D4399 /* RemoteViewController.m in Sources */,
@@ -454,6 +467,7 @@
 				8F7F01222043FDFD008D4399 /* FilesViewController.m in Sources */,
 				8F7F00D72043FD73008D4399 /* main.m in Sources */,
 				8F7F013C2043FE24008D4399 /* MRVideoControlView.m in Sources */,
+				8F15121020C46BC300FF125C /* XTVLC.m in Sources */,
 				8F7F00C92043FD73008D4399 /* AppDelegate.m in Sources */,
 				8F7F01212043FDFD008D4399 /* BaseCtrller.m in Sources */,
 			);
