@@ -54,7 +54,7 @@
         }] ;
         table.delegate = self ;
         table.dataSource = self ;
-        [table hideAllRefreshers] ;
+        table.hideAllRefreshers = YES ;
         table ;
     }) ;
     
