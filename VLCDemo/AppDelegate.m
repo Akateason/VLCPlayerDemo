@@ -35,6 +35,17 @@
     [XTFileManager createFolder:XT_DOCUMENTS_PATH_TRAIL_(@"cover")] ;
     [FileModel createTable] ;
 
+    // nav
+    UINavigationBar *navBar = [UINavigationBar appearance];
+    UIImage *img = [UIImage imageWithColor:[UIColor whiteColor]
+                                      size:CGSizeMake(320.0, 64.0)] ;
+    [navBar setBackgroundImage:img forBarMetrics:UIBarMetricsDefault] ;
+//    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}] ;
+//    [navBar setTintColor:[UIColor whiteColor]] ;
+    [navBar setTranslucent:YES] ;
+    navBar.translucent = YES;
+    
+
     
     return YES;
 }
