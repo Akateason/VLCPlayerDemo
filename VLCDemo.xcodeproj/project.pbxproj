@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		8F15120D20C46BB000FF125C /* XTVLCView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F15120C20C46BB000FF125C /* XTVLCView.m */; };
 		8F15121020C46BC300FF125C /* XTVLC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8F15120F20C46BC300FF125C /* XTVLC.mm */; };
+		8F15121220C5A2CB00FF125C /* kobeColor.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F15121120C5A2CB00FF125C /* kobeColor.plist */; };
+		8F15121920C5A40000FF125C /* XTColor+MyColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F15121820C5A40000FF125C /* XTColor+MyColors.m */; };
+		8F15121D20C5AB3700FF125C /* VideoFlowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F15121C20C5AB3700FF125C /* VideoFlowVC.m */; };
+		8F15122120C5AB7600FF125C /* VideoFlowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F15121F20C5AB7600FF125C /* VideoFlowCell.m */; };
+		8F15122220C5AB7600FF125C /* VideoFlowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F15122020C5AB7600FF125C /* VideoFlowCell.xib */; };
 		8F7F00C92043FD73008D4399 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F00C82043FD73008D4399 /* AppDelegate.m */; };
 		8F7F00CF2043FD73008D4399 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00CD2043FD73008D4399 /* Main.storyboard */; };
 		8F7F00D12043FD73008D4399 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F00D02043FD73008D4399 /* Assets.xcassets */; };
@@ -58,6 +63,14 @@
 		8F15120C20C46BB000FF125C /* XTVLCView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XTVLCView.m; sourceTree = "<group>"; };
 		8F15120E20C46BC300FF125C /* XTVLC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XTVLC.h; sourceTree = "<group>"; };
 		8F15120F20C46BC300FF125C /* XTVLC.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = XTVLC.mm; sourceTree = "<group>"; };
+		8F15121120C5A2CB00FF125C /* kobeColor.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = kobeColor.plist; sourceTree = "<group>"; };
+		8F15121720C5A40000FF125C /* XTColor+MyColors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XTColor+MyColors.h"; sourceTree = "<group>"; };
+		8F15121820C5A40000FF125C /* XTColor+MyColors.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "XTColor+MyColors.m"; sourceTree = "<group>"; };
+		8F15121B20C5AB3700FF125C /* VideoFlowVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoFlowVC.h; sourceTree = "<group>"; };
+		8F15121C20C5AB3700FF125C /* VideoFlowVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoFlowVC.m; sourceTree = "<group>"; };
+		8F15121E20C5AB7600FF125C /* VideoFlowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoFlowCell.h; sourceTree = "<group>"; };
+		8F15121F20C5AB7600FF125C /* VideoFlowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoFlowCell.m; sourceTree = "<group>"; };
+		8F15122020C5AB7600FF125C /* VideoFlowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoFlowCell.xib; sourceTree = "<group>"; };
 		8F7F00C42043FD73008D4399 /* VLCDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VLCDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F7F00C72043FD73008D4399 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8F7F00C82043FD73008D4399 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -156,6 +169,7 @@
 		8F15120120C292FB00FF125C /* list */ = {
 			isa = PBXGroup;
 			children = (
+				8F7F012B2043FE0B008D4399 /* Views */,
 				8F7F011D2043FDFD008D4399 /* UIViewController+FileUrl.h */,
 				8F7F011E2043FDFD008D4399 /* UIViewController+FileUrl.m */,
 				8F7F01132043FDFD008D4399 /* BaseCtrller.h */,
@@ -173,6 +187,28 @@
 				8F7F011A2043FDFD008D4399 /* PlayingCtrller.m */,
 			);
 			path = play;
+			sourceTree = "<group>";
+		};
+		8F15121320C5A38500FF125C /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				8F15121120C5A2CB00FF125C /* kobeColor.plist */,
+				8F15121720C5A40000FF125C /* XTColor+MyColors.h */,
+				8F15121820C5A40000FF125C /* XTColor+MyColors.m */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		8F15121A20C5AB1300FF125C /* VideoFlow */ = {
+			isa = PBXGroup;
+			children = (
+				8F15121B20C5AB3700FF125C /* VideoFlowVC.h */,
+				8F15121C20C5AB3700FF125C /* VideoFlowVC.m */,
+				8F15121E20C5AB7600FF125C /* VideoFlowCell.h */,
+				8F15121F20C5AB7600FF125C /* VideoFlowCell.m */,
+				8F15122020C5AB7600FF125C /* VideoFlowCell.xib */,
+			);
+			path = VideoFlow;
 			sourceTree = "<group>";
 		};
 		8F7F00BB2043FD73008D4399 = {
@@ -197,12 +233,13 @@
 			isa = PBXGroup;
 			children = (
 				8F7F00CD2043FD73008D4399 /* Main.storyboard */,
+				8F15120020C278E800FF125C /* zample */,
 				8F7F01362043FE24008D4399 /* Player */,
 				8F7F01272043FE05008D4399 /* Model */,
-				8F7F012B2043FE0B008D4399 /* Views */,
-				8F7F01122043FDFD008D4399 /* Controllers */,
+				8F7F01122043FDFD008D4399 /* V+C */,
 				8F7F00C72043FD73008D4399 /* AppDelegate.h */,
 				8F7F00C82043FD73008D4399 /* AppDelegate.m */,
+				8F15121320C5A38500FF125C /* Util */,
 				8F7F00DD2043FDF6008D4399 /* Asset */,
 				8F7F00D02043FD73008D4399 /* Assets.xcassets */,
 				8F7F00D22043FD73008D4399 /* LaunchScreen.storyboard */,
@@ -242,14 +279,14 @@
 			path = Asset;
 			sourceTree = "<group>";
 		};
-		8F7F01122043FDFD008D4399 /* Controllers */ = {
+		8F7F01122043FDFD008D4399 /* V+C */ = {
 			isa = PBXGroup;
 			children = (
+				8F15121A20C5AB1300FF125C /* VideoFlow */,
 				8F15120220C2930600FF125C /* play */,
 				8F15120120C292FB00FF125C /* list */,
-				8F15120020C278E800FF125C /* zample */,
 			);
-			path = Controllers;
+			path = "V+C";
 			sourceTree = "<group>";
 		};
 		8F7F01272043FE05008D4399 /* Model */ = {
@@ -348,6 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F7F01052043FDF6008D4399 /* Player Control Nob@3x.png in Resources */,
+				8F15122220C5AB7600FF125C /* VideoFlowCell.xib in Resources */,
 				8F7F00FF2043FDF6008D4399 /* Play Icon@2x.png in Resources */,
 				8F7F00F92043FDF6008D4399 /* Min. Icon@2x.png in Resources */,
 				8F7F00FE2043FDF6008D4399 /* Play Icon.png in Resources */,
@@ -365,6 +403,7 @@
 				8F7F00F72043FDF6008D4399 /* Full Screen Icon@3x.png in Resources */,
 				8F7F01332043FE0B008D4399 /* FilesCell.xib in Resources */,
 				8F7F01082043FDF6008D4399 /* Sound Icon@3x.png in Resources */,
+				8F15121220C5A2CB00FF125C /* kobeColor.plist in Resources */,
 				8F7F01022043FDF6008D4399 /* Player close@3x.png in Resources */,
 				8F7F00FB2043FDF6008D4399 /* Pause Icon.png in Resources */,
 				8F7F01002043FDF6008D4399 /* Play Icon@3x.png in Resources */,
@@ -444,12 +483,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F7F01242043FDFD008D4399 /* PlayingCtrller.m in Sources */,
+				8F15121920C5A40000FF125C /* XTColor+MyColors.m in Sources */,
 				8F7F01322043FE0B008D4399 /* FilesCell.m in Sources */,
 				8F7F01342043FE0B008D4399 /* FolderCell.m in Sources */,
 				8F15120D20C46BB000FF125C /* XTVLCView.m in Sources */,
+				8F15121D20C5AB3700FF125C /* VideoFlowVC.m in Sources */,
 				8F7F01262043FDFD008D4399 /* UIViewController+FileUrl.m in Sources */,
 				8F7F012A2043FE06008D4399 /* FileModel.m in Sources */,
 				8F7F01252043FDFD008D4399 /* RemoteViewController.m in Sources */,
+				8F15122120C5AB7600FF125C /* VideoFlowCell.m in Sources */,
 				8F7F01232043FDFD008D4399 /* LocalViewConrtoller.m in Sources */,
 				8F7F01222043FDFD008D4399 /* FilesViewController.m in Sources */,
 				8F7F00D72043FD73008D4399 /* main.m in Sources */,

@@ -10,6 +10,7 @@
 #import "FileModel.h"
 #import <AVFoundation/AVFoundation.h>
 #import "Masonry.h"
+#import "XTColor+MyColors.h"
 
 @interface FilesCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
@@ -31,14 +32,14 @@
 }
 
 - (void)configure:(id)obj
-{
+{    
     if (!obj) return ;
     
     FileModel *model = obj ;
     self.label.text = model.playDisplayPath ;
     
-    self.imgView.image = (!model.coverPath || !model.coverPath.length) ? nil : [UIImage imageWithContentsOfFile:[[self documentBasePath] stringByAppendingString:model.coverPath]] ;
-    self.imgView.backgroundColor = (!model.coverPath || !model.coverPath.length) ? [UIColor blackColor] : [UIColor whiteColor] ;
+    self.imgView.image = (!model.coverPath || !model.coverPath.length) ? [UIImage imageNamed:@"placeholder"] : [UIImage imageWithContentsOfFile:[[self documentBasePath] stringByAppendingString:model.coverPath]] ;
+    self.imgView.backgroundColor = [UIColor whiteColor] ;
     self.allTime.text = (!model.allTime || !model.allTime.length) ? @"" : model.allTime ;
     self.lastTime.text = (!model.lastTime || !model.lastTime.length) ? @"" : [@"上次播放到" stringByAppendingString:model.lastTime] ;
 }
@@ -51,6 +52,10 @@
     UIView *baseline = [[UIView alloc] initWithFrame:CGRectMake(0, [[self class] cellHeight] - 0.5, CGRectGetWidth([UIScreen mainScreen].bounds), 0.5)] ;
     baseline.backgroundColor = [UIColor lightGrayColor] ;
     [self addSubview:baseline] ;
+    
+    _label.textColor = [XTColor text1] ;
+    _allTime.textColor = [XTColor text2] ;
+    _lastTime.textColor = [XTColor text2] ;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

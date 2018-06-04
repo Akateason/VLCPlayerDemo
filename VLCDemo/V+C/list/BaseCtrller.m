@@ -41,6 +41,8 @@
 {
     [super viewDidLoad] ;
     
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent ;
+    
     // Do any additional setup after loading the view.
     NSLog(@"path : %@ \n",self.baseRelativePath) ;
     

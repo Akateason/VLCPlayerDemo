@@ -45,21 +45,36 @@
             </objects>
             <point key="canvasLocation" x="1396" y="115.59220389805098"/>
         </scene>
-        <!--View Controller-->
+        <!--Video FlowVC-->
         <scene sceneID="wy4-qM-0kk">
             <objects>
-                <viewController id="Bs8-EN-Wr3" sceneMemberID="viewController">
+                <viewController id="Bs8-EN-Wr3" customClass="VideoFlowVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xi2-MT-pRt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sSq-Rb-QKP" customClass="RootTableView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="sSq-Rb-QKP" firstAttribute="top" secondItem="xi2-MT-pRt" secondAttribute="top" id="34V-uc-idr"/>
+                            <constraint firstItem="sSq-Rb-QKP" firstAttribute="leading" secondItem="mpf-Ex-wbz" secondAttribute="leading" id="bTs-9j-fn2"/>
+                            <constraint firstItem="sSq-Rb-QKP" firstAttribute="trailing" secondItem="mpf-Ex-wbz" secondAttribute="trailing" id="kGq-a0-hKb"/>
+                            <constraint firstAttribute="bottom" secondItem="sSq-Rb-QKP" secondAttribute="bottom" id="vRD-so-Wfy"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="mpf-Ex-wbz"/>
                     </view>
                     <navigationItem key="navigationItem" id="rFJ-OO-26Z"/>
+                    <connections>
+                        <outlet property="table" destination="sSq-Rb-QKP" id="MK9-mX-nK7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hh0-Jz-R9j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1396" y="957"/>
+            <point key="canvasLocation" x="1396" y="956.67166416791611"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="syO-IL-qEC">

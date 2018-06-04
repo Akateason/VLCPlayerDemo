@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <XTlib.h>
 #import "FileModel.h"
+#import "XTColor+MyColors.h"
 
 @interface AppDelegate ()
 
@@ -35,17 +36,18 @@
     [XTFileManager createFolder:XT_DOCUMENTS_PATH_TRAIL_(@"cover")] ;
     [FileModel createTable] ;
 
+    [XTColor configCustomPlistName:@"kobeColor"] ;
+    
     // nav
     UINavigationBar *navBar = [UINavigationBar appearance];
-    UIImage *img = [UIImage imageWithColor:[UIColor whiteColor]
+    UIImage *img = [UIImage imageWithColor:[XTColor text1]
                                       size:CGSizeMake(320.0, 64.0)] ;
     [navBar setBackgroundImage:img forBarMetrics:UIBarMetricsDefault] ;
-//    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}] ;
-//    [navBar setTintColor:[UIColor whiteColor]] ;
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [XTColor whiteColor]}] ;
+    [navBar setTintColor:[XTColor whiteColor]] ;
     [navBar setTranslucent:YES] ;
     navBar.translucent = YES;
-    
-
+        
     
     return YES;
 }
