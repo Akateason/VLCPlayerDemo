@@ -38,6 +38,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="imagePlaceholder" destination="ViI-vZ-BfI" id="aTx-ws-8Ak"/>
                 <outlet property="playBt" destination="ljc-4Z-CTl" id="zW7-jl-uvu"/>
             </connections>
             <point key="canvasLocation" x="25" y="108"/>

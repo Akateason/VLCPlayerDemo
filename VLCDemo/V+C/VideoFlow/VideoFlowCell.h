@@ -10,5 +10,6 @@
 
 @interface VideoFlowCell : RootTableCell
 @property (weak, nonatomic) IBOutlet UIButton *playBt;
+@property (weak, nonatomic) IBOutlet UIImageView *imagePlaceholder;
 
 @end

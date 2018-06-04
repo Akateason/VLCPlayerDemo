@@ -20,7 +20,7 @@
 - (void)prepareUI {
     [super prepareUI] ;
     
-    _table.backgroundColor = [XTColor lakerYellow] ;
+//    _table.backgroundColor = [XTColor lakerYellow] ;
     _table.hideAllRefreshers = YES ;
     _table.dataSource = self ;
     _table.delegate = self ;

@@ -20,7 +20,7 @@
     [super awakeFromNib] ;
     // Initialization code
     [_playBt setImage:[[UIImage imageNamed:@"btPlay"] imageWithTintColor:[UIColor whiteColor]] forState:0] ;
-    
+    _imagePlaceholder.layer.masksToBounds = YES ;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
