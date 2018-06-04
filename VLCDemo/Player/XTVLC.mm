@@ -1,30 +1,30 @@
 //
-//  MRVLCPlayer.m
-//  MRVLCPlayer
+//  XTVLC.m
+//  VLCDemo
 //
-//  Created by apple on 16/3/5.
-//  Copyright © 2016年 Alloc. All rights reserved.
+//  Created by teason23 on 2018/6/4.
+//  Copyright © 2018年 teason23. All rights reserved.
 //
 
-#import "MRVLCPlayer.h"
+#import "XTVLC.h"
 #import <MediaPlayer/MediaPlayer.h>
-#import "MRVideoConst.h"
-#import "Masonry.h"
+#import "XTVLCConst.h"
+#import <Masonry.h>
 #import <XTlib.h>
 
 static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 
-@interface MRVLCPlayer () <VLCMediaThumbnailerDelegate>
+@interface XTVLC () <VLCMediaThumbnailerDelegate>
 {
     BOOL hasCloseButton ;
     BOOL m_forceHorizon ;
 }
 @property (nonatomic,strong,readwrite) VLCMediaPlayer *player ;
-@property (nonatomic, nonnull,strong) MRVideoControlView *controlView ;
+@property (nonatomic, nonnull,strong) XTVLCView *controlView ;
 @property (strong, nonatomic) VLCMediaThumbnailer *thumbnailer ;
 @end
 
-@implementation MRVLCPlayer
+@implementation XTVLC
 
 #pragma mark - Life
 
@@ -393,9 +393,9 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
     return _player;
 }
 
-- (MRVideoControlView *)controlView {
+- (XTVLCView *)controlView {
     if (!_controlView) {
-        _controlView = [[MRVideoControlView alloc] init];
+        _controlView = [[XTVLCView alloc] init];
         _controlView.delegate = self;
     }
     return _controlView;

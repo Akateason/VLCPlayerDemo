@@ -7,7 +7,7 @@
 //
 
 #import "PlayingCtrller.h"
-#import "MRVLCPlayer.h"
+#import "XTVLC.h"
 #import "Masonry.h"
 #import "FileModel.h"
 #import "XTFMDB.h"
@@ -17,7 +17,7 @@
 #import "AppDelegate.h"
 
 @interface PlayingCtrller ()
-@property (strong, nonatomic) MRVLCPlayer *playerView ;
+@property (strong, nonatomic) XTVLC *playerView ;
 @property (nonatomic,strong) FileModel *model ;
 @end
 
@@ -51,7 +51,7 @@
 
 - (void)setupPlayer
 {
-    self.playerView = [[MRVLCPlayer alloc] init] ;
+    self.playerView = [[XTVLC alloc] init] ;
     NSURL *url = [NSURL fileURLWithPath:[self.model fullPathWithBasePath:[self baseFullPath]]] ;
     [self.playerView showMeInView:self.view url:url hasCloseButton:YES forceHorizon:YES] ;
 

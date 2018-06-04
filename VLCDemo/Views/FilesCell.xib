@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,17 +16,17 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icl-r5-P5A">
-                        <rect key="frame" x="82" y="14" width="230" height="21"/>
+                        <rect key="frame" x="115" y="14" width="197" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="allTime" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VEK-d3-dX0">
-                        <rect key="frame" x="82" y="75" width="44" height="16"/>
+                        <rect key="frame" x="115" y="75" width="44" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -37,20 +38,21 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1CR-P7-DlD">
-                        <rect key="frame" x="8" y="20" width="60" height="60"/>
+                        <rect key="frame" x="8" y="15" width="93" height="69.5"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="60" id="95Q-oK-7ip"/>
-                            <constraint firstAttribute="width" constant="60" id="pPS-R2-R9Y"/>
+                            <constraint firstAttribute="width" secondItem="1CR-P7-DlD" secondAttribute="height" multiplier="4:3" id="UPS-fL-HmM"/>
                         </constraints>
                     </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="VEK-d3-dX0" secondAttribute="bottom" constant="9" id="0Us-q6-Uzl"/>
                     <constraint firstItem="VEK-d3-dX0" firstAttribute="leading" secondItem="1CR-P7-DlD" secondAttribute="trailing" constant="14" id="6WH-f5-fq5"/>
+                    <constraint firstAttribute="bottom" secondItem="1CR-P7-DlD" secondAttribute="bottom" constant="15" id="Esb-2T-GQS"/>
                     <constraint firstAttribute="trailing" secondItem="xbu-ae-8vC" secondAttribute="trailing" constant="8" id="MIa-iK-u94"/>
                     <constraint firstItem="1CR-P7-DlD" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bt0-Zi-S7P"/>
                     <constraint firstItem="icl-r5-P5A" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="gDn-nZ-mSV"/>
                     <constraint firstItem="1CR-P7-DlD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="jtB-yr-cJN"/>
+                    <constraint firstItem="1CR-P7-DlD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="lJz-nA-a0m"/>
                     <constraint firstAttribute="trailing" secondItem="icl-r5-P5A" secondAttribute="trailing" constant="8" id="nM4-Gt-hxB"/>
                     <constraint firstItem="icl-r5-P5A" firstAttribute="leading" secondItem="1CR-P7-DlD" secondAttribute="trailing" constant="14" id="omv-KM-JyJ"/>
                     <constraint firstAttribute="bottom" secondItem="xbu-ae-8vC" secondAttribute="bottom" constant="9" id="tVO-Sp-Atg"/>

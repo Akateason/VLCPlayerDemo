@@ -7,7 +7,7 @@
 //
 
 #import "LocalViewConrtoller.h"
-#import "MRVLCPlayer.h"
+//#import "MRVLCPlayer.h"
 #import <Masonry.h>
 #import <XTlib.h>
 
@@ -31,14 +31,14 @@
     //  [NSURL fileURLWithPath:@"/Users/Maru/Documents/Media/Movie/1.mkv"];
     
     
-    MRVLCPlayer *player = [[MRVLCPlayer alloc] init];
-    [player showMeInView:self.view.window url:url hasCloseButton:NO] ;
-    
-    [player mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(APP_WIDTH) ;
-        make.height.mas_equalTo(APP_WIDTH / 16 * 9) ;
-        make.top.equalTo(self.view) ;
-    }] ;
+//    MRVLCPlayer *player = [[MRVLCPlayer alloc] init];
+//    [player showMeInView:self.view.window url:url hasCloseButton:NO] ;
+//
+//    [player mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.width.mas_equalTo(APP_WIDTH) ;
+//        make.height.mas_equalTo(APP_WIDTH / 16 * 9) ;
+//        make.top.equalTo(self.view) ;
+//    }] ;
 }
 
 - (BOOL)prefersStatusBarHidden {

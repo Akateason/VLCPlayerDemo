@@ -11,7 +11,7 @@
 #import "FilesCell.h"
 #import "FolderCell.h"
 #import "NSDate+XTTick.h"
-#import "MRVLCPlayer.h"
+#import "XTVLC.h"
 #import "PlayingCtrller.h"
 #import "Masonry.h"
 #import "AppDelegate.h"
@@ -39,9 +39,7 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-
-    
+    [super viewDidLoad] ;
     
     // Do any additional setup after loading the view.
     NSLog(@"path : %@ \n",self.baseRelativePath) ;
