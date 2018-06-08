@@ -8,13 +8,26 @@
 
 #import "VideoFlowCell.h"
 #import <XTlib.h>
+#import "FileModel.h"
 
 @implementation VideoFlowCell
+
+- (void)configure:(FileModel *)file indexPath:(NSIndexPath *)indexPath {
+    [super configure:file indexPath:indexPath] ;
+    
+    self.lbTitle.text = file.playDisplayPath ;
+    
+    self.imagePlaceholder.image = (!file.coverPath || !file.coverPath.length) ? [UIImage imageNamed:@"placeholder"] : [UIImage imageWithContentsOfFile:[[self documentBasePath] stringByAppendingString:file.coverPath]] ;
+    self.imagePlaceholder.backgroundColor = [UIColor blackColor] ;
+}
 
 + (CGFloat)cellHeight {
     return APP_WIDTH / 16. * 9. ;
 }
 
+- (NSString *)documentBasePath {
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] ;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib] ;
@@ -25,7 +38,6 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
 

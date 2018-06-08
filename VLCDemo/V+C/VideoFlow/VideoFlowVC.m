@@ -9,10 +9,11 @@
 #import "VideoFlowVC.h"
 #import "VideoFlowCell.h"
 #import "XTColor+MyColors.h"
+#import "FileModel.h"
 
 @interface VideoFlowVC () <UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet RootTableView *table;
-
+@property (copy, nonatomic) NSArray *datasource ;
 @end
 
 @implementation VideoFlowVC
@@ -41,12 +42,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 13 ;
+    return self.datasource.count ;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VideoFlowCell *cell = [VideoFlowCell fetchFromTable:tableView] ;
+    [cell configure:self.datasource[indexPath.row] indexPath:indexPath] ;
     return cell ;
 }
 
@@ -55,6 +57,10 @@
     return [VideoFlowCell cellHeight] ;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
 
 /*
 #pragma mark - Navigation
@@ -66,4 +72,14 @@
 }
 */
 
+
+- (NSArray *)datasource{
+    if(!_datasource){
+        _datasource = ({
+            NSArray * object = [[FileModel selectAll] xt_orderby:@"updateTime" descOrAsc:YES] ;
+            object;
+       });
+    }
+    return _datasource;
+}
 @end

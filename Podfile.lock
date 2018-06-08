@@ -26,21 +26,23 @@ PODS:
   - MJRefresh (3.1.15.3)
   - MobileVLCKit (3.0.1)
   - ReactiveObjC (3.1.0)
-  - SDWebImage (4.4.0):
-    - SDWebImage/Core (= 4.4.0)
-  - SDWebImage/Core (4.4.0)
+  - RxWebViewController (0.0.2)
+  - SDWebImage (4.4.1):
+    - SDWebImage/Core (= 4.4.1)
+  - SDWebImage/Core (4.4.1)
   - SSZipArchive (2.1.3)
   - SVProgressHUD (2.2.5)
   - UITableView+FDTemplateLayoutCell (1.6)
   - Valet (2.4.2)
   - XTColor (1.0.3)
-  - XTFMDB (1.3.5):
+  - XTFMDB (1.4.0):
     - FMDB
     - YYModel
-  - XTlib (1.0.7):
+  - XTlib (1.1.1):
     - Masonry
     - MJRefresh
     - ReactiveObjC
+    - RxWebViewController
     - SDWebImage
     - SSZipArchive
     - Valet (= 2.4.2)
@@ -74,14 +76,15 @@ SPEC CHECKSUMS:
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   MobileVLCKit: 46931c28da80575647976cc569a7690499901406
   ReactiveObjC: 2a38ea15335de4119d8b17caf1db1484f61db902
-  SDWebImage: b534502786e43dde36dfcaee89356fe6df30e203
+  RxWebViewController: 79bcbf51aff13d93db9779404348b052ab0cd440
+  SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
   SSZipArchive: 51a800ebb77f95a8329b6ced1faaff394b47f509
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   UITableView+FDTemplateLayoutCell: 5c949b4a5059c404b442926c0e80f81d10a2d66f
   Valet: 14463ef24fab8fd5809044ecedb61484b799fdd6
   XTColor: 77dc1fb053ad58e6821d7de84fabbec361402d94
-  XTFMDB: 063fe76d53e5797091be6aa5b9c7e61411f9e904
-  XTlib: b0d16f340f2f27f6cb494f40cfbb85f8b1e95916
+  XTFMDB: e57286e8c136f112921b8c1caccf213669b18eea
+  XTlib: a7c895ab982230de351c8693e1af60386299c503
   XTReq: e407025d6ebaf2747f5f5f2d2e381ca715988036
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 

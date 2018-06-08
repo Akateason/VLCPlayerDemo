@@ -42,7 +42,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.edgesForExtendedLayout = UIRectEdgeNone ;
-    AppDelegate *appdelegate=(AppDelegate *)[UIApplication sharedApplication].delegate;
+    AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate ;
     appdelegate.orientationsOnlyLandScape = YES ;
     appdelegate.orientationsOnlyRotate = NO ;
     
@@ -54,7 +54,7 @@
     self.playerView = [[XTVLC alloc] init] ;
     NSURL *url = [NSURL fileURLWithPath:[self.model fullPathWithBasePath:[self baseFullPath]]] ;
     [self.playerView showMeInView:self.view url:url hasCloseButton:YES forceHorizon:YES] ;
-
+    
     [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(APP_WIDTH) ;
         make.height.mas_equalTo(APP_WIDTH / 16 * 9) ;
