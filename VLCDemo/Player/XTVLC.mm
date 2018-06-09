@@ -51,20 +51,20 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 #pragma mark - Public
 
 - (void)showMeInView:(UIView * _Nonnull)view
-                 url:(NSURL * _Nonnull)url
+                 url:(NSURL *)url
 {
     [self showMeInView:view url:url hasCloseButton:YES] ;
 }
 
 - (void)showMeInView:(UIView * _Nonnull)view
-                 url:(NSURL * _Nonnull)url
+                 url:(NSURL *)url
       hasCloseButton:(BOOL)hasCloseBt
 {
     [self showMeInView:view url:url hasCloseButton:hasCloseBt forceHorizon:NO] ;
 }
 
 - (void)showMeInView:(UIView * _Nonnull)view
-                 url:(NSURL * _Nonnull)url
+                 url:(NSURL *)url
       hasCloseButton:(BOOL)hasCloseBt
         forceHorizon:(BOOL)forceHorizon
 {
@@ -269,6 +269,8 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 #pragma mark - Player Logic
 
 - (void)play {
+    if (!self.mediaURL) return ;
+                
     [self.player play];
     self.controlView.playButton.hidden = YES;
     self.controlView.pauseButton.hidden = NO;

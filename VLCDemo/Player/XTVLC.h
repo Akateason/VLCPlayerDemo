@@ -18,14 +18,14 @@ typedef void(^PlayerWillDismissBlock)(VLCMediaPlayer * _Nonnull player, UIImage 
 @property (nonatomic,copy) PlayerWillDismissBlock _Nullable willDismissAndCatchThumbnail ;
 
 - (void)showMeInView:(UIView * _Nonnull)view
-                 url:(NSURL * _Nonnull)url ;
+                 url:(NSURL *)url ;
 
 - (void)showMeInView:(UIView * _Nonnull)view
-                 url:(NSURL * _Nonnull)url
+                 url:(NSURL *)url
       hasCloseButton:(BOOL)hasCloseBt ;
 
 - (void)showMeInView:(UIView * _Nonnull)view
-                 url:(NSURL * _Nonnull)url
+                 url:(NSURL *)url
       hasCloseButton:(BOOL)hasCloseBt
         forceHorizon:(BOOL)forceHorizon ;
 
