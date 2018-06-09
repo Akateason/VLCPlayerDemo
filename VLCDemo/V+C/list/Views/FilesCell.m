@@ -36,10 +36,9 @@
     if (!obj) return ;
     
     FileModel *model = obj ;
-    self.label.text = model.playDisplayPath ;
-    
-    self.imgView.image = (!model.coverPath || !model.coverPath.length) ? [UIImage imageNamed:@"placeholder"] : [UIImage imageWithContentsOfFile:[[self documentBasePath] stringByAppendingString:model.coverPath]] ;
-    self.imgView.backgroundColor = [UIColor whiteColor] ;
+    self.label.text = model.displayName ;
+        
+    self.imgView.image = model.imgCover ?: [UIImage imageNamed:@"placeholder"];
     self.allTime.text = (!model.allTime || !model.allTime.length) ? @"" : model.allTime ;
     self.lastTime.text = (!model.lastTime || !model.lastTime.length) ? @"" : [@"上次播放到" stringByAppendingString:model.lastTime] ;
 }
@@ -56,6 +55,7 @@
     _label.textColor = [XTColor text1] ;
     _allTime.textColor = [XTColor text2] ;
     _lastTime.textColor = [XTColor text2] ;
+    _imgView.backgroundColor = [UIColor whiteColor] ;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

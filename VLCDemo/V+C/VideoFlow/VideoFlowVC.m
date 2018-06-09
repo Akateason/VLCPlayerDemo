@@ -65,19 +65,12 @@
 {
     int row = (int)indexPath.row ;
     FileModel *model = self.datasource[row] ;
-    NSString *sql = [NSString stringWithFormat:@"displayPath like '%%%@%%'",model.displayPath] ;
-    model = [FileModel findFirstWhere:sql] ;
-    
-    VideoFlowCell *cell = [tableView cellForRowAtIndexPath:indexPath] ;
-    CGRect rect = [self.view convertRect:cell.frame toView:self.view] ;
-    self.movingContainer.frame = rect ;
-//    [self.movingContainer mas_remakeConstraints:^(MASConstraintMaker *make) {
-//
-//    }] ;
-    
-//    PlayingCtrller *playVC = [[PlayingCtrller alloc] initWithModel:model] ;
-//    playVC.delegate = self ;
-//    [self.navigationController pushViewController:playVC animated:YES] ;
+//    NSString *sql = [NSString stringWithFormat:@"baseName like '%%%@%%'",model.baseName] ;
+//    model = [FileModel findFirstWhere:sql] ;
+//    
+//    VideoFlowCell *cell = [tableView cellForRowAtIndexPath:indexPath] ;
+//    CGRect rect = [self.view convertRect:cell.frame toView:self.view] ;
+//    self.movingContainer.frame = rect ;
 }
 
 /*

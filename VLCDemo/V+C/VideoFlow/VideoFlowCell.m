@@ -15,10 +15,8 @@
 - (void)configure:(FileModel *)file indexPath:(NSIndexPath *)indexPath {
     [super configure:file indexPath:indexPath] ;
     
-    self.lbTitle.text = file.playDisplayPath ;
-    
-    self.imagePlaceholder.image = (!file.coverPath || !file.coverPath.length) ? [UIImage imageNamed:@"placeholder"] : [UIImage imageWithContentsOfFile:[[self documentBasePath] stringByAppendingString:file.coverPath]] ;
-    self.imagePlaceholder.backgroundColor = [UIColor blackColor] ;
+    self.lbTitle.text = file.displayName ;
+    self.imagePlaceholder.image = file.imgCover ?: [UIImage imageNamed:@"placeholder"];
 }
 
 + (CGFloat)cellHeight {
@@ -34,6 +32,7 @@
     // Initialization code
     [_playBt setImage:[[UIImage imageNamed:@"btPlay"] imageWithTintColor:[UIColor whiteColor]] forState:0] ;
     _imagePlaceholder.layer.masksToBounds = YES ;
+    _imagePlaceholder.backgroundColor = [UIColor blackColor] ;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

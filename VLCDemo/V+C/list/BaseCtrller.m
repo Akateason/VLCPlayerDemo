@@ -100,14 +100,18 @@
     while ((pathTmp = [dirEnum nextObject]) != nil)
     {
         NSLog(@"%@",pathTmp) ;
-
+        
         if ([pathTmp containsString:@".DS_Store"]) continue ;
         else if ([pathTmp containsString:@".sqlite"]) continue ;
         else if ([pathTmp containsString:@"cover"]) continue ;
         else if ([self isPhotoType:pathTmp]) continue ;
         
+        if (!self.bPrepare) {
+            pathTmp = STR_FORMAT(@"%@/%@",self.title,pathTmp) ;
+        }
+        
         FileModel *model = [[FileModel alloc] initWithDisplayPath:pathTmp] ;
-        NSString *sql = [NSString stringWithFormat:@"displayPath like '%%%@%%'",model.displayPath] ;
+        NSString *sql = [NSString stringWithFormat:@"baseName like '%%%@%%'",model.baseName] ;
         
         if (self.bPrepare) {
             if (![FileModel hasModelWhere:sql]) {
@@ -116,25 +120,25 @@
                 VLCMedia *media = [VLCMedia mediaWithURL:url] ;
                 model.allTime = media.length.stringValue ;
                 model.lastTime = nil ;
-                model.coverPath = nil ;
                 [model insert] ;
             }
             else {
                 // has . so fetch newest .
                 model = [FileModel findFirstWhere:sql] ;
             }
+            
+            if ([pathTmp containsString:@"/"]) continue ; // folder not display . but insert
         }
         else {
             model = [FileModel findFirstWhere:sql] ;
         }
-        
-        if ([pathTmp containsString:@"/"]) continue ; // folder not display . but insert
         
         [self.list addObject:model] ; // will display
     }
 }
 
 #pragma mark - UITableView
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.list.count ;
@@ -162,7 +166,7 @@
     FileModel *model = self.list[indexPath.row] ;
     if (model.fType == typeOfFileModel_folder)
     {   // is folder
-        ((FolderCell *)cell).label.text = model.displayPath ;
+        ((FolderCell *)cell).label.text = model.displayName ;
     }
     else if (model.fType == typeOfFileModel_file)
     {   // is file
@@ -192,17 +196,17 @@
     if (model.fType == typeOfFileModel_folder)
     {   // is folder
         BaseCtrller *secVC = [[BaseCtrller alloc] init] ;
-        secVC.title = model.displayPath ;
-        secVC.baseRelativePath = model.displayPath ;
+        secVC.title = model.displayName ;
+        secVC.baseRelativePath = model.displayName ;
         [self.navigationController pushViewController:secVC animated:YES] ;
     }
     else if (model.fType == typeOfFileModel_file)
     {   // is file
         @autoreleasepool
         {
-            if ([self isPhotoType:model.displayPath]) return ;
+            if ([self isPhotoType:model.displayName]) return ;
             indexPlay = (int)indexPath.row ;
-            NSString *sql = [NSString stringWithFormat:@"displayPath like '%%%@%%'",model.displayPath] ;
+            NSString *sql = [NSString stringWithFormat:@"baseName like '%%%@%%'",model.baseName] ;
             model = [FileModel findFirstWhere:sql] ;
             PlayingCtrller *playVC = [[PlayingCtrller alloc] initWithModel:model] ;
             playVC.delegate = self ;

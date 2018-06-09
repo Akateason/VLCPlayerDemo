@@ -6,6 +6,7 @@
 //  Copyright © 2017年 Alloc. All rights reserved.
 //
 #import "XTDBModel.h"
+@class UIImage ;
 
 
 typedef enum : int {
@@ -14,19 +15,19 @@ typedef enum : int {
     typeOfFileModel_folder ,
 } TypeOfFileModel ;
 
-
 @interface FileModel : XTDBModel
 
-@property (nonatomic,copy) NSString             *displayPath     ; // Unique // 处理单引号
-@property (nonatomic,copy) NSString             *playDisplayPath ; //还原displayPath单引号. 不参与建表
-
-@property (nonatomic)      int                  fType           ;
-@property (nonatomic,copy) NSString             *coverPath      ;
-@property (nonatomic,copy) NSString             *allTime        ;
-@property (nonatomic,copy) NSString             *lastTime       ;
+@property (copy, nonatomic) NSString            *baseName ; // name encode base64
+@property (strong, nonatomic) UIImage           *imgCover ;
+@property (nonatomic      ) int                 fType;
+@property (nonatomic,copy ) NSString            *allTime;
+@property (nonatomic,copy) NSString             *lastTime;
 
 - (instancetype)initWithDisplayPath:(NSString *)display ;
 
+// util
+- (NSString *)displayName ;
+- (NSString *)playName ;
 - (NSString *)fullPathWithBasePath:(NSString *)basePath ;
 
 @end

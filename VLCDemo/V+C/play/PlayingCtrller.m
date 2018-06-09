@@ -66,14 +66,7 @@
         @strongify(self)
         self.model.allTime = player.media.length.stringValue ;
         self.model.lastTime = player.time.stringValue ;
-        NSString *suffix = [[self.model.displayPath componentsSeparatedByString:@"."] firstObject] ;
-        suffix = [[suffix componentsSeparatedByString:@"/"] lastObject] ;
-        NSString *coverPath = [NSString stringWithFormat:@"/cover/cover_%@.png",suffix] ;
-        NSString *path = [self.directPrefixPath stringByAppendingString:coverPath] ;
-        NSData *data = UIImagePNGRepresentation(thumbnail) ;
-        [data writeToFile:path atomically:NO] ;
-        
-        self.model.coverPath = coverPath ;
+        self.model.imgCover = thumbnail ;
         [self.model update] ;
 
         dispatch_async(dispatch_get_main_queue(), ^{

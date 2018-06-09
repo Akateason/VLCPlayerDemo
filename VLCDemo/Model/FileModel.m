@@ -7,74 +7,66 @@
 //
 
 #import "FileModel.h"
+#import <XTlib.h>
 
 @implementation FileModel
-@synthesize displayPath = _displayPath ;
 
 + (NSDictionary *)modelPropertiesSqliteKeywords
 {
     return @{
-             @"displayPath" : @"UNIQUE" ,
+             @"baseName" : @"UNIQUE" ,
              } ;
 }
 
-+ (NSArray *)ignoreProperties
-{
-    return @[
-             @"basePath" ,
-             @"fullPath" ,
-             @"playDisplayPath" ,
-             ] ;
-}
+//+ (NSArray *)ignoreProperties
+//{
+//    return @[
+//             ] ;
+//}
 
 - (instancetype)initWithDisplayPath:(NSString *)display
 {
     self = [super init] ;
     if (self)
     {
-        self.displayPath = display ;
-        if ([self isFile]) {
+        if ([self isFile:display]) {
             self.fType = typeOfFileModel_file ;
         }
-        else if ([self isFolder]) {
+        else if ([self isFolder:display]) {
             self.fType = typeOfFileModel_folder ;
         }
         else
             self.fType = typeOfFileModel_unKnow ;
+        
+        self.baseName = [display base64EncodedString] ;
     }
     return self ;
 }
 
-static NSString *const kmarks = @"&quotation&" ;
-- (void)setDisplayPath:(NSString *)displayPath
-{
-    _displayPath = [displayPath stringByReplacingOccurrencesOfString:@"'" withString:kmarks] ;
+// util
+- (NSString *)displayName {
+    NSString *origin = [self.baseName base64DecodedString] ;
+    if ([origin containsString:@"/"]) {
+        origin = [[origin componentsSeparatedByString:@"/"] lastObject] ;
+    }
+    return origin ;
 }
 
-- (void)setCoverPath:(NSString *)coverPath
-{
-    _coverPath = [coverPath stringByReplacingOccurrencesOfString:@"'" withString:kmarks] ;
+- (NSString *)playName {
+    return [self.baseName base64DecodedString] ;
 }
 
-- (NSString *)playDisplayPath
-{
-    return [self.displayPath stringByReplacingOccurrencesOfString:kmarks withString:@"'"] ;
+- (NSString *)fullPathWithBasePath:(NSString *)basePath {
+    return  [NSString stringWithFormat:@"%@/%@",basePath,self.playName] ;
 }
 
-- (NSString *)fullPathWithBasePath:(NSString *)basePath
-{
-    return  [NSString stringWithFormat:@"%@/%@",basePath,self.playDisplayPath] ;
+// private
+- (BOOL)isFile:(NSString *)displaystr {
+    return ([displaystr containsString:@"."]) ;
 }
 
-- (BOOL)isFile
-{
-    return ([self.displayPath containsString:@"."]) ;
+- (BOOL)isFolder:(NSString *)displaystr {
+    return (![displaystr containsString:@"/"] && ![displaystr containsString:@"."]) ;
 }
-
-- (BOOL)isFolder
-{
-    return (![self.displayPath containsString:@"/"] && ![self.displayPath containsString:@"."]) ;
-}
-
 
 @end
