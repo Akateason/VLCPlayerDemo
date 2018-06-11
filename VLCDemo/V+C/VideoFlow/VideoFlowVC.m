@@ -11,14 +11,16 @@
 #import "XTColor+MyColors.h"
 #import "FileModel.h"
 #import "XTVLC.h"
+#import "UIViewController+FileUrl.h"
+
 
 @interface VideoFlowVC () <UITableViewDelegate,UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet RootTableView *table;
-@property (copy, nonatomic) NSArray *datasource ;
+@property (weak, nonatomic  ) IBOutlet RootTableView   *table ;
+@property (copy, nonatomic  ) NSArray *datasource       ;
 
-@property (strong, nonatomic) XTVLC *vlc ;
-@property (strong, nonatomic) UIView *movingContainer ;
-
+@property (strong, nonatomic) XTVLC    *vlc             ;
+@property (strong, nonatomic) UIView   *movingContainer ;
+@property (nonatomic        ) int      idx_isOn         ;
 @end
 
 @implementation VideoFlowVC
@@ -26,6 +28,7 @@
 - (void)prepareUI {
     [super prepareUI] ;
     
+    self.extendedLayoutIncludesOpaqueBars = YES;
     _table.hideAllRefreshers = YES ;
     _table.dataSource = self ;
     _table.delegate = self ;
@@ -35,6 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+//    [self vlc] ;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,25 +68,56 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int row = (int)indexPath.row ;
-    FileModel *model = self.datasource[row] ;
-//    NSString *sql = [NSString stringWithFormat:@"baseName like '%%%@%%'",model.baseName] ;
-//    model = [FileModel findFirstWhere:sql] ;
-//    
-//    VideoFlowCell *cell = [tableView cellForRowAtIndexPath:indexPath] ;
-//    CGRect rect = [self.view convertRect:cell.frame toView:self.view] ;
-//    self.movingContainer.frame = rect ;
+    self.idx_isOn = row ;
+    
+    [self changeRect:indexPath] ;
+    [self playWithIndexPath:indexPath] ;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)scrollViewDidScroll:(RootTableView *)table {
+    NSArray *visibleIndexes = [table indexPathsForVisibleRows] ;
+    __block BOOL containIsPlaying = false ;
+    [visibleIndexes enumerateObjectsUsingBlock:^(NSIndexPath *indexPath, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (indexPath.row == self.idx_isOn) {
+            containIsPlaying = true ;
+        }
+    }] ;
+    
+    if (!containIsPlaying) {
+        CGPoint pt = [self.view.window convertPoint:self.view.window.center toView:self.table] ;
+        NSIndexPath *tmpPath = [table indexPathForRowAtPoint:pt] ;
+        self.idx_isOn = (int)tmpPath.row ;
+        
+    }
+    NSLog(@"idx ison :%@",@(self.idx_isOn)) ;
+    NSIndexPath *current = [NSIndexPath indexPathForRow:self.idx_isOn inSection:0] ;
+    [self changeRect:current] ;
+    
+    if (!containIsPlaying) {
+        [self playWithIndexPath:current] ;
+    }
 }
-*/
 
+- (void)changeRect:(NSIndexPath *)indexPath {
+    VideoFlowCell *cell = [self.table cellForRowAtIndexPath:indexPath] ;
+    CGRect rect = [self.table convertRect:cell.frame toView:self.view.window] ;
+    self.movingContainer.frame = rect ;
+    [self.vlc mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.movingContainer) ;
+    }] ;
+}
+
+- (void)playWithIndexPath:(NSIndexPath *)indexPath {
+    FileModel *model = self.datasource[indexPath.row] ;
+    NSString *sql = [NSString stringWithFormat:@"baseName like '%%%@%%'",model.baseName] ;
+    model = [FileModel findFirstWhere:sql] ;
+    NSURL *url = [NSURL fileURLWithPath:[model fullPathWithBasePath:[self baseFullPath]]] ;
+    [self.vlc changeMediaURL:url] ;
+    [self.vlc play] ;
+}
+
+
+#pragma mark - props
 
 - (NSArray *)datasource{
     if(!_datasource){

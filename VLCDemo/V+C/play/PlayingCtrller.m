@@ -23,11 +23,6 @@
 
 @implementation PlayingCtrller
 
-//- (void)dealloc
-//{
-//    NSLog(@"dealloc PlayingCtrller") ;
-//}
-
 - (instancetype)initWithModel:(id)model
 {
     self = [super init];
@@ -47,6 +42,8 @@
     appdelegate.orientationsOnlyRotate = NO ;
     
     [self setupPlayer] ;
+    
+    self.view.backgroundColor = [UIColor blackColor] ;
 }
 
 - (void)setupPlayer

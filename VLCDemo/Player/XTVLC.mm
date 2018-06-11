@@ -51,27 +51,27 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 #pragma mark - Public
 
 - (void)showMeInView:(UIView * _Nonnull)view
-                 url:(NSURL *)url
+                 url:(NSURL *_Nullable)url
 {
     [self showMeInView:view url:url hasCloseButton:YES] ;
 }
 
 - (void)showMeInView:(UIView * _Nonnull)view
-                 url:(NSURL *)url
+                 url:(NSURL *_Nullable)url
       hasCloseButton:(BOOL)hasCloseBt
 {
     [self showMeInView:view url:url hasCloseButton:hasCloseBt forceHorizon:NO] ;
 }
 
 - (void)showMeInView:(UIView * _Nonnull)view
-                 url:(NSURL *)url
+                 url:(NSURL *_Nullable)url
       hasCloseButton:(BOOL)hasCloseBt
         forceHorizon:(BOOL)forceHorizon
 {
-    self.mediaURL = url ;
     hasCloseButton = hasCloseBt ;
     m_forceHorizon = forceHorizon ;
     [self showInView:view forceHorizon:forceHorizon] ;
+    self.mediaURL = url ;
 }
 
 - (void)dismiss {
@@ -430,6 +430,15 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
     }
     
     [self layoutIfNeeded] ;
+}
+
+- (void)changeMediaURL:(NSURL *)mediaURL {
+    self.mediaURL = mediaURL ;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.player.media = [[VLCMedia alloc] initWithURL:self.mediaURL] ;
+        [self.player play] ;
+    }) ;
+    
 }
 
 - (VLCMediaThumbnailer *)thumbnailer {

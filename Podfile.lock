@@ -24,7 +24,7 @@ PODS:
   - JKCategories (1.7)
   - Masonry (1.1.0)
   - MJRefresh (3.1.15.3)
-  - MobileVLCKit (3.0.1)
+  - MobileVLCKit (3.1.0)
   - ReactiveObjC (3.1.0)
   - RxWebViewController (0.0.2)
   - SDWebImage (4.4.1):
@@ -60,7 +60,7 @@ DEPENDENCIES:
   - CHTCollectionViewWaterfallLayout
   - FDFullscreenPopGesture (= 1.1)
   - JKCategories
-  - MobileVLCKit (= 3.0.1)
+  - MobileVLCKit (= 3.1.0)
   - SSZipArchive
   - UITableView+FDTemplateLayoutCell
   - Valet (= 2.4.2)
@@ -74,7 +74,7 @@ SPEC CHECKSUMS:
   JKCategories: 5136d903ed6a17e700cac984db9fc9dcfaad2954
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
-  MobileVLCKit: 46931c28da80575647976cc569a7690499901406
+  MobileVLCKit: 4e55792b03c99429c9f4716aa44e685f65b3d178
   ReactiveObjC: 2a38ea15335de4119d8b17caf1db1484f61db902
   RxWebViewController: 79bcbf51aff13d93db9779404348b052ab0cd440
   SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
@@ -88,6 +88,6 @@ SPEC CHECKSUMS:
   XTReq: e407025d6ebaf2747f5f5f2d2e381ca715988036
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: ed110088df2bcf6bebcacf049d49fcb096ac11d3
+PODFILE CHECKSUM: 31acffb81e4a2e606021d4dd935627258905ab25
 
 COCOAPODS: 1.4.0

@@ -15,7 +15,7 @@ pod 'SSZipArchive'
 pod 'FDFullscreenPopGesture', '1.1'
 pod 'CHTCollectionViewWaterfallLayout'
 pod 'JKCategories'
-#pod 'MobileVLCKit','2.2.2'
-pod 'MobileVLCKit','3.0.1'
+#pod 'MobileVLCKit','3.0.1'
+pod 'MobileVLCKit','3.1.0'
 
 end

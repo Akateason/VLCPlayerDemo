@@ -54,16 +54,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sSq-Rb-QKP" customClass="RootTableView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="sSq-Rb-QKP" firstAttribute="top" secondItem="xi2-MT-pRt" secondAttribute="top" id="34V-uc-idr"/>
-                            <constraint firstItem="sSq-Rb-QKP" firstAttribute="leading" secondItem="mpf-Ex-wbz" secondAttribute="leading" id="bTs-9j-fn2"/>
-                            <constraint firstItem="sSq-Rb-QKP" firstAttribute="trailing" secondItem="mpf-Ex-wbz" secondAttribute="trailing" id="kGq-a0-hKb"/>
-                            <constraint firstAttribute="bottom" secondItem="sSq-Rb-QKP" secondAttribute="bottom" id="vRD-so-Wfy"/>
+                            <constraint firstItem="sSq-Rb-QKP" firstAttribute="leading" secondItem="mpf-Ex-wbz" secondAttribute="leading" id="U6S-pE-ftV"/>
+                            <constraint firstItem="sSq-Rb-QKP" firstAttribute="bottom" secondItem="mpf-Ex-wbz" secondAttribute="bottom" id="bJK-Q2-bhX"/>
+                            <constraint firstItem="sSq-Rb-QKP" firstAttribute="top" secondItem="mpf-Ex-wbz" secondAttribute="top" id="rqx-KZ-xgG"/>
+                            <constraint firstItem="sSq-Rb-QKP" firstAttribute="trailing" secondItem="mpf-Ex-wbz" secondAttribute="trailing" id="uO9-OV-cfd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mpf-Ex-wbz"/>
                     </view>
@@ -82,6 +82,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="45N-Ue-rap" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0nz-5T-pft">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
