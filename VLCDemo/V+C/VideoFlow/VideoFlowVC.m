@@ -15,6 +15,9 @@
 
 
 @interface VideoFlowVC () <UITableViewDelegate,UITableViewDataSource>
+{
+    int old ;
+}
 @property (weak, nonatomic  ) IBOutlet RootTableView   *table ;
 @property (copy, nonatomic  ) NSArray *datasource       ;
 
@@ -38,7 +41,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    [self vlc] ;
+
+//    [[RACObserve(self, idx_isOn) deliverOnMainThread] subscribeNext:^(id  _Nullable x) {
+//
+//        NSIndexPath *current = [NSIndexPath indexPathForRow:self.idx_isOn inSection:0] ;
+//        [self playWithIndexPath:current] ;
+//    }] ;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -87,7 +95,6 @@
         CGPoint pt = [self.view.window convertPoint:self.view.window.center toView:self.table] ;
         NSIndexPath *tmpPath = [table indexPathForRowAtPoint:pt] ;
         self.idx_isOn = (int)tmpPath.row ;
-        
     }
     NSLog(@"idx ison :%@",@(self.idx_isOn)) ;
     NSIndexPath *current = [NSIndexPath indexPathForRow:self.idx_isOn inSection:0] ;
@@ -132,8 +139,13 @@
 - (XTVLC *)vlc{
     if(!_vlc){
         _vlc = ({
+            FileModel *model = self.datasource[0] ;
+            NSString *sql = [NSString stringWithFormat:@"baseName like '%%%@%%'",model.baseName] ;
+            model = [FileModel findFirstWhere:sql] ;
+            NSURL *url = [NSURL fileURLWithPath:[model fullPathWithBasePath:[self baseFullPath]]] ;
+            
             XTVLC * object = [XTVLC new] ;
-            [object showMeInView:self.movingContainer url:nil hasCloseButton:NO forceHorizon:NO] ;
+            [object showMeInView:self.movingContainer url:url hasCloseButton:NO forceHorizon:NO] ;
             object;
        });
     }
@@ -144,7 +156,7 @@
     if(!_movingContainer){
         _movingContainer = ({
             UIView * object = [[UIView alloc] init];
-            object.backgroundColor = [UIColor redColor] ;
+            object.backgroundColor = [UIColor blackColor] ;
             [self.view addSubview:object] ;
             object;
        });
