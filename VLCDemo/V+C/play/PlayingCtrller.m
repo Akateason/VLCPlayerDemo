@@ -50,7 +50,7 @@
 {
     self.playerView = [[XTVLC alloc] init] ;
     NSURL *url = [NSURL fileURLWithPath:[self.model fullPathWithBasePath:[self baseFullPath]]] ;
-    [self.playerView showMeInView:self.view url:url hasCloseButton:YES forceHorizon:YES] ;
+    [self.playerView showMeInView:self.view url:url hasCloseButton:YES forceHorizon:YES forbiddenGesture:NO] ;
     
     [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(APP_WIDTH) ;

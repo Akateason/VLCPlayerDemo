@@ -14,4 +14,6 @@
 @property (weak, nonatomic) IBOutlet UIView *grayMask;
 @property (weak, nonatomic) IBOutlet UILabel *lbTitle;
 
+- (void)hiddenAll:(BOOL)hidden ;
+    
 @end

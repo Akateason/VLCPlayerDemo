@@ -45,7 +45,7 @@
     [navBar setBackgroundImage:img forBarMetrics:UIBarMetricsDefault] ;
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [XTColor whiteColor]}] ;
     [navBar setTintColor:[XTColor whiteColor]] ;
-    [navBar setTranslucent:YES] ;
+    [navBar setTranslucent:NO] ;
     navBar.translucent = YES;
         
     

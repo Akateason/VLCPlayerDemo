@@ -12,6 +12,11 @@
 
 @implementation VideoFlowCell
 
+- (void)hiddenAll:(BOOL)hidden {
+    self.contentView.hidden = hidden ;
+    self.backgroundColor = hidden ? nil : [UIColor whiteColor] ;
+}
+
 - (void)configure:(FileModel *)file indexPath:(NSIndexPath *)indexPath {
     [super configure:file indexPath:indexPath] ;
     

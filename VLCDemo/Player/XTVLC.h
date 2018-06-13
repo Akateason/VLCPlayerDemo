@@ -27,12 +27,14 @@ typedef void(^PlayerWillDismissBlock)(VLCMediaPlayer * _Nonnull player, UIImage 
 - (void)showMeInView:(UIView * _Nonnull)view
                  url:(NSURL *_Nullable)url
       hasCloseButton:(BOOL)hasCloseBt
-        forceHorizon:(BOOL)forceHorizon ;
+        forceHorizon:(BOOL)forceHorizon
+    forbiddenGesture:(BOOL)forbiddenGesture ;
+
 
 - (void)play ;
 - (void)stop ;
 - (void)dismiss ;
-- (void)changeMediaURL:(NSURL *)mediaURL ;
+- (void)changeMediaURL:(NSURL *_Nonnull)mediaURL ;
 - (void)forceChangeOrientation:(UIInterfaceOrientation)orientation ;
 
 @end

@@ -66,10 +66,8 @@
 
 
 #pragma mark - Private Method
-- (void)setupView
-{
+- (void)setupView {
     self.backgroundColor = [UIColor clearColor];
-    
     [self.layer addSublayer:self.bgLayer];
     
     [self addSubview:self.topBar];
@@ -127,8 +125,7 @@
     }] ;
     
     self.pauseButton.hidden = YES;
-    
-    
+        
     [self addGestureRecognizer:self.pan] ;
 }
 

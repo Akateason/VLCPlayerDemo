@@ -15,9 +15,6 @@
 
 
 @interface VideoFlowVC () <UITableViewDelegate,UITableViewDataSource>
-{
-    int old ;
-}
 @property (weak, nonatomic  ) IBOutlet RootTableView   *table ;
 @property (copy, nonatomic  ) NSArray *datasource       ;
 
@@ -31,22 +28,20 @@
 - (void)prepareUI {
     [super prepareUI] ;
     
+    self.idx_isOn = -1 ;
+    
     self.extendedLayoutIncludesOpaqueBars = YES;
     _table.hideAllRefreshers = YES ;
     _table.dataSource = self ;
     _table.delegate = self ;
+    _table.backgroundColor = nil ;
     [VideoFlowCell registerNibFromTable:_table] ;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
-//    [[RACObserve(self, idx_isOn) deliverOnMainThread] subscribeNext:^(id  _Nullable x) {
-//
-//        NSIndexPath *current = [NSIndexPath indexPathForRow:self.idx_isOn inSection:0] ;
-//        [self playWithIndexPath:current] ;
-//    }] ;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,6 +60,7 @@
 {
     VideoFlowCell *cell = [VideoFlowCell fetchFromTable:tableView] ;
     [cell configure:self.datasource[indexPath.row] indexPath:indexPath] ;
+    [cell hiddenAll:indexPath.row == self.idx_isOn] ;
     return cell ;
 }
 
@@ -76,13 +72,22 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int row = (int)indexPath.row ;
+    if (row == self.idx_isOn) return ;
+    
     self.idx_isOn = row ;
     
+    if (![self.vlc superview]) {
+        [self.view addSubview:self.vlc] ;
+        [self.view bringSubviewToFront:self.table] ;
+    }
     [self changeRect:indexPath] ;
     [self playWithIndexPath:indexPath] ;
+    [self.table reloadData] ;
 }
 
 - (void)scrollViewDidScroll:(RootTableView *)table {
+    if (self.idx_isOn == -1) return ;
+    
     NSArray *visibleIndexes = [table indexPathsForVisibleRows] ;
     __block BOOL containIsPlaying = false ;
     [visibleIndexes enumerateObjectsUsingBlock:^(NSIndexPath *indexPath, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -91,17 +96,15 @@
         }
     }] ;
     
-    if (!containIsPlaying) {
-        CGPoint pt = [self.view.window convertPoint:self.view.window.center toView:self.table] ;
-        NSIndexPath *tmpPath = [table indexPathForRowAtPoint:pt] ;
-        self.idx_isOn = (int)tmpPath.row ;
-    }
-    NSLog(@"idx ison :%@",@(self.idx_isOn)) ;
+
     NSIndexPath *current = [NSIndexPath indexPathForRow:self.idx_isOn inSection:0] ;
-    [self changeRect:current] ;
+    if ([self.vlc superview]) {
+        [self changeRect:current] ;
+    }
     
     if (!containIsPlaying) {
-        [self playWithIndexPath:current] ;
+        [self stopWithIndexPath:current] ;
+        self.idx_isOn = -1 ;
     }
 }
 
@@ -123,10 +126,14 @@
     [self.vlc play] ;
 }
 
+- (void)stopWithIndexPath:(NSIndexPath *)indexPath {
+    [self.vlc stop] ;
+    [self.vlc removeFromSuperview] ;
+}
 
 #pragma mark - props
 
-- (NSArray *)datasource{
+- (NSArray *)datasource {
     if(!_datasource){
         _datasource = ({
             NSArray * object = [[FileModel selectAll] xt_orderby:@"updateTime" descOrAsc:YES] ;
@@ -139,13 +146,14 @@
 - (XTVLC *)vlc{
     if(!_vlc){
         _vlc = ({
-            FileModel *model = self.datasource[0] ;
+            FileModel *model = self.datasource[self.idx_isOn != -1 ? self.idx_isOn : 0 ] ;
             NSString *sql = [NSString stringWithFormat:@"baseName like '%%%@%%'",model.baseName] ;
             model = [FileModel findFirstWhere:sql] ;
             NSURL *url = [NSURL fileURLWithPath:[model fullPathWithBasePath:[self baseFullPath]]] ;
             
             XTVLC * object = [XTVLC new] ;
-            [object showMeInView:self.movingContainer url:url hasCloseButton:NO forceHorizon:NO] ;
+            [object showMeInView:self.movingContainer url:url hasCloseButton:NO forceHorizon:NO forbiddenGesture:YES] ;
+            [self.view bringSubviewToFront:self.table] ;
             object;
        });
     }
@@ -155,14 +163,13 @@
 - (UIView *)movingContainer{
     if(!_movingContainer){
         _movingContainer = ({
-            UIView * object = [[UIView alloc] init];
-            object.backgroundColor = [UIColor blackColor] ;
+            UIView * object = [[UIView alloc] init] ;
+            object.backgroundColor = nil ;
             [self.view addSubview:object] ;
             object;
        });
     }
     return _movingContainer;
 }
-
 
 @end

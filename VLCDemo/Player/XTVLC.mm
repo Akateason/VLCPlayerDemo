@@ -18,6 +18,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 {
     BOOL hasCloseButton ;
     BOOL m_forceHorizon ;
+    BOOL m_forbiddenGesture ;
 }
 @property (nonatomic,strong,readwrite) VLCMediaPlayer *player ;
 @property (nonatomic, nonnull,strong) XTVLCView *controlView ;
@@ -60,16 +61,18 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
                  url:(NSURL *_Nullable)url
       hasCloseButton:(BOOL)hasCloseBt
 {
-    [self showMeInView:view url:url hasCloseButton:hasCloseBt forceHorizon:NO] ;
+    [self showMeInView:view url:url hasCloseButton:hasCloseBt forceHorizon:NO forbiddenGesture:NO] ;
 }
 
 - (void)showMeInView:(UIView * _Nonnull)view
                  url:(NSURL *_Nullable)url
       hasCloseButton:(BOOL)hasCloseBt
         forceHorizon:(BOOL)forceHorizon
+    forbiddenGesture:(BOOL)forbiddenGesture
 {
     hasCloseButton = hasCloseBt ;
     m_forceHorizon = forceHorizon ;
+    m_forbiddenGesture = forbiddenGesture ;
     [self showInView:view forceHorizon:forceHorizon] ;
     self.mediaURL = url ;
 }
@@ -153,6 +156,8 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
     [self.controlView.closeButton addTarget:self action:@selector(closeButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.controlView.fullScreenButton addTarget:self action:@selector(fullScreenButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.controlView.progressSlider addTarget:self action:@selector(progressValueChanged) forControlEvents:UIControlEventValueChanged];
+    
+    self.controlView.userInteractionEnabled = !m_forbiddenGesture ;
 }
 
 - (void)setupNotification {
@@ -293,8 +298,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 
 #pragma mark - VLC Delegate
 
-- (void)mediaPlayerStateChanged:(NSNotification *)aNotification
-{
+- (void)mediaPlayerStateChanged:(NSNotification *)aNotification {
     // Every Time change the state,The VLC will draw video layer on this layer.
     [self bringSubviewToFront:self.controlView];
     
@@ -403,8 +407,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
     return _controlView;
 }
 
-- (void)setIsFullscreenModel:(BOOL)isFullscreenModel
-{
+- (void)setIsFullscreenModel:(BOOL)isFullscreenModel {
     if (_isFullscreenModel == isFullscreenModel) return ;
     
     _isFullscreenModel = isFullscreenModel ;
