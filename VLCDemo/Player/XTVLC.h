@@ -16,6 +16,7 @@ typedef void(^PlayerWillDismissBlock)(VLCMediaPlayer * _Nonnull player, UIImage 
 @property (nonatomic,strong,nonnull) NSURL  *mediaURL ;
 @property (nonatomic,assign)         BOOL    isFullscreenModel ;
 @property (nonatomic,copy) PlayerWillDismissBlock _Nullable willDismissAndCatchThumbnail ;
+@property (nonatomic,strong,readonly) VLCMediaPlayer * _Nonnull player ;
 
 - (void)showMeInView:(UIView * _Nonnull)view
                  url:(NSURL *_Nullable)url ;
@@ -33,6 +34,7 @@ typedef void(^PlayerWillDismissBlock)(VLCMediaPlayer * _Nonnull player, UIImage 
 
 - (void)play ;
 - (void)stop ;
+- (BOOL)isPlaying ;
 - (void)dismiss ;
 - (void)changeMediaURL:(NSURL *_Nonnull)mediaURL ;
 - (void)forceChangeOrientation:(UIInterfaceOrientation)orientation ;

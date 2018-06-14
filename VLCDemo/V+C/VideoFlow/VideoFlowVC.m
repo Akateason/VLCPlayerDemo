@@ -72,7 +72,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int row = (int)indexPath.row ;
-    if (row == self.idx_isOn) return ;
+    if (row == self.idx_isOn) {
+        if ([self.vlc isPlaying]) {
+            [self.vlc.player pause] ;
+        }
+        else {
+            [self.vlc play] ;
+        }
+        return ;
+    }
     
     self.idx_isOn = row ;
     
@@ -136,7 +144,7 @@
 - (NSArray *)datasource {
     if(!_datasource){
         _datasource = ({
-            NSArray * object = [[FileModel selectAll] xt_orderby:@"updateTime" descOrAsc:YES] ;
+            NSArray * object = [[FileModel selectWhere:@"fType == 1"] xt_orderby:@"updateTime" descOrAsc:YES] ;
             object;
        });
     }
@@ -154,6 +162,13 @@
             XTVLC * object = [XTVLC new] ;
             [object showMeInView:self.movingContainer url:url hasCloseButton:NO forceHorizon:NO forbiddenGesture:YES] ;
             [self.view bringSubviewToFront:self.table] ;
+            
+            WEAK_SELF
+            object.willDismissAndCatchThumbnail = ^(VLCMediaPlayer * _Nonnull player, UIImage * _Nullable thumbnail) {
+                weakSelf.idx_isOn = -1 ;
+                [weakSelf.table reloadData] ;
+            } ;
+            
             object;
        });
     }

@@ -296,6 +296,10 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
     self.controlView.pauseButton.hidden = YES;
 }
 
+- (BOOL)isPlaying {
+    return [self.player isPlaying] ;
+}
+
 #pragma mark - VLC Delegate
 
 - (void)mediaPlayerStateChanged:(NSNotification *)aNotification {
