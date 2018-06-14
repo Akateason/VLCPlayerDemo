@@ -36,6 +36,7 @@
     _table.delegate = self ;
     _table.backgroundColor = nil ;
     [VideoFlowCell registerNibFromTable:_table] ;
+    
 }
 
 - (void)viewDidLoad {
@@ -48,6 +49,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+
+
+
 
 #pragma mark - table
 
@@ -94,6 +100,25 @@
 }
 
 - (void)scrollViewDidScroll:(RootTableView *)table {
+    //scrollView已经有拖拽手势，直接拿到scrollView的拖拽手势
+    UIPanGestureRecognizer *pan = table.panGestureRecognizer;
+    //获取到拖拽的速度 >0 向下拖动 <0 向上拖动
+    CGFloat velocity = [pan velocityInView:table].y;
+    
+    if (velocity <- 5) {
+        //向上拖动，隐藏导航栏
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
+    }
+    else if (velocity > 5) {
+        //向下拖动，显示导航栏
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    }
+    else if(velocity == 0){
+        //停止拖拽
+    }
+    
+    
+    
     if (self.idx_isOn == -1) return ;
     
     NSArray *visibleIndexes = [table indexPathsForVisibleRows] ;

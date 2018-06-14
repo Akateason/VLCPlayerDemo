@@ -48,8 +48,10 @@
     [navBar setTranslucent:NO] ;
     navBar.translucent = YES;
         
+    UITabBar *tabbar = [UITabBar appearance] ;
+    tabbar.tintColor = [XTColor text1] ;    
     
-    return YES;
+    return YES ;
 }
 
 
