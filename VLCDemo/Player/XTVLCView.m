@@ -8,9 +8,11 @@
 
 #import "XTVLCView.h"
 #import <Masonry.h>
+#import <ReactiveObjC.h>
 
 @interface XTVLCView ()
-
+@property (strong, nonatomic) RACSubject *soundSignal ;
+@property (strong, nonatomic) RACSubject *lightSignal ;
 @end
 
 @implementation XTVLCView
@@ -23,6 +25,28 @@
     self = [super init];
     if (self) {
         [self setupView] ;
+        
+        @weakify(self)
+        [[self.soundSignal throttle:.3] subscribeNext:^(NSNumber *x) {
+            @strongify(self)
+            bool bPan = [x boolValue] ;
+            if (bPan)
+                self.volumeSlider.value -= 0.1 ;
+            else
+                self.volumeSlider.value += 0.1 ;
+            
+            [self.alertlable configureWithVolume:self.volumeSlider.value] ;
+        }] ;
+        
+        [[self.lightSignal throttle:.3] subscribeNext:^(NSNumber *x) {
+            @strongify(self)
+            bool bPan = [x boolValue] ;
+            if (bPan)
+                [UIScreen mainScreen].brightness -= 0.1 ;
+            else
+                [UIScreen mainScreen].brightness += 0.1 ;
+            [self.alertlable configureWithLight] ;
+        }] ;
     }
     return self;
 }
@@ -147,7 +171,6 @@
     switch (pan.state) {
         case UIGestureRecognizerStateBegan: {
             self.alertlable.alpha = XTVLCVideoControlAlertAlpha;
-            
             // 判断方向
             if (ABS(speedDir.x) > ABS(speedDir.y)) {
                 _isVericalPan = false ;
@@ -173,8 +196,7 @@
                                                     isLeft:NO] ;
                     }
                 }
-                else
-                {
+                else {
                     if ([_delegate respondsToSelector:@selector(controlViewFingerMoveRight)])
                     {
                         BOOL bResult = [self.delegate controlViewFingerMoveLeft] ;
@@ -188,23 +210,11 @@
             else if (_isVericalPan) {
                 if (localPoint.x > self.bounds.size.width / 2) {
                     // 改变音量
-                    if ([pan translationInView:self].y > 0) {
-                        self.volumeSlider.value -= 0.03;
-                    }
-                    else {
-                        self.volumeSlider.value += 0.03;
-                    }
-                    [self.alertlable configureWithVolume:self.volumeSlider.value] ;
+                    [self.soundSignal sendNext:@([pan translationInView:self].y > 0)] ;
                 }
                 else {
                     // 改变显示亮度
-                    if ([pan translationInView:self].y > 0) {
-                        [UIScreen mainScreen].brightness -= 0.01;
-                    }
-                    else {
-                        [UIScreen mainScreen].brightness += 0.01;
-                    }
-                    [self.alertlable configureWithLight];
+                    [self.lightSignal sendNext:@([pan translationInView:self].y > 0)] ;
                 }
             }
         }
@@ -379,6 +389,26 @@
     return _pan ;
 }
 
+
+- (RACSubject *)soundSignal{
+    if(!_soundSignal){
+        _soundSignal = ({
+            RACSubject * object = [[RACSubject alloc]init];
+            object;
+       });
+    }
+    return _soundSignal;
+}
+
+- (RACSubject *)lightSignal{
+    if(!_lightSignal){
+        _lightSignal = ({
+            RACSubject * object = [[RACSubject alloc]init];
+            object;
+       });
+    }
+    return _lightSignal;
+}
 @end
 
 
