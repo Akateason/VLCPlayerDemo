@@ -114,23 +114,23 @@
         NSString *sql = [NSString stringWithFormat:@"baseName like '%%%@%%'",model.baseName] ;
         
         if (self.bPrepare) {
-            if (![FileModel hasModelWhere:sql]) {
+            if (![FileModel xt_hasModelWhere:sql]) {
                 // not exist
                 NSURL *url = [NSURL fileURLWithPath:[model fullPathWithBasePath:[self baseFullPath]]] ;
                 VLCMedia *media = [VLCMedia mediaWithURL:url] ;
                 model.allTime = media.length.stringValue ;
                 model.lastTime = nil ;
-                [model insert] ;
+                [model xt_insert] ;
             }
             else {
                 // has . so fetch newest .
-                model = [FileModel findFirstWhere:sql] ;
+                model = [FileModel xt_findFirstWhere:sql] ;
             }
             
             if ([pathTmp containsString:@"/"]) continue ; // folder not display . but insert
         }
         else {
-            model = [FileModel findFirstWhere:sql] ;
+            model = [FileModel xt_findFirstWhere:sql] ;
         }
         
         [self.list addObject:model] ; // will display
@@ -207,7 +207,7 @@
             if ([self isPhotoType:model.displayName]) return ;
             indexPlay = (int)indexPath.row ;
             NSString *sql = [NSString stringWithFormat:@"baseName like '%%%@%%'",model.baseName] ;
-            model = [FileModel findFirstWhere:sql] ;
+            model = [FileModel xt_findFirstWhere:sql] ;
             PlayingCtrller *playVC = [[PlayingCtrller alloc] initWithModel:model] ;
             playVC.delegate = self ;
             [self.navigationController pushViewController:playVC animated:YES] ;

@@ -12,10 +12,11 @@
 #import "FileModel.h"
 #import "XTVLC.h"
 #import "UIViewController+FileUrl.h"
+#import <XTlib.h>
 
 
 @interface VideoFlowVC () <UITableViewDelegate,UITableViewDataSource>
-@property (weak, nonatomic  ) IBOutlet RootTableView   *table ;
+@property (weak, nonatomic  ) IBOutlet UITableView   *table ;
 @property (copy, nonatomic  ) NSArray *datasource       ;
 
 @property (strong, nonatomic) XTVLC    *vlc             ;
@@ -31,10 +32,13 @@
     self.idx_isOn = -1 ;
     
     self.extendedLayoutIncludesOpaqueBars = YES;
-    _table.hideAllRefreshers = YES ;
+    
+    [_table xt_setup] ;
+    _table.xt_hideAllRefreshers = YES ;
     _table.dataSource = self ;
     _table.delegate = self ;
     _table.backgroundColor = nil ;
+    
     [VideoFlowCell registerNibFromTable:_table] ;
     
 }
@@ -153,7 +157,7 @@
 - (void)playWithIndexPath:(NSIndexPath *)indexPath {
     FileModel *model = self.datasource[indexPath.row] ;
     NSString *sql = [NSString stringWithFormat:@"baseName like '%%%@%%'",model.baseName] ;
-    model = [FileModel findFirstWhere:sql] ;
+    model = [FileModel xt_findFirstWhere:sql] ;
     NSURL *url = [NSURL fileURLWithPath:[model fullPathWithBasePath:[self baseFullPath]]] ;
     [self.vlc changeMediaURL:url] ;
     [self.vlc play] ;
@@ -169,7 +173,7 @@
 - (NSArray *)datasource {
     if(!_datasource){
         _datasource = ({
-            NSArray * object = [[FileModel selectWhere:@"fType == 1"] xt_orderby:@"updateTime" descOrAsc:YES] ;
+            NSArray * object = [[FileModel xt_findWhere:@"fType == 1"] xt_orderby:@"xt_updateTime" descOrAsc:YES] ;
             object;
        });
     }
@@ -181,7 +185,7 @@
         _vlc = ({
             FileModel *model = self.datasource[self.idx_isOn != -1 ? self.idx_isOn : 0 ] ;
             NSString *sql = [NSString stringWithFormat:@"baseName like '%%%@%%'",model.baseName] ;
-            model = [FileModel findFirstWhere:sql] ;
+            model = [FileModel xt_findFirstWhere:sql] ;
             NSURL *url = [NSURL fileURLWithPath:[model fullPathWithBasePath:[self baseFullPath]]] ;
             
             XTVLC * object = [XTVLC new] ;

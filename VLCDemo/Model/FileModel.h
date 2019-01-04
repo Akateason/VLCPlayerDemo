@@ -5,7 +5,7 @@
 //  Created by teason23 on 2017/5/22.
 //  Copyright © 2017年 Alloc. All rights reserved.
 //
-#import "XTDBModel.h"
+#import <Foundation/Foundation.h>
 @class UIImage ;
 
 
@@ -15,13 +15,14 @@ typedef enum : int {
     typeOfFileModel_folder ,
 } TypeOfFileModel ;
 
-@interface FileModel : XTDBModel
+@interface FileModel : NSObject
 
 @property (copy, nonatomic) NSString            *baseName ; // name encode base64
 @property (strong, nonatomic) UIImage           *imgCover ;
-@property (nonatomic      ) int                 fType;
-@property (nonatomic,copy ) NSString            *allTime;
-@property (nonatomic,copy) NSString             *lastTime;
+@property (nonatomic      ) int                 fType ;
+@property (nonatomic,copy ) NSString            *allTime ;
+@property (nonatomic,copy)  NSString            *lastTime ;
+
 
 - (instancetype)initWithDisplayPath:(NSString *)display ;
 
