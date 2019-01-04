@@ -94,21 +94,28 @@
     self.backgroundColor = [UIColor clearColor];
     [self.layer addSublayer:self.bgLayer];
     
+//    self.topBar.backgroundColor = [UIColor redColor] ;
+    
     [self addSubview:self.topBar];
     [self.topBar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.equalTo(self) ;
+        make.left.equalTo(self.mas_safeAreaLayoutGuideLeft) ;
+        make.right.equalTo(self.mas_safeAreaLayoutGuideRight) ;
+        make.top.equalTo(self.mas_safeAreaLayoutGuideTop) ;
         make.height.mas_equalTo(XTVLCVideoControlBarHeight) ;
     }] ;
     
     [self addSubview:self.bottomBar];
     [self.bottomBar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.left.right.equalTo(self) ;
+        make.left.equalTo(self.mas_safeAreaLayoutGuideLeft) ;
+        make.right.equalTo(self.mas_safeAreaLayoutGuideRight) ;
+        make.bottom.equalTo(self.mas_safeAreaLayoutGuideBottom) ;
         make.height.mas_equalTo(XTVLCVideoControlBarHeight) ;
     }] ;
     
     [self.topBar addSubview:self.closeButton];
     [self.closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.top.equalTo(self.topBar) ;
+        make.right.equalTo(self.topBar.mas_safeAreaLayoutGuideRight) ;
         make.size.mas_equalTo(CGSizeMake(XTVLCVideoControlBarHeight, XTVLCVideoControlBarHeight)) ;
     }] ;
     

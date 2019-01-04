@@ -23,8 +23,7 @@
 
 @implementation PlayingCtrller
 
-- (instancetype)initWithModel:(id)model
-{
+- (instancetype)initWithModel:(id)model {
     self = [super init];
     if (self) {
         self.model = model ;
@@ -32,8 +31,7 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.edgesForExtendedLayout = UIRectEdgeNone ;
@@ -46,16 +44,19 @@
     self.view.backgroundColor = [UIColor blackColor] ;
 }
 
-- (void)setupPlayer
-{
+- (void)setupPlayer {
     self.playerView = [[XTVLC alloc] init] ;
     NSURL *url = [NSURL fileURLWithPath:[self.model fullPathWithBasePath:[self baseFullPath]]] ;
     [self.playerView showMeInView:self.view url:url hasCloseButton:YES forceHorizon:YES forbiddenGesture:NO] ;
     
     [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(APP_WIDTH) ;
-        make.height.mas_equalTo(APP_WIDTH / 16 * 9) ;
-        make.top.equalTo(self.view) ;
+//        make.width.mas_equalTo(APP_WIDTH) ;
+//        make.height.mas_equalTo(APP_WIDTH / 16 * 9) ;
+//        make.top.equalTo(self.view) ;
+        make.edges.equalTo(self.view) ;
+//        make.size.mas_equalTo(CGSizeMake(100, 100 )) ;
+//        make.top.equalTo(@100) ;
+//        make.left.equalTo(@100) ;
     }] ;
     
     @weakify(self)

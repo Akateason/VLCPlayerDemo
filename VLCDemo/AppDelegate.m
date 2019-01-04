@@ -30,11 +30,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [XTFMDBBase sharedInstance].isDebugMode = YES ;
     [[XTFMDBBase sharedInstance] configureDB:@"xtcPlayer"] ;
     
-    
-    
-    // create tb
     [XTColor configCustomPlistName:@"kobeColor"] ;
     
     // nav

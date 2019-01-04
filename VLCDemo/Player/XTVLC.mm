@@ -12,9 +12,9 @@
 #import <Masonry.h>
 #import <XTlib.h>
 
-static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
+static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 1.f ; //等待时间. 否则会加载buffer报错.
 
-@interface XTVLC () <VLCMediaThumbnailerDelegate>
+@interface XTVLC () <VLCMediaThumbnailerDelegate,VLCMediaPlayerDelegate>
 {
     BOOL hasCloseButton ;
     BOOL m_forceHorizon ;
@@ -275,25 +275,31 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.25f;
 
 - (void)play {
     if (!self.mediaURL) return ;
-                
-    [self.player play];
-    self.controlView.playButton.hidden = YES;
-    self.controlView.pauseButton.hidden = NO;
-    [self.controlView autoFadeOutControlBar];
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.player play];
+        self.controlView.playButton.hidden = YES;
+        self.controlView.pauseButton.hidden = NO;
+        [self.controlView autoFadeOutControlBar];
+    });
 }
 
 - (void)pause {
-    [self.player pause];
-    self.controlView.playButton.hidden = NO;
-    self.controlView.pauseButton.hidden = YES;
-    [self.controlView autoFadeOutControlBar];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.player pause];
+        self.controlView.playButton.hidden = NO;
+        self.controlView.pauseButton.hidden = YES;
+        [self.controlView autoFadeOutControlBar];
+    });
 }
 
 - (void)stop {
-    [self.player stop];
-    self.controlView.progressSlider.value = 1;
-    self.controlView.playButton.hidden = NO;
-    self.controlView.pauseButton.hidden = YES;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.player stop];
+        self.controlView.progressSlider.value = 1;
+        self.controlView.playButton.hidden = NO;
+        self.controlView.pauseButton.hidden = YES;
+    });
 }
 
 - (BOOL)isPlaying {
