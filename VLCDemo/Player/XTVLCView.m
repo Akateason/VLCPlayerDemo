@@ -98,24 +98,32 @@
     
     [self addSubview:self.topBar];
     [self.topBar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_safeAreaLayoutGuideLeft) ;
-        make.right.equalTo(self.mas_safeAreaLayoutGuideRight) ;
+        make.left.equalTo(self) ;
+        make.right.equalTo(self) ;
         make.top.equalTo(self.mas_safeAreaLayoutGuideTop) ;
         make.height.mas_equalTo(XTVLCVideoControlBarHeight) ;
     }] ;
     
     [self addSubview:self.bottomBar];
     [self.bottomBar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_safeAreaLayoutGuideLeft) ;
-        make.right.equalTo(self.mas_safeAreaLayoutGuideRight) ;
+        make.left.equalTo(self) ;
+        make.right.equalTo(self) ;
         make.bottom.equalTo(self.mas_safeAreaLayoutGuideBottom) ;
         make.height.mas_equalTo(XTVLCVideoControlBarHeight) ;
+    }] ;
+    
+    UIView *additionOnIfIpXSerious = [UIView new] ;
+    additionOnIfIpXSerious.backgroundColor = XTVLCRGB(27, 27, 27) ;
+    [self addSubview:additionOnIfIpXSerious] ;
+    [additionOnIfIpXSerious mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self) ;
+        make.top.equalTo(self.mas_safeAreaLayoutGuideBottom) ;
     }] ;
     
     [self.topBar addSubview:self.closeButton];
     [self.closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.top.equalTo(self.topBar) ;
-        make.right.equalTo(self.topBar.mas_safeAreaLayoutGuideRight) ;
+        make.right.equalTo(self.topBar).offset(-20) ;
         make.size.mas_equalTo(CGSizeMake(XTVLCVideoControlBarHeight, XTVLCVideoControlBarHeight)) ;
     }] ;
     
