@@ -112,7 +112,7 @@
     if (row == self.idx_isOn) {
         if ([self.vlc isPlaying]) {
             //进入 内部VC
-            PlayingCtrller *playVC = [[PlayingCtrller alloc] initWithModel:self.datasource[indexPath.row]];
+            PlayingCtrller *playVC = [PlayingCtrller newVCFromModel:self.datasource[indexPath.row]];
             [playVC setHidesBottomBarWhenPushed:YES];
             [self.navigationController pushViewController:playVC animated:YES];
         }

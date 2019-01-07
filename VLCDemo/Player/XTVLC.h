@@ -4,6 +4,7 @@
 //
 //  Created by teason23 on 2018/6/4.
 //  Copyright © 2018年 teason23. All rights reserved.
+// 这是一个View的封装, 由于vlc的机制不要试图单例化它.
 //
 
 #import <UIKit/UIKit.h>

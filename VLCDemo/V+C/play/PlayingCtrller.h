@@ -7,7 +7,7 @@
 // FORCE LAND SCAPE !!!!!
 
 #import <UIKit/UIKit.h>
-@class FileModel;
+@class FileModel, XTVLC;
 
 @protocol PlayingCtrllerDelegate <NSObject>
 - (void)refreshModel:(id)model;
@@ -16,5 +16,7 @@
 
 @interface PlayingCtrller : UIViewController
 @property (nonatomic, weak) id<PlayingCtrllerDelegate> delegate;
-- (instancetype)initWithModel:(id)model;
+
++ (instancetype)newVCFromModel:(id)model;
++ (instancetype)newVCFromVLC:(XTVLC *)xtvlc;
 @end

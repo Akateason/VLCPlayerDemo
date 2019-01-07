@@ -25,12 +25,22 @@
 
 @implementation PlayingCtrller
 
-- (instancetype)initWithModel:(id)model {
-    self = [super init];
-    if (self) {
-        self.model = model;
-    }
-    return self;
++ (instancetype)newVCFromModel:(id)model {
+    PlayingCtrller *pVC = [PlayingCtrller new];
+    pVC.model           = model;
+    [pVC setupPlayer];
+    return pVC;
+}
+
++ (instancetype)newVCFromVLC:(XTVLC *)xtvlc {
+    return nil;
+}
+
+
+#pragma mark - life
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 - (void)viewDidLoad {
@@ -41,8 +51,7 @@
     appdelegate.orientationsOnlyLandScape = YES;
     appdelegate.orientationsOnlyRotate    = NO;
 
-    [self setupPlayer];
-
+    //    [self setupPlayer];
     self.view.backgroundColor = [UIColor blackColor];
 }
 
@@ -91,22 +100,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-- (BOOL)prefersStatusBarHidden {
-    return YES;
-}
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -275,7 +275,6 @@
     if (!_bottomBarAppend) {
         _bottomBarAppend                 = [UIView new];
         _bottomBarAppend.backgroundColor = XTVLCRGB(27, 27, 27);
-        //        _bottomBarAppend.backgroundColor = [UIColor redColor] ;
     }
     return _bottomBarAppend;
 }
@@ -385,7 +384,6 @@
     return _pan;
 }
 
-
 - (RACSubject *)soundSignal {
     if (!_soundSignal) {
         _soundSignal = ({
@@ -405,6 +403,7 @@
     }
     return _lightSignal;
 }
+
 @end
 
 

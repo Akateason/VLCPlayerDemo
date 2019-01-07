@@ -192,10 +192,12 @@
     else if (model.fType == typeOfFileModel_file) { // is file
         @autoreleasepool {
             if ([self isPhotoType:model.displayName]) return;
-            indexPlay              = (int)indexPath.row;
-            NSString *sql          = [NSString stringWithFormat:@"baseName like '%%%@%%'", model.baseName];
-            model                  = [FileModel xt_findFirstWhere:sql];
-            PlayingCtrller *playVC = [[PlayingCtrller alloc] initWithModel:model];
+
+            indexPlay     = (int)indexPath.row;
+            NSString *sql = [NSString stringWithFormat:@"baseName like '%%%@%%'", model.baseName];
+            model         = [FileModel xt_findFirstWhere:sql];
+
+            PlayingCtrller *playVC = [PlayingCtrller newVCFromModel:model];
             playVC.delegate        = self;
             [self.navigationController pushViewController:playVC animated:YES];
         }
