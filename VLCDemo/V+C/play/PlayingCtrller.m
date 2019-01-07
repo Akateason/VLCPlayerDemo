@@ -36,7 +36,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-
     self.edgesForExtendedLayout           = UIRectEdgeNone;
     AppDelegate *appdelegate              = (AppDelegate *)[UIApplication sharedApplication].delegate;
     appdelegate.orientationsOnlyLandScape = YES;

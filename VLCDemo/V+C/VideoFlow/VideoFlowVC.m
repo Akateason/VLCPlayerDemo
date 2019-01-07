@@ -13,6 +13,8 @@
 #import "XTVLC.h"
 #import "UIViewController+FileUrl.h"
 #import <XTlib.h>
+#import "PlayingCtrller.h"
+#import "AppDelegate.h"
 
 
 @interface VideoFlowVC () <UITableViewDelegate, UITableViewDataSource>
@@ -45,7 +47,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+}
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    AppDelegate *appdelegate              = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    appdelegate.orientationsOnlyLandScape = NO;
+    appdelegate.orientationsOnlyRotate    = YES;
+
+    [self forceChangeOrientation:UIInterfaceOrientationPortrait];
+}
+
+- (void)forceChangeOrientation:(UIInterfaceOrientation)orientation {
+    int val = orientation;
+    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
+        SEL selector             = NSSelectorFromString(@"setOrientation:");
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
+        [invocation setSelector:selector];
+        [invocation setTarget:[UIDevice currentDevice]];
+        [invocation setArgument:&val atIndex:2];
+        [invocation invoke];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -58,6 +82,7 @@
         [self.table reloadData];
     }
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -86,7 +111,10 @@
     int row = (int)indexPath.row;
     if (row == self.idx_isOn) {
         if ([self.vlc isPlaying]) {
-            //            [self.vlc.player pause];
+            //进入 内部VC
+            PlayingCtrller *playVC = [[PlayingCtrller alloc] initWithModel:self.datasource[indexPath.row]];
+            [playVC setHidesBottomBarWhenPushed:YES];
+            [self.navigationController pushViewController:playVC animated:YES];
         }
         else {
             [self.vlc play];
@@ -216,5 +244,17 @@
     }
     return _movingContainer;
 }
+
+
+#pragma mark - PlayingCtrllerDelegate <NSObject>
+- (void)refreshModel:(id)model {
+    FileModel *fModel       = model;
+    NSMutableArray *tmplist = [self.datasource mutableCopy];
+    [tmplist replaceObjectAtIndex:self.idx_isOn
+                       withObject:fModel];
+    self.datasource = tmplist;
+    [self.table reloadData];
+}
+
 
 @end
