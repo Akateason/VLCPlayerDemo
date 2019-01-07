@@ -28,14 +28,24 @@
 + (instancetype)newVCFromModel:(id)model {
     PlayingCtrller *pVC = [PlayingCtrller new];
     pVC.model           = model;
-    [pVC setupPlayer];
+    [pVC setupPlayer:0];
     return pVC;
 }
 
-+ (instancetype)newVCFromVLC:(XTVLC *)xtvlc {
-    return nil;
-}
++ (instancetype)newVCFromVLC:(XTVLC *)xtvlc
+                       model:(id)model
+                   startFrom:(int)startFrom {
+    PlayingCtrller *pVC = [PlayingCtrller new];
+    // todo
+    //    xtvlc.m_hasCloseButton = YES ;
+    //    xtvlc.m_forceHorizon = YES ;
+    //    xtvlc.m_forbiddenGesture = NO ;
+    //    pVC.playerView = xtvlc ;
 
+    pVC.model = model;
+    [pVC setupPlayer:startFrom];
+    return pVC;
+}
 
 #pragma mark - life
 
@@ -51,11 +61,10 @@
     appdelegate.orientationsOnlyLandScape = YES;
     appdelegate.orientationsOnlyRotate    = NO;
 
-    //    [self setupPlayer];
     self.view.backgroundColor = [UIColor blackColor];
 }
 
-- (void)setupPlayer {
+- (void)setupPlayer:(float)startFrom {
     self.playerView = [XTVLC new];
     NSURL *url      = [NSURL fileURLWithPath:[self.model fullPathWithBasePath:[self baseFullPath]]];
 
@@ -63,7 +72,8 @@
                               url:url
                    hasCloseButton:YES
                      forceHorizon:YES
-                 forbiddenGesture:NO];
+                 forbiddenGesture:NO
+                    startFromRate:startFrom];
 
     [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);

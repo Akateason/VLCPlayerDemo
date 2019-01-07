@@ -75,20 +75,18 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 
-    if (self.vlc.isPlaying) {
-        NSIndexPath *current = [NSIndexPath indexPathForRow:self.idx_isOn inSection:0];
-        [self stopWithIndexPath:current];
-        self.idx_isOn = -1;
-        [self.table reloadData];
-    }
+    // todo, 这里应该改成. 切换tab. 消失掉. , 而非 vddisappear
+    //    if (self.vlc.isPlaying) {
+    //        NSIndexPath *current = [NSIndexPath indexPathForRow:self.idx_isOn inSection:0];
+    //        [self stopWithIndexPath:current];
+    //        self.idx_isOn = -1;
+    //        [self.table reloadData];
+    //    }
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
 
 #pragma mark - table
 
@@ -112,9 +110,12 @@
     if (row == self.idx_isOn) {
         if ([self.vlc isPlaying]) {
             //进入 内部VC
-            PlayingCtrller *playVC = [PlayingCtrller newVCFromModel:self.datasource[indexPath.row]];
+            PlayingCtrller *playVC = [PlayingCtrller newVCFromVLC:self.vlc
+                                                            model:self.datasource[indexPath.row]
+                                                        startFrom:[[self.vlc.player.time value] intValue]];
             [playVC setHidesBottomBarWhenPushed:YES];
-            [self.navigationController pushViewController:playVC animated:YES];
+            [self.navigationController pushViewController:playVC
+                                                 animated:YES];
         }
         else {
             [self.vlc play];
@@ -245,8 +246,8 @@
     return _movingContainer;
 }
 
+#pragma mark - PlayingCtrllerDelegate
 
-#pragma mark - PlayingCtrllerDelegate <NSObject>
 - (void)refreshModel:(id)model {
     FileModel *fModel       = model;
     NSMutableArray *tmplist = [self.datasource mutableCopy];
@@ -255,6 +256,5 @@
     self.datasource = tmplist;
     [self.table reloadData];
 }
-
 
 @end

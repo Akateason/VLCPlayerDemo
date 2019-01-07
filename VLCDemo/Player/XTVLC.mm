@@ -14,18 +14,20 @@
 static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 1.f; //(必須)等待时间. 否则会加载buffer报错.
 
 
-@interface XTVLC () <VLCMediaThumbnailerDelegate, VLCMediaPlayerDelegate> {
-    BOOL hasCloseButton;
-    BOOL m_forceHorizon;
-    BOOL m_forbiddenGesture;
-}
+@interface XTVLC () <VLCMediaThumbnailerDelegate, VLCMediaPlayerDelegate>
 @property (nonatomic, strong, readwrite) VLCMediaPlayer *player;
 @property (nonatomic, nonnull, strong) XTVLCView *controlView;
 @property (strong, nonatomic) VLCMediaThumbnailer *thumbnailer;
+@property (nonatomic) int startFromSecond;
 @end
 
 
 @implementation XTVLC
+
+@synthesize
+    m_hasCloseButton   = m_hasCloseButton,
+    m_forceHorizon     = m_forceHorizon,
+    m_forbiddenGesture = m_forbiddenGesture;
 
 - (instancetype)init {
     self = [super init];
@@ -67,10 +69,20 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 1.f; //(必須)�
       hasCloseButton:(BOOL)hasCloseBt
         forceHorizon:(BOOL)forceHorizon
     forbiddenGesture:(BOOL)forbiddenGesture {
-    hasCloseButton     = hasCloseBt;
-    m_forceHorizon     = forceHorizon;
-    m_forbiddenGesture = forbiddenGesture;
-    [self showInView:view forceHorizon:forceHorizon];
+    [self showMeInView:view url:url hasCloseButton:hasCloseBt forceHorizon:forceHorizon forbiddenGesture:forbiddenGesture startFromRate:0];
+}
+
+- (void)showMeInView:(UIView *_Nonnull)view
+                 url:(NSURL *_Nullable)url
+      hasCloseButton:(BOOL)hasCloseBt
+        forceHorizon:(BOOL)forceHorizon
+    forbiddenGesture:(BOOL)forbiddenGesture
+       startFromRate:(int)startFrom {
+    self.startFromSecond = startFrom;
+    m_hasCloseButton     = hasCloseBt;
+    self.m_forceHorizon  = forceHorizon;
+    m_forbiddenGesture   = forbiddenGesture;
+    [self showInView:view forceHorizon:self.m_forceHorizon];
     self.mediaURL = url;
 }
 
@@ -119,7 +131,6 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 1.f; //(必須)�
 
 - (void)showInView:(UIView *)view forceHorizon:(BOOL)forceHorizon {
     [view addSubview:self];
-    if (m_forceHorizon) [self forceChangeOrientation:UIInterfaceOrientationLandscapeRight];
 
     self.alpha = 0.0;
     [UIView animateWithDuration:kVideoPlayerAnimationTimeinterval
@@ -127,7 +138,12 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 1.f; //(必須)�
             self.alpha = 1.0;
         }
         completion:^(BOOL finished) {
-            [self play];
+            if (self.startFromSecond > 0) {
+                [self playFromSeconds:self.startFromSecond];
+            }
+            else {
+                [self play];
+            }
         }];
 }
 
@@ -146,7 +162,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 1.f; //(必須)�
         make.edges.equalTo(self);
     }];
 
-    self.controlView.closeButton.hidden = !hasCloseButton;
+    self.controlView.closeButton.hidden = !m_hasCloseButton;
 
     //添加控制界面的监听方法
     [self.controlView.playButton addTarget:self action:@selector(playButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -273,6 +289,20 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 1.f; //(必須)�
 
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.player play];
+        self.controlView.playButton.hidden  = YES;
+        self.controlView.pauseButton.hidden = NO;
+        [self.controlView autoFadeOutControlBar];
+    });
+}
+
+- (void)playFromSeconds:(int)seconds {
+    if (!self.mediaURL) return;
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.player play];
+        [self.player jumpForward:seconds / 1000.];
+        //        self.player.time = [VLCTime timeWithInt:self.startFromSecond] ;
+
         self.controlView.playButton.hidden  = YES;
         self.controlView.pauseButton.hidden = NO;
         [self.controlView autoFadeOutControlBar];
@@ -418,8 +448,8 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 1.f; //(必須)�
 
         self.controlView.fullScreenButton.selected = YES;
     }
-    else {                          // 原本竖屏
-        if (m_forceHorizon) return; // 强行只支持横屏
+    else {                               // 原本竖屏
+        if (self.m_forceHorizon) return; // 强行只支持横屏
 
         [self mas_updateConstraints:^(MASConstraintMaker *make) {
             make.width.equalTo(@(widScreen));
@@ -444,6 +474,11 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 1.f; //(必須)�
         _thumbnailer = [VLCMediaThumbnailer thumbnailerWithMedia:self.player.media andDelegate:self];
     }
     return _thumbnailer;
+}
+
+- (void)setM_forceHorizon:(BOOL)forceHorizon {
+    m_forceHorizon = forceHorizon;
+    if (m_forceHorizon) [self forceChangeOrientation:UIInterfaceOrientationLandscapeRight];
 }
 
 @end

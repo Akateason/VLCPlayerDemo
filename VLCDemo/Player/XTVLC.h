@@ -17,10 +17,13 @@ typedef void (^PlayerWillDismissBlock)(VLCMediaPlayer *_Nonnull player, UIImage 
 
 @interface XTVLC : UIView <VLCMediaPlayerDelegate, XTVLCViewDelegate>
 
+@property (nonatomic, strong, readonly) VLCMediaPlayer *_Nonnull player;
 @property (nonatomic, strong, nonnull) NSURL *mediaURL;
 @property (nonatomic, assign) BOOL isFullscreenModel;
 @property (nonatomic, copy) PlayerWillDismissBlock _Nullable willDismissAndCatchThumbnail;
-@property (nonatomic, strong, readonly) VLCMediaPlayer *_Nonnull player;
+@property (nonatomic) BOOL m_hasCloseButton;
+@property (nonatomic) BOOL m_forceHorizon;
+@property (nonatomic) BOOL m_forbiddenGesture;
 
 - (void)showMeInView:(UIView *_Nonnull)view
                  url:(NSURL *_Nullable)url;
@@ -34,6 +37,13 @@ typedef void (^PlayerWillDismissBlock)(VLCMediaPlayer *_Nonnull player, UIImage 
       hasCloseButton:(BOOL)hasCloseBt
         forceHorizon:(BOOL)forceHorizon
     forbiddenGesture:(BOOL)forbiddenGesture;
+
+- (void)showMeInView:(UIView *_Nonnull)view
+                 url:(NSURL *_Nullable)url
+      hasCloseButton:(BOOL)hasCloseBt
+        forceHorizon:(BOOL)forceHorizon
+    forbiddenGesture:(BOOL)forbiddenGesture
+       startFromRate:(int)startFrom;
 
 
 - (void)play;

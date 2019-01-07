@@ -18,5 +18,7 @@
 @property (nonatomic, weak) id<PlayingCtrllerDelegate> delegate;
 
 + (instancetype)newVCFromModel:(id)model;
-+ (instancetype)newVCFromVLC:(XTVLC *)xtvlc;
++ (instancetype)newVCFromVLC:(XTVLC *)xtvlc
+                       model:(id)model
+                   startFrom:(int)startFrom;
 @end
