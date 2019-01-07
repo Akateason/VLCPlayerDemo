@@ -35,7 +35,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    
     self.edgesForExtendedLayout           = UIRectEdgeNone;
     AppDelegate *appdelegate              = (AppDelegate *)[UIApplication sharedApplication].delegate;
     appdelegate.orientationsOnlyLandScape = YES;
@@ -47,9 +48,14 @@
 }
 
 - (void)setupPlayer {
-    self.playerView = [[XTVLC alloc] init];
+    self.playerView = [XTVLC new];
     NSURL *url      = [NSURL fileURLWithPath:[self.model fullPathWithBasePath:[self baseFullPath]]];
-    [self.playerView showMeInView:self.view url:url hasCloseButton:YES forceHorizon:YES forbiddenGesture:NO];
+    
+    [self.playerView showMeInView:self.view
+                              url:url
+                   hasCloseButton:YES
+                     forceHorizon:YES
+                 forbiddenGesture:NO];
 
     [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
@@ -57,6 +63,7 @@
 
     @weakify(self)
         self.playerView.willDismissAndCatchThumbnail = ^(VLCMediaPlayer *_Nonnull player, UIImage *_Nullable thumbnail) {
+            
         @strongify(self)
             self.model.allTime = player.media.length.stringValue;
         self.model.lastTime    = player.time.stringValue;
@@ -64,7 +71,7 @@
         [self.model xt_update];
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.navigationController popViewControllerAnimated:YES];
+            [self.navigationController popViewControllerAnimated:YES] ;
             [self.delegate refreshModel:self.model];
         });
     };

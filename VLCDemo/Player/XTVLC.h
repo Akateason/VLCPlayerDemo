@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <MobileVLCKit/MobileVLCKit.h>
 #import "XTVLCView.h"
+#import <XTlib.h>
 
 typedef void (^PlayerWillDismissBlock)(VLCMediaPlayer *_Nonnull player, UIImage *_Nullable thumbnail);
 
-
 @interface XTVLC : UIView <VLCMediaPlayerDelegate, XTVLCViewDelegate>
+
 @property (nonatomic, strong, nonnull) NSURL *mediaURL;
 @property (nonatomic, assign) BOOL isFullscreenModel;
 @property (nonatomic, copy) PlayerWillDismissBlock _Nullable willDismissAndCatchThumbnail;

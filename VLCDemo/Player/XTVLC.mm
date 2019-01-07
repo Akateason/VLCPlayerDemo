@@ -9,10 +9,9 @@
 #import "XTVLC.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "XTVLCConst.h"
-#import <Masonry.h>
-#import <XTlib.h>
 
-static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 1.f; //等待时间. 否则会加载buffer报错.
+
+static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 1.f ; //(必須)等待时间. 否则会加载buffer报错.
 
 
 @interface XTVLC () <VLCMediaThumbnailerDelegate, VLCMediaPlayerDelegate> {
@@ -28,17 +27,18 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 1.f; //等待时
 
 @implementation XTVLC
 
-#pragma mark - Life
-
 - (instancetype)init {
-    if (self = [super init]) {
+    self = [super init];
+    if (self) {
         [self setupNotification];
     }
     return self;
 }
 
+#pragma mark - Life
+
 - (void)dealloc {
-    NSLog(@"xtplayer dealloc");
+    NSLog(@"xtVLC Dealloc .");
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -48,7 +48,6 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 1.f; //等待时
     [self setupView];
     [self setupControlView];
 }
-
 
 #pragma mark - Public
 
@@ -67,7 +66,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 1.f; //等待时
                  url:(NSURL *_Nullable)url
       hasCloseButton:(BOOL)hasCloseBt
         forceHorizon:(BOOL)forceHorizon
-    forbiddenGesture:(BOOL)forbiddenGesture {
+    forbiddenGesture:(BOOL)forbiddenGesture {    
     hasCloseButton     = hasCloseBt;
     m_forceHorizon     = forceHorizon;
     m_forbiddenGesture = forbiddenGesture;

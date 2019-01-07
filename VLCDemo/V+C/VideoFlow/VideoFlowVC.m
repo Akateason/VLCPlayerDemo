@@ -48,6 +48,17 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated] ;
+    
+    if (self.vlc.isPlaying) {
+        NSIndexPath *current = [NSIndexPath indexPathForRow:self.idx_isOn inSection:0];
+        [self stopWithIndexPath:current];
+        self.idx_isOn = -1;
+        [self.table reloadData] ;
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -75,7 +86,7 @@
     int row = (int)indexPath.row;
     if (row == self.idx_isOn) {
         if ([self.vlc isPlaying]) {
-            [self.vlc.player pause];
+//            [self.vlc.player pause];
         }
         else {
             [self.vlc play];

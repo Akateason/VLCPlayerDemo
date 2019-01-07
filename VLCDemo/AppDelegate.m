@@ -10,7 +10,7 @@
 #import <XTlib.h>
 #import "FileModel.h"
 #import "XTColor+MyColors.h"
-
+#import "XTVLC.h"
 
 @interface AppDelegate ()
 
@@ -30,11 +30,16 @@
     return UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
+
+
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    // setup db
     [XTFMDBBase sharedInstance].isDebugMode = YES;
     [[XTFMDBBase sharedInstance] configureDB:@"xtcPlayer"];
 
+    // setup
     [XTColor configCustomPlistName:@"kobeColor"];
 
     // nav
