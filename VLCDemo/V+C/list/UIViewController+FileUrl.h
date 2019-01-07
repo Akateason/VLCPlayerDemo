@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface UIViewController (FileUrl)
 
-@property (nonatomic,copy) NSString *baseRelativePath ;
-- (NSString *)directPrefixPath ;
-- (NSString *)baseFullPath ;
+@property (nonatomic, copy) NSString *baseRelativePath;
+- (NSString *)directPrefixPath;
+- (NSString *)baseFullPath;
 
 @end

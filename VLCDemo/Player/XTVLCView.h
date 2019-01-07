@@ -18,13 +18,14 @@
 - (BOOL)controlViewFingerMoveRight;
 @end
 
+
 @interface XTVLCProgressSlider : UISlider
 @end
 
 
 @interface XTVLCView : UIView
 
-@property (nonatomic,weak) id<XTVLCViewDelegate> delegate;
+@property (nonatomic, weak) id<XTVLCViewDelegate> delegate;
 
 @property (nonatomic, strong) UIView *topBar;
 @property (nonatomic, strong) UIView *bottomBar;
@@ -40,8 +41,8 @@
 @property (nonatomic, strong) UILabel *alertlable;
 @property (nonatomic, strong) UIPanGestureRecognizer *pan;
 
-@property (nonatomic) BOOL isVericalPan ;
-@property (nonatomic) BOOL isHorizonPan ;
+@property (nonatomic) BOOL isVericalPan;
+@property (nonatomic) BOOL isHorizonPan;
 
 - (void)animateHide;
 - (void)animateShow;
@@ -49,6 +50,7 @@
 - (void)cancelAutoFadeOutControlBar;
 
 @end
+
 
 @interface UILabel (ConfigureAble)
 - (void)configureWithTime:(NSString *)time isLeft:(BOOL)left;

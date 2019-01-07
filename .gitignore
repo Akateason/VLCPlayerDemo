@@ -54,3 +54,4 @@ Pods/
 #fastlane/screenshots
 
 
+.clang-format

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LocalViewConrtoller :UIViewController
+
+@interface LocalViewConrtoller : UIViewController
 
 @end

@@ -6,29 +6,30 @@
 //  Copyright © 2017年 Alloc. All rights reserved.
 //
 #import <Foundation/Foundation.h>
-@class UIImage ;
+@class UIImage;
 
 
 typedef enum : int {
-    typeOfFileModel_unKnow = 0 ,
-    typeOfFileModel_file ,
-    typeOfFileModel_folder ,
-} TypeOfFileModel ;
+    typeOfFileModel_unKnow = 0,
+    typeOfFileModel_file,
+    typeOfFileModel_folder,
+} TypeOfFileModel;
+
 
 @interface FileModel : NSObject
 
-@property (copy, nonatomic) NSString            *baseName ; // name encode base64
-@property (strong, nonatomic) UIImage           *imgCover ;
-@property (nonatomic      ) int                 fType ;
-@property (nonatomic,copy ) NSString            *allTime ;
-@property (nonatomic,copy)  NSString            *lastTime ;
+@property (copy, nonatomic) NSString *baseName; // name encode base64
+@property (strong, nonatomic) UIImage *imgCover;
+@property (nonatomic) int fType;
+@property (nonatomic, copy) NSString *allTime;
+@property (nonatomic, copy) NSString *lastTime;
 
 
-- (instancetype)initWithDisplayPath:(NSString *)display ;
+- (instancetype)initWithDisplayPath:(NSString *)display;
 
 // util
-- (NSString *)displayName ;
-- (NSString *)playName ;
-- (NSString *)fullPathWithBasePath:(NSString *)basePath ;
+- (NSString *)displayName;
+- (NSString *)playName;
+- (NSString *)fullPathWithBasePath:(NSString *)basePath;
 
 @end

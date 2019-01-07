@@ -8,10 +8,11 @@
 
 #import "XTColor.h"
 
+
 @interface XTColor (MyColors)
 
-+ (UIColor *)text1 ;
-+ (UIColor *)text2 ;
-+ (UIColor *)lakerYellow ;
++ (UIColor *)text1;
++ (UIColor *)text2;
++ (UIColor *)lakerYellow;
 
 @end

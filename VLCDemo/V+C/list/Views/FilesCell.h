@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface FilesCell : UITableViewCell
 
-- (void)configure:(id)obj ;
+- (void)configure:(id)obj;
 
-+ (CGFloat)cellHeight ;
++ (CGFloat)cellHeight;
 
 @end

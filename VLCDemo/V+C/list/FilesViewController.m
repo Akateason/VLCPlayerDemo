@@ -8,22 +8,22 @@
 
 #import "FilesViewController.h"
 
+
 @interface FilesViewController ()
 @end
 
+
 @implementation FilesViewController
 
-- (void)viewDidLoad
-{
-    self.bPrepare = YES ;
-    [super viewDidLoad] ;    
-    self.title = @"xtcPlayer" ;
+- (void)viewDidLoad {
+    self.bPrepare = YES;
+    [super viewDidLoad];
+    self.title = @"xtcPlayer";
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 
 /*

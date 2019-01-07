@@ -7,13 +7,14 @@
 // FORCE LAND SCAPE !!!!!
 
 #import <UIKit/UIKit.h>
-@class FileModel ;
+@class FileModel;
 
 @protocol PlayingCtrllerDelegate <NSObject>
-- (void)refreshModel:(id)model ;
+- (void)refreshModel:(id)model;
 @end
 
+
 @interface PlayingCtrller : UIViewController
-@property (nonatomic,weak) id <PlayingCtrllerDelegate> delegate ;
-- (instancetype)initWithModel:(id)model ;
+@property (nonatomic, weak) id<PlayingCtrllerDelegate> delegate;
+- (instancetype)initWithModel:(id)model;
 @end

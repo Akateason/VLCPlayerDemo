@@ -16,17 +16,19 @@
 #import <ReactiveObjC.h>
 #import "AppDelegate.h"
 
+
 @interface PlayingCtrller ()
-@property (strong, nonatomic) XTVLC *playerView ;
-@property (nonatomic,strong) FileModel *model ;
+@property (strong, nonatomic) XTVLC *playerView;
+@property (nonatomic, strong) FileModel *model;
 @end
+
 
 @implementation PlayingCtrller
 
 - (instancetype)initWithModel:(id)model {
     self = [super init];
     if (self) {
-        self.model = model ;
+        self.model = model;
     }
     return self;
 }
@@ -34,60 +36,51 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.edgesForExtendedLayout = UIRectEdgeNone ;
-    AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate ;
-    appdelegate.orientationsOnlyLandScape = YES ;
-    appdelegate.orientationsOnlyRotate = NO ;
-    
-    [self setupPlayer] ;
-    
-    self.view.backgroundColor = [UIColor blackColor] ;
+    self.edgesForExtendedLayout           = UIRectEdgeNone;
+    AppDelegate *appdelegate              = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    appdelegate.orientationsOnlyLandScape = YES;
+    appdelegate.orientationsOnlyRotate    = NO;
+
+    [self setupPlayer];
+
+    self.view.backgroundColor = [UIColor blackColor];
 }
 
 - (void)setupPlayer {
-    self.playerView = [[XTVLC alloc] init] ;
-    NSURL *url = [NSURL fileURLWithPath:[self.model fullPathWithBasePath:[self baseFullPath]]] ;
-    [self.playerView showMeInView:self.view url:url hasCloseButton:YES forceHorizon:YES forbiddenGesture:NO] ;
-    
+    self.playerView = [[XTVLC alloc] init];
+    NSURL *url      = [NSURL fileURLWithPath:[self.model fullPathWithBasePath:[self baseFullPath]]];
+    [self.playerView showMeInView:self.view url:url hasCloseButton:YES forceHorizon:YES forbiddenGesture:NO];
+
     [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.width.mas_equalTo(APP_WIDTH) ;
-//        make.height.mas_equalTo(APP_WIDTH / 16 * 9) ;
-//        make.top.equalTo(self.view) ;
-        make.edges.equalTo(self.view) ;
-//        make.size.mas_equalTo(CGSizeMake(100, 100 )) ;
-//        make.top.equalTo(@100) ;
-//        make.left.equalTo(@100) ;
-    }] ;
-    
+        make.edges.equalTo(self.view);
+    }];
+
     @weakify(self)
-    self.playerView.willDismissAndCatchThumbnail = ^(VLCMediaPlayer * _Nonnull player, UIImage * _Nullable thumbnail) {
+        self.playerView.willDismissAndCatchThumbnail = ^(VLCMediaPlayer *_Nonnull player, UIImage *_Nullable thumbnail) {
         @strongify(self)
-        self.model.allTime = player.media.length.stringValue ;
-        self.model.lastTime = player.time.stringValue ;
-        self.model.imgCover = thumbnail ;
-        [self.model xt_update] ;
+            self.model.allTime = player.media.length.stringValue;
+        self.model.lastTime    = player.time.stringValue;
+        self.model.imgCover    = thumbnail;
+        [self.model xt_update];
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.navigationController popViewControllerAnimated:YES] ;
-            [self.delegate refreshModel:self.model] ;
-        }) ;
-    } ;
-    
+            [self.navigationController popViewControllerAnimated:YES];
+            [self.delegate refreshModel:self.model];
+        });
+    };
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated] ;
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES
-                                             animated:NO] ;
+                                             animated:NO];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated] ;
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO
-                                             animated:NO] ;
-    [self.playerView forceChangeOrientation:UIInterfaceOrientationPortrait] ;
+                                             animated:NO];
+    [self.playerView forceChangeOrientation:UIInterfaceOrientationPortrait];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -95,12 +88,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL)prefersStatusBarHidden
-{
-    return YES ;
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
-
-
 
 
 /*

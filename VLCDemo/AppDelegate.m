@@ -11,44 +11,46 @@
 #import "FileModel.h"
 #import "XTColor+MyColors.h"
 
+
 @interface AppDelegate ()
 
 @end
 
+
 @implementation AppDelegate
 
-- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
     if (self.orientationsOnlyRotate) {
-        return UIInterfaceOrientationMaskPortrait ;
+        return UIInterfaceOrientationMaskPortrait;
     }
     else if (self.orientationsOnlyLandScape) {
-        return UIInterfaceOrientationMaskLandscape ;
+        return UIInterfaceOrientationMaskLandscape;
     }
-    
-    return UIInterfaceOrientationMaskAllButUpsideDown ;
+
+    return UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [XTFMDBBase sharedInstance].isDebugMode = YES ;
-    [[XTFMDBBase sharedInstance] configureDB:@"xtcPlayer"] ;
-    
-    [XTColor configCustomPlistName:@"kobeColor"] ;
-    
+    [XTFMDBBase sharedInstance].isDebugMode = YES;
+    [[XTFMDBBase sharedInstance] configureDB:@"xtcPlayer"];
+
+    [XTColor configCustomPlistName:@"kobeColor"];
+
     // nav
     UINavigationBar *navBar = [UINavigationBar appearance];
-    UIImage *img = [UIImage imageWithColor:[XTColor text1]
-                                      size:CGSizeMake(320.0, 64.0)] ;
-    [navBar setBackgroundImage:img forBarMetrics:UIBarMetricsDefault] ;
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [XTColor whiteColor]}] ;
-    [navBar setTintColor:[XTColor whiteColor]] ;
-    [navBar setTranslucent:NO] ;
+    UIImage *img            = [UIImage imageWithColor:[XTColor text1]
+                                      size:CGSizeMake(320.0, 64.0)];
+    [navBar setBackgroundImage:img forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [XTColor whiteColor]}];
+    [navBar setTintColor:[XTColor whiteColor]];
+    [navBar setTranslucent:NO];
     navBar.translucent = YES;
-        
-    UITabBar *tabbar = [UITabBar appearance] ;
-    tabbar.tintColor = [XTColor text1] ;    
-    
-    return YES ;
+
+    UITabBar *tabbar = [UITabBar appearance];
+    tabbar.tintColor = [XTColor text1];
+
+    return YES;
 }
 
 

@@ -8,12 +8,13 @@
 
 #import "RootTableCell.h"
 
+
 @interface VideoFlowCell : RootTableCell
 @property (weak, nonatomic) IBOutlet UIButton *playBt;
 @property (weak, nonatomic) IBOutlet UIImageView *imagePlaceholder;
 @property (weak, nonatomic) IBOutlet UIView *grayMask;
 @property (weak, nonatomic) IBOutlet UILabel *lbTitle;
 
-- (void)hiddenAll:(BOOL)hidden ;
-    
+- (void)hiddenAll:(BOOL)hidden;
+
 @end

@@ -9,13 +9,13 @@
 #import "FileModel.h"
 #import <XTlib.h>
 
+
 @implementation FileModel
 
-+ (NSDictionary *)modelPropertiesSqliteKeywords
-{
++ (NSDictionary *)modelPropertiesSqliteKeywords {
     return @{
-             @"baseName" : @"UNIQUE" ,
-             } ;
+        @"baseName" : @"UNIQUE",
+    };
 }
 
 //+ (NSArray *)ignoreProperties
@@ -24,49 +24,47 @@
 //             ] ;
 //}
 
-- (instancetype)initWithDisplayPath:(NSString *)display
-{
-    self = [super init] ;
-    if (self)
-    {
+- (instancetype)initWithDisplayPath:(NSString *)display {
+    self = [super init];
+    if (self) {
         if ([self isFile:display]) {
-            self.fType = typeOfFileModel_file ;
+            self.fType = typeOfFileModel_file;
         }
         else if ([self isFolder:display]) {
-            self.fType = typeOfFileModel_folder ;
+            self.fType = typeOfFileModel_folder;
         }
         else
-            self.fType = typeOfFileModel_unKnow ;
-        
-        self.baseName = [display base64EncodedString] ;
+            self.fType = typeOfFileModel_unKnow;
+
+        self.baseName = [display base64EncodedString];
     }
-    return self ;
+    return self;
 }
 
 // util
 - (NSString *)displayName {
-    NSString *origin = [self.baseName base64DecodedString] ;
+    NSString *origin = [self.baseName base64DecodedString];
     if ([origin containsString:@"/"]) {
-        origin = [[origin componentsSeparatedByString:@"/"] lastObject] ;
+        origin = [[origin componentsSeparatedByString:@"/"] lastObject];
     }
-    return origin ;
+    return origin;
 }
 
 - (NSString *)playName {
-    return [self.baseName base64DecodedString] ;
+    return [self.baseName base64DecodedString];
 }
 
 - (NSString *)fullPathWithBasePath:(NSString *)basePath {
-    return  [NSString stringWithFormat:@"%@/%@",basePath,self.playName] ;
+    return [NSString stringWithFormat:@"%@/%@", basePath, self.playName];
 }
 
 // private
 - (BOOL)isFile:(NSString *)displaystr {
-    return ([displaystr containsString:@"."]) ;
+    return ([displaystr containsString:@"."]);
 }
 
 - (BOOL)isFolder:(NSString *)displaystr {
-    return (![displaystr containsString:@"/"] && ![displaystr containsString:@"."]) ;
+    return (![displaystr containsString:@"/"] && ![displaystr containsString:@"."]);
 }
 
 @end

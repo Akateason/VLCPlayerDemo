@@ -11,34 +11,33 @@
 #import <Masonry.h>
 #import <XTlib.h>
 
+
 @implementation LocalViewConrtoller
 
-- (void)viewDidAppear:(BOOL)animated{
-    
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
         [self prefersStatusBarHidden];
         [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
     }
-    
 }
 
 - (IBAction)localPlay:(id)sender {
-    NSArray *filePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) ;
-    NSString *documentPath = [filePath firstObject] ;
-    NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/test.mp4",documentPath]] ;
+    NSArray *filePath      = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentPath = [filePath firstObject];
+    NSURL *url             = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/test.mp4", documentPath]];
     //  [NSURL fileURLWithPath:@"/Users/Maru/Documents/Media/Movie/1.mkv"];
-    
-    
-//    MRVLCPlayer *player = [[MRVLCPlayer alloc] init];
-//    [player showMeInView:self.view.window url:url hasCloseButton:NO] ;
-//
-//    [player mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.width.mas_equalTo(APP_WIDTH) ;
-//        make.height.mas_equalTo(APP_WIDTH / 16 * 9) ;
-//        make.top.equalTo(self.view) ;
-//    }] ;
+
+
+    //    MRVLCPlayer *player = [[MRVLCPlayer alloc] init];
+    //    [player showMeInView:self.view.window url:url hasCloseButton:NO] ;
+    //
+    //    [player mas_makeConstraints:^(MASConstraintMaker *make) {
+    //        make.width.mas_equalTo(APP_WIDTH) ;
+    //        make.height.mas_equalTo(APP_WIDTH / 16 * 9) ;
+    //        make.top.equalTo(self.view) ;
+    //    }] ;
 }
 
 - (BOOL)prefersStatusBarHidden {

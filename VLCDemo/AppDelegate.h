@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property(nonatomic,assign) BOOL orientationsOnlyRotate ;
-@property(nonatomic,assign) BOOL orientationsOnlyLandScape ;
+@property (nonatomic, assign) BOOL orientationsOnlyRotate;
+@property (nonatomic, assign) BOOL orientationsOnlyLandScape;
 
 @end
-
