@@ -9,6 +9,7 @@
 #import "XTVLCView.h"
 #import <Masonry.h>
 #import <ReactiveObjC.h>
+#import <XTBase.h>
 
 @interface XTVLCView ()
 @property (strong, nonatomic) RACSubject *soundSignal ;
@@ -112,18 +113,21 @@
         make.height.mas_equalTo(XTVLCVideoControlBarHeight) ;
     }] ;
     
-    UIView *additionOnIfIpXSerious = [UIView new] ;
-    additionOnIfIpXSerious.backgroundColor = XTVLCRGB(27, 27, 27) ;
-    [self addSubview:additionOnIfIpXSerious] ;
-    [additionOnIfIpXSerious mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(self) ;
-        make.top.equalTo(self.mas_safeAreaLayoutGuideBottom) ;
-    }] ;
+    if (xt_isIPhoneXSeries()) {
+        UIView *additionOnIfIpXSerious = [UIView new] ;
+        additionOnIfIpXSerious.backgroundColor = XTVLCRGB(27, 27, 27) ;
+        [self addSubview:additionOnIfIpXSerious] ;
+        [additionOnIfIpXSerious mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.equalTo(self) ;
+            make.top.equalTo(self.mas_safeAreaLayoutGuideBottom) ;
+        }] ;
+    }
     
+    CGFloat ipxFlexForCloseBt = (xt_isIPhoneXSeries()) ? -20 : 0 ;
     [self.topBar addSubview:self.closeButton];
     [self.closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.topBar) ;
-        make.right.equalTo(self.topBar).offset(-20) ;
+        make.right.equalTo(self.topBar).offset(ipxFlexForCloseBt) ;
         make.size.mas_equalTo(CGSizeMake(XTVLCVideoControlBarHeight, XTVLCVideoControlBarHeight)) ;
     }] ;
     
