@@ -12,6 +12,7 @@
 #import "XTColor+MyColors.h"
 #import "XTVLC.h"
 
+
 @interface AppDelegate ()
 
 @end
@@ -29,9 +30,6 @@
 
     return UIInterfaceOrientationMaskAllButUpsideDown;
 }
-
-
-
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

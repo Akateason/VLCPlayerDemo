@@ -13,6 +13,7 @@
 
 typedef void (^PlayerWillDismissBlock)(VLCMediaPlayer *_Nonnull player, UIImage *_Nullable thumbnail);
 
+
 @interface XTVLC : UIView <VLCMediaPlayerDelegate, XTVLCViewDelegate>
 
 @property (nonatomic, strong, nonnull) NSURL *mediaURL;
