@@ -122,7 +122,7 @@
     
     [self.topBar addSubview:self.closeButton];
     [self.closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.top.equalTo(self.topBar) ;
+        make.top.equalTo(self.topBar) ;
         make.right.equalTo(self.topBar).offset(-20) ;
         make.size.mas_equalTo(CGSizeMake(XTVLCVideoControlBarHeight, XTVLCVideoControlBarHeight)) ;
     }] ;
