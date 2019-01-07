@@ -58,6 +58,12 @@
     appdelegate.orientationsOnlyRotate    = YES;
 
     [self forceChangeOrientation:UIInterfaceOrientationPortrait];
+
+
+    if (self.idx_isOn >= 0) {
+        FileModel *model = self.datasource[self.idx_isOn];
+        [self.vlc playFromMilesSeconds:model.msPlayTime];
+    }
 }
 
 - (void)forceChangeOrientation:(UIInterfaceOrientation)orientation {

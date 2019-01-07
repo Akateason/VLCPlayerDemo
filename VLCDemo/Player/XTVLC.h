@@ -47,6 +47,7 @@ typedef void (^PlayerWillDismissBlock)(VLCMediaPlayer *_Nonnull player, UIImage 
 
 
 - (void)play;
+- (void)playFromMilesSeconds:(int)ms;
 - (void)stop;
 - (BOOL)isPlaying;
 - (void)dismiss;

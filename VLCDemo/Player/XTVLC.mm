@@ -139,7 +139,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 1.f; //(必須)�
         }
         completion:^(BOOL finished) {
             if (self.startFromSecond > 0) {
-                [self playFromSeconds:self.startFromSecond];
+                [self playFromMilesSeconds:self.startFromSecond];
             }
             else {
                 [self play];
@@ -295,13 +295,12 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 1.f; //(必須)�
     });
 }
 
-- (void)playFromSeconds:(int)seconds {
+- (void)playFromMilesSeconds:(int)ms {
     if (!self.mediaURL) return;
 
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.player play];
-        [self.player jumpForward:seconds / 1000.];
-        //        self.player.time = [VLCTime timeWithInt:self.startFromSecond] ;
+        [self.player jumpForward:ms];
 
         self.controlView.playButton.hidden  = YES;
         self.controlView.pauseButton.hidden = NO;

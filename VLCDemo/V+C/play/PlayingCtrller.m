@@ -86,6 +86,7 @@
             self.model.allTime = player.media.length.stringValue;
         self.model.lastTime    = player.time.stringValue;
         self.model.imgCover    = thumbnail;
+        self.model.msPlayTime  = [player.time.value intValue];
         [self.model xt_update];
 
         dispatch_async(dispatch_get_main_queue(), ^{

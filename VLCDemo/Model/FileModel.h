@@ -23,7 +23,7 @@ typedef enum : int {
 @property (nonatomic) int fType;
 @property (nonatomic, copy) NSString *allTime;
 @property (nonatomic, copy) NSString *lastTime;
-
+@property (nonatomic) int msPlayTime; // 毫秒.已经播放的时间
 
 - (instancetype)initWithDisplayPath:(NSString *)display;
 

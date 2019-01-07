@@ -37,6 +37,11 @@
     [XTFMDBBase sharedInstance].isDebugMode = YES;
     [[XTFMDBBase sharedInstance] configureDB:@"xtcPlayer"];
 
+    [[XTFMDBBase sharedInstance] dbUpgradeTable:FileModel.class
+                                      paramsAdd:@[ @"msPlayTime" ]
+                                        version:2];
+
+
     // setup
     [XTColor configCustomPlistName:@"kobeColor"];
 
