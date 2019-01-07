@@ -29,6 +29,7 @@
 
 @property (nonatomic, strong) UIView *topBar;
 @property (nonatomic, strong) UIView *bottomBar;
+@property (nonatomic, strong) UIView *bottomBarAppend;
 @property (nonatomic, strong) UIButton *playButton;
 @property (nonatomic, strong) UIButton *pauseButton;
 @property (nonatomic, strong) UIButton *fullScreenButton;

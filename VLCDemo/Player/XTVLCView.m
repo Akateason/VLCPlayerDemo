@@ -59,15 +59,17 @@
 #pragma mark - Public Method
 - (void)animateHide {
     [UIView animateWithDuration:XTVLCVideoControlAnimationTimeinterval animations:^{
-        self.topBar.alpha    = 0;
-        self.bottomBar.alpha = 0;
+        self.topBar.alpha          = 0;
+        self.bottomBar.alpha       = 0;
+        self.bottomBarAppend.alpha = 0;
     } completion:^(BOOL finished){}];
 }
 
 - (void)animateShow {
     [UIView animateWithDuration:XTVLCVideoControlAnimationTimeinterval animations:^{
-        self.topBar.alpha    = 1;
-        self.bottomBar.alpha = 1;
+        self.topBar.alpha          = 1;
+        self.bottomBar.alpha       = 1;
+        self.bottomBarAppend.alpha = 1;
     } completion:^(BOOL finished) {
         [self autoFadeOutControlBar];
     }];
@@ -107,10 +109,8 @@
     }];
 
     if (xt_isIPhoneXSeries()) {
-        UIView *additionOnIfIpXSerious         = [UIView new];
-        additionOnIfIpXSerious.backgroundColor = XTVLCRGB(27, 27, 27);
-        [self addSubview:additionOnIfIpXSerious];
-        [additionOnIfIpXSerious mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self addSubview:self.bottomBarAppend];
+        [self.bottomBarAppend mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.equalTo(self);
             make.top.equalTo(self.mas_safeAreaLayoutGuideBottom);
         }];
@@ -172,7 +172,6 @@
 
 #pragma mark - Override
 #pragma mark Touch Event
-
 
 - (void)panAction:(UIPanGestureRecognizer *)pan {
     CGPoint localPoint = [pan locationInView:self];
@@ -270,6 +269,15 @@
         _bottomBar.backgroundColor = XTVLCRGB(27, 27, 27);
     }
     return _bottomBar;
+}
+
+- (UIView *)bottomBarAppend {
+    if (!_bottomBarAppend) {
+        _bottomBarAppend                 = [UIView new];
+        _bottomBarAppend.backgroundColor = XTVLCRGB(27, 27, 27);
+        //        _bottomBarAppend.backgroundColor = [UIColor redColor] ;
+    }
+    return _bottomBarAppend;
 }
 
 - (UIButton *)playButton {
