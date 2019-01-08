@@ -168,7 +168,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 1.f; //(必須)�
     [self.controlView.playButton addTarget:self action:@selector(playButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.controlView.pauseButton addTarget:self action:@selector(pauseButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.controlView.closeButton addTarget:self action:@selector(closeButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.controlView.fullScreenButton addTarget:self action:@selector(fullScreenButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    //    [self.controlView.fullScreenButton addTarget:self action:@selector(fullScreenButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.controlView.progressSlider addTarget:self action:@selector(progressValueChanged) forControlEvents:UIControlEventValueChanged];
 
     self.controlView.userInteractionEnabled = !m_forbiddenGesture;
@@ -252,16 +252,16 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 1.f; //(必須)�
     [self dismiss];
 }
 
-- (void)fullScreenButtonClick {
-    UIInterfaceOrientation orientation;
-    if (self.controlView.fullScreenButton.selected) {
-        orientation = UIInterfaceOrientationPortrait;
-    }
-    else {
-        orientation = UIInterfaceOrientationLandscapeRight;
-    }
-    [self forceChangeOrientation:orientation];
-}
+//- (void)fullScreenButtonClick {
+//    UIInterfaceOrientation orientation;
+//    if (self.controlView.fullScreenButton.selected) {
+//        orientation = UIInterfaceOrientationPortrait;
+//    }
+//    else {
+//        orientation = UIInterfaceOrientationLandscapeRight;
+//    }
+//    [self forceChangeOrientation:orientation];
+//}
 
 - (void)progressValueChanged {
     self.controlView.isHorizonPan = FALSE;
@@ -432,33 +432,33 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 1.f; //(必須)�
     return _controlView;
 }
 
-- (void)setIsFullscreenModel:(BOOL)isFullscreenModel {
-    if (_isFullscreenModel == isFullscreenModel) return;
-
-    _isFullscreenModel = isFullscreenModel;
-    float widScreen    = APP_WIDTH;
-    float heiScreen    = APP_HEIGHT;
-
-    if (isFullscreenModel) { // 全屏
-        [self mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(widScreen);
-            make.height.mas_equalTo(heiScreen);
-        }];
-
-        self.controlView.fullScreenButton.selected = YES;
-    }
-    else {                               // 原本竖屏
-        if (self.m_forceHorizon) return; // 强行只支持横屏
-
-        [self mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.width.equalTo(@(widScreen));
-            make.height.mas_equalTo(widScreen / 16 * 9);
-        }];
-        self.controlView.fullScreenButton.selected = NO;
-    }
-
-    [self layoutIfNeeded];
-}
+//- (void)setIsFullscreenModel:(BOOL)isFullscreenModel {
+//    if (_isFullscreenModel == isFullscreenModel) return;
+//
+//    _isFullscreenModel = isFullscreenModel;
+//    float widScreen    = APP_WIDTH;
+//    float heiScreen    = APP_HEIGHT;
+//
+//    if (isFullscreenModel) { // 全屏
+//        [self mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.width.mas_equalTo(widScreen);
+//            make.height.mas_equalTo(heiScreen);
+//        }];
+//
+//        self.controlView.fullScreenButton.selected = YES;
+//    }
+//    else {                               // 原本竖屏
+//        if (self.m_forceHorizon) return; // 强行只支持横屏
+//
+//        [self mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.width.equalTo(@(widScreen));
+//            make.height.mas_equalTo(widScreen / 16 * 9);
+//        }];
+//        self.controlView.fullScreenButton.selected = NO;
+//    }
+//
+//    [self layoutIfNeeded];
+//}
 
 - (void)changeMediaURL:(NSURL *)mediaURL {
     self.mediaURL = mediaURL;

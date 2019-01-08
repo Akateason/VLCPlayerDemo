@@ -141,12 +141,12 @@
         make.center.equalTo(self);
     }];
 
-    [self.bottomBar addSubview:self.fullScreenButton];
-    [self.fullScreenButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.bottomBar.mas_bottom);
-        make.right.equalTo(self.bottomBar.mas_right).mas_equalTo(-5);
-        make.size.mas_equalTo(CGSizeMake(XTVLCVideoButtonHeight, XTVLCVideoButtonHeight));
-    }];
+    //    [self.bottomBar addSubview:self.fullScreenButton];
+    //    [self.fullScreenButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    //        make.bottom.equalTo(self.bottomBar.mas_bottom);
+    //        make.right.equalTo(self.bottomBar.mas_right).mas_equalTo(-5);
+    //        make.size.mas_equalTo(CGSizeMake(XTVLCVideoButtonHeight, XTVLCVideoButtonHeight));
+    //    }];
 
     [self.bottomBar addSubview:self.progressSlider];
     [self.progressSlider mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -295,14 +295,14 @@
     return _pauseButton;
 }
 
-- (UIButton *)fullScreenButton {
-    if (!_fullScreenButton) {
-        _fullScreenButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_fullScreenButton setImage:[UIImage imageNamed:@"Full Screen Icon"] forState:UIControlStateNormal];
-        [_fullScreenButton setImage:[UIImage imageNamed:@"Min. Icon"] forState:UIControlStateSelected];
-    }
-    return _fullScreenButton;
-}
+//- (UIButton *)fullScreenButton {
+//    if (!_fullScreenButton) {
+//        _fullScreenButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [_fullScreenButton setImage:[UIImage imageNamed:@"Full Screen Icon"] forState:UIControlStateNormal];
+//        [_fullScreenButton setImage:[UIImage imageNamed:@"Min. Icon"] forState:UIControlStateSelected];
+//    }
+//    return _fullScreenButton;
+//}
 
 - (XTVLCProgressSlider *)progressSlider {
     if (!_progressSlider) {

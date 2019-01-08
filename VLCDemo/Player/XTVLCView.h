@@ -32,7 +32,7 @@
 @property (nonatomic, strong) UIView *bottomBarAppend;
 @property (nonatomic, strong) UIButton *playButton;
 @property (nonatomic, strong) UIButton *pauseButton;
-@property (nonatomic, strong) UIButton *fullScreenButton;
+//@property (nonatomic, strong) UIButton *fullScreenButton;
 @property (nonatomic, strong) XTVLCProgressSlider *progressSlider;
 @property (nonatomic, strong) UIButton *closeButton;
 @property (nonatomic, strong) UILabel *timeLabel;
